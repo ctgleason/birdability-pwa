@@ -31,23 +31,23 @@
             <div class="menu-section">
                 <h3>Jump to Section</h3>
                 <div class="section-nav-list">
-                    <button class="section-nav-btn" data-section="1">Part 1: General Information</button>
-                    <button class="section-nav-btn" data-section="2">Part 2: Parking</button>
-                    <button class="section-nav-btn" data-section="3">Part 3: Trail surfaces</button>
-                    <button class="section-nav-btn" data-section="4">Part 4: Trail slopes</button>
-                    <button class="section-nav-btn" data-section="5">Part 5: Trail width and pullouts</button>
-                    <button class="section-nav-btn" data-section="6">Part 6: Benches</button>
-                    <button class="section-nav-btn" data-section="7">Part 7: Gates/bollards</button>
-                    <button class="section-nav-btn" data-section="8">Part 8: Steps present?</button>
-                    <button class="section-nav-btn" data-section="9">Part 9: Ramps</button>
-                    <button class="section-nav-btn" data-section="10">Part 10: Railings</button>
-                    <button class="section-nav-btn" data-section="11">Part 11: Bathrooms</button>
-                    <button class="section-nav-btn" data-section="12">Part 12: Bird blinds</button>
-                    <button class="section-nav-btn" data-section="13">Part 13: Services</button>
-                    <button class="section-nav-btn" data-section="14">Part 14: Facilities for blind and low-vision visitors</button>
-                    <button class="section-nav-btn" data-section="15">Part 15: Other trail users</button>
-                    <button class="section-nav-btn" data-section="16">Part 16: Trail use and popularity</button>
-                    <button class="section-nav-btn" data-section="17">Part 17: Maintenance, nearby noise, safety concerns</button>
+                    <button class="section-nav-btn" data-section="1">General information</button>
+                    <button class="section-nav-btn" data-section="2">Parking</button>
+                    <button class="section-nav-btn" data-section="3">Services</button>
+                    <button class="section-nav-btn" data-section="4">Trail surfaces</button>
+                    <button class="section-nav-btn" data-section="5">Trail slopes</button>
+                    <button class="section-nav-btn" data-section="6">Trail width and pullouts</button>
+                    <button class="section-nav-btn" data-section="7">Benches</button>
+                    <button class="section-nav-btn" data-section="8">Gates/bollards</button>
+                    <button class="section-nav-btn" data-section="9">Steps present?</button>
+                    <button class="section-nav-btn" data-section="10">Ramps</button>
+                    <button class="section-nav-btn" data-section="11">Railings</button>
+                    <button class="section-nav-btn" data-section="12">Facilities for blind and low-vision visitors</button>
+                    <button class="section-nav-btn" data-section="13">Bird blinds</button>
+                    <button class="section-nav-btn" data-section="14">Bathrooms</button>
+                    <button class="section-nav-btn" data-section="15">Other trail users</button>
+                    <button class="section-nav-btn" data-section="16">Trail use and popularity</button>
+                    <button class="section-nav-btn" data-section="17">Maintenance, nearby noise, safety concerns</button>
                     <button class="section-nav-btn" data-section="18">Photo attachments</button>
                 </div>
             </div>
@@ -68,9 +68,9 @@
         <p class="progress-text" id="progressText">Section 1 of 17</p>
 
         <form id="questionnaireForm">
-            <!-- Part 1: General Information -->
+            <!-- General information -->
             <section class="form-section active" data-section="1">
-                <h2>Part 1: General Information</h2>
+                <h2>General information</h2>
                 
                 <div class="form-group">
                     <label for="reportName">Report Name</label>
@@ -155,10 +155,9 @@
                     <textarea id="generalNotes" name="generalInformation.notes" rows="3" placeholder="Additional notes"></textarea>
                 </div>
             </section>
-
-            <!-- Part 2: Parking -->
+<!-- Parking -->
             <section class="form-section" data-section="2">
-                <h2>Part 2: Parking</h2>
+                <h2>Parking</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.parking.noParking"> No parking</label>
@@ -175,10 +174,29 @@
                     <textarea id="parkingComments" name="accessibilityDetailed.parking.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 3: Trail surfaces -->
+<!-- Services -->
             <section class="form-section" data-section="3">
-                <h2>Part 3: Trail surfaces</h2>
+                <h2>Services</h2>
+                
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.services.visitorCenter"> Visitor center</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.staffOrVolunteers"> Staff or volunteers</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.interpretivePrograms"> Interpretive programs</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.mealsAvailable"> Meals available</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.accessibleWaterFountains"> Accessible water fountains</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.waterFountainsOutside"> Water fountains only available outside (freeze in winter)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.accessibleTram"> Accessible tram</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.gatedAccessibleIfArranged"> Gated—accessible if arranged</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="servicesComments">Comments</label>
+                    <textarea id="servicesComments" name="accessibilityDetailed.services.comments" rows="3"></textarea>
+                </div>
+            </section>
+<!-- Trail surfaces -->
+            <section class="form-section" data-section="4">
+                <h2>Trail surfaces</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.trailSurfaces.asphalt"> Asphalt</label>
@@ -201,10 +219,9 @@
                     <textarea id="trailSurfacesComments" name="accessibilityDetailed.trailSurfaces.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 4: Trail slopes -->
-            <section class="form-section" data-section="4">
-                <h2>Part 4: Trail slopes</h2>
+<!-- Trail slopes -->
+            <section class="form-section" data-section="5">
+                <h2>Trail slopes</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.completelyFlat"> Completely flat</label>
@@ -218,10 +235,9 @@
                     <textarea id="trailSlopesComments" name="accessibilityDetailed.trailSlopes.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 5: Trail width and pullouts -->
-            <section class="form-section" data-section="5">
-                <h2>Part 5: Trail width and pullouts</h2>
+<!-- Trail width and pullouts -->
+            <section class="form-section" data-section="6">
+                <h2>Trail width and pullouts</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.atLeast36in"> At least 36 in. (91 cm.)</label>
@@ -237,10 +253,9 @@
                     <textarea id="trailWidthComments" name="accessibilityDetailed.trailWidthPullouts.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 6: Benches -->
-            <section class="form-section" data-section="6">
-                <h2>Part 6: Benches</h2>
+<!-- Benches -->
+            <section class="form-section" data-section="7">
+                <h2>Benches</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.benches.noBenches"> No benches</label>
@@ -255,10 +270,9 @@
                     <textarea id="benchesComments" name="accessibilityDetailed.benches.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 7: Gates/bollards -->
-            <section class="form-section" data-section="7">
-                <h2>Part 7: Gates/bollards</h2>
+<!-- Gates/bollards -->
+            <section class="form-section" data-section="8">
+                <h2>Gates/bollards</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.gates.noGatesOrBollards"> No gates or bollards</label>
@@ -275,10 +289,9 @@
                     <textarea id="gatesComments" name="accessibilityDetailed.gates.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 8: Steps present? -->
-            <section class="form-section" data-section="8">
-                <h2>Part 8: Steps present?</h2>
+<!-- Steps present? -->
+            <section class="form-section" data-section="9">
+                <h2>Steps present?</h2>
                 
                 <div class="form-group checkbox-group">
                     <label>Steps present?</label>
@@ -293,10 +306,9 @@
                     <textarea id="stepsComments" name="accessibilityDetailed.stepsPresent.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 9: Ramps -->
-            <section class="form-section" data-section="9">
-                <h2>Part 9: Ramps</h2>
+<!-- Ramps -->
+            <section class="form-section" data-section="10">
+                <h2>Ramps</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.noRamps"> No ramps</label>
@@ -313,10 +325,9 @@
                     <textarea id="rampsComments" name="accessibilityDetailed.ramps.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 10: Railings -->
-            <section class="form-section" data-section="10">
-                <h2>Part 10: Railings</h2>
+<!-- Railings -->
+            <section class="form-section" data-section="11">
+                <h2>Railings</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.railings.noRailings"> No railings</label>
@@ -330,10 +341,50 @@
                     <textarea id="railingsComments" name="accessibilityDetailed.railings.comments" rows="3"></textarea>
                 </div>
             </section>
+<!-- Facilities for blind and low-vision visitors -->
+            <section class="form-section" data-section="12">
+                <h2>Facilities for blind and low-vision visitors</h2>
+                
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.brailleOnSigns"> Braille on signs</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileComponentsOnSigns"> Tactile components on signs</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileMarkersOnSurface"> Tactile markers on surface</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.guideRopes"> Guide ropes</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.audioRecordings"> Audio recordings</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.additionalResourcesLoan"> Additional resources for loan (binoculars, walking sticks, etc.)</label>
+                </div>
 
-            <!-- Part 11: Bathrooms -->
-            <section class="form-section" data-section="11">
-                <h2>Part 11: Bathrooms</h2>
+                <div class="form-group">
+                    <label for="blindFacilitiesComments">Comments</label>
+                    <textarea id="blindFacilitiesComments" name="accessibilityDetailed.blindFacilities.comments" rows="3"></textarea>
+                </div>
+            </section>
+<!-- Bird blinds -->
+            <section class="form-section" data-section="13">
+                <h2>Bird blinds</h2>
+                
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noBirdBlind"> No bird blind</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noDoorOrEntryway"> No door or entryway</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtLeast32in"> Doorway at least 32 in. (81 cm.) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorCanBeOpenedAndHeldWithOneHand"> Door can be opened and held with one hand</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noLipAtThreshold"> No lip at threshold</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope"> Doorway at top of ramp or on cross slope</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.enoughSpaceInsideForWheelchairs"> Enough space inside for wheelchairs (60 in. x 60 in./152 cm. x 152 cm. min.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.interiorBenchesMovable"> Interior benches movable</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.viewingWindowsBottom30to40in"> Viewing windows bottom 30-40 in. (76-102 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.shelvesNoDeeperThan6in"> Shelves no deeper than 6 in. (15 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.roofProvidesShade"> Roof provides shade</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="birdBlindsComments">Comments</label>
+                    <textarea id="birdBlindsComments" name="accessibilityDetailed.birdBlinds.comments" rows="3"></textarea>
+                </div>
+            </section>
+<!-- Bathrooms -->
+            <section class="form-section" data-section="14">
+                <h2>Bathrooms</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.noBathrooms"> No bathrooms</label>
@@ -355,74 +406,9 @@
                     <textarea id="bathroomsComments" name="accessibilityDetailed.bathrooms.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 12: Bird blinds -->
-            <section class="form-section" data-section="12">
-                <h2>Part 12: Bird blinds</h2>
-                
-                <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noBirdBlind"> No bird blind</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noDoorOrEntryway"> No door or entryway</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtLeast32in"> Doorway at least 32 in. (81 cm.) wide</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorCanBeOpenedAndHeldWithOneHand"> Door can be opened and held with one hand</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noLipAtThreshold"> No lip at threshold</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope"> Doorway at top of ramp or on cross slope</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.enoughSpaceInsideForWheelchairs"> Enough space inside for wheelchairs (60 in. x 60 in./152 cm. x 152 cm. min.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.interiorBenchesMovable"> Interior benches movable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.viewingWindowsBottom30to40in"> Viewing windows bottom 30-40 in. (76-102 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.shelvesNoDeeperThan6in"> Shelves no deeper than 6 in. (15 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.roofProvidesShade"> Roof provides shade</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="birdBlindsComments">Comments</label>
-                    <textarea id="birdBlindsComments" name="accessibilityDetailed.birdBlinds.comments" rows="3"></textarea>
-                </div>
-            </section>
-
-            <!-- Part 13: Services -->
-            <section class="form-section" data-section="13">
-                <h2>Part 13: Services</h2>
-                
-                <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.services.visitorCenter"> Visitor center</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.staffOrVolunteers"> Staff or volunteers</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.interpretivePrograms"> Interpretive programs</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.mealsAvailable"> Meals available</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.accessibleWaterFountains"> Accessible water fountains</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.waterFountainsOutside"> Water fountains only available outside (freeze in winter)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.accessibleTram"> Accessible tram</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.gatedAccessibleIfArranged"> Gated—accessible if arranged</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="servicesComments">Comments</label>
-                    <textarea id="servicesComments" name="accessibilityDetailed.services.comments" rows="3"></textarea>
-                </div>
-            </section>
-
-            <!-- Part 14: Facilities for blind and low-vision visitors -->
-            <section class="form-section" data-section="14">
-                <h2>Part 14: Facilities for blind and low-vision visitors</h2>
-                
-                <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.brailleOnSigns"> Braille on signs</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileComponentsOnSigns"> Tactile components on signs</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileMarkersOnSurface"> Tactile markers on surface</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.guideRopes"> Guide ropes</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.audioRecordings"> Audio recordings</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.additionalResourcesLoan"> Additional resources for loan (binoculars, walking sticks, etc.)</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="blindFacilitiesComments">Comments</label>
-                    <textarea id="blindFacilitiesComments" name="accessibilityDetailed.blindFacilities.comments" rows="3"></textarea>
-                </div>
-            </section>
-
-            <!-- Part 15: Other trail users -->
+<!-- Other trail users -->
             <section class="form-section" data-section="15">
-                <h2>Part 15: Other trail users</h2>
+                <h2>Other trail users</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.cyclists"> Cyclists</label>
@@ -437,10 +423,9 @@
                     <textarea id="otherTrailUsersComments" name="accessibilityDetailed.otherTrailUsers.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 16: Trail use and popularity -->
+<!-- Trail use and popularity -->
             <section class="form-section" data-section="16">
-                <h2>Part 16: Trail use and popularity</h2>
+                <h2>Trail use and popularity</h2>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.notBusy"> Not busy</label>
@@ -453,10 +438,9 @@
                     <textarea id="trailUsePopularityComments" name="accessibilityDetailed.trailUsePopularity.comments" rows="3"></textarea>
                 </div>
             </section>
-
-            <!-- Part 17: Maintenance, nearby noise, safety concerns -->
+<!-- Maintenance, nearby noise, safety concerns -->
             <section class="form-section" data-section="17">
-                <h2>Part 17: Maintenance, nearby noise, safety concerns</h2>
+                <h2>Maintenance, nearby noise, safety concerns</h2>
                 
                 <h3>Maintenance</h3>
                 
@@ -531,8 +515,7 @@
                     <textarea id="accessibilityCriteriaNotes" name="accessibilityCriteria.notes" rows="3" placeholder="Additional criteria notes"></textarea>
                 </div>
             </section>
-
-            <!-- Photo Attachments -->
+<!-- Photo Attachments -->
             <section class="form-section" data-section="18">
                 <h2>Photo attachments</h2>
                 <p>Add photos from your device. Photos will be stored as references, not embedded data.</p>
@@ -543,6 +526,8 @@
                     <div id="photoList" class="photo-list"></div>
                 </div>
             </section>
+
+
 
             <!-- Navigation Buttons -->
             <div class="nav-buttons">

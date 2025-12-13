@@ -164,12 +164,15 @@
                 <h2>Parking</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.noParking"> No parking</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.noParkingArea"> No parking area</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.pullOffAreas"> Pull-off areas (for car birding)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.signedAccessibleParkingSpaces"> Signed accessible parking spaces</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.noCurbsOrCurbCuts"> No curbs or curb cuts from parking area to trail</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfacePaved"> Surface: paved</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceGravel"> Surface: gravel</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.pullOffAreas"> Pull-off areas (no formal lot)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.curbCuts"> Curb cuts from parking lot to trail</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.parkingOnSlope"> Parking on a slope</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceDirt"> Surface: dirt</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceGrass"> Surface: grass</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.parkingOnSlope"> Parking on slope</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.manyPotholes"> Many potholes</label>
                 </div>
 
@@ -184,11 +187,11 @@
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.services.visitorCenter"> Visitor center</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.staffOrVolunteers"> Staff or volunteers on site</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.staffOrVolunteers"> Staff or volunteers</label>
                     <label><input type="checkbox" name="accessibilityDetailed.services.interpretivePrograms"> Interpretive programs</label>
                     <label><input type="checkbox" name="accessibilityDetailed.services.mealsAvailable"> Meals available</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.accessibleWaterFountains"> Accessible water fountains</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.services.waterFountainsOutside"> Water fountains only available outside (freeze in winter)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.waterFountains"> Water fountains</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.services.waterFountainsOnlyOutside"> Water fountains only available outside (freeze in winter)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.services.accessibleTram"> Accessible tram</label>
                     <label><input type="checkbox" name="accessibilityDetailed.services.gatedAccessibleIfArranged"> Gated—accessible if arranged</label>
                 </div>
@@ -204,15 +207,15 @@
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.noBathrooms"> No bathrooms</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.portableRestrooms"> Portable restrooms (not wheelchair accessible)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.portableRestrooms"> Portable restrooms (not wheelchair-accessible)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.wheelchairAccessiblePortable"> Wheelchair-accessible portable restrooms</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.accessOnlyWhenCenterOpen"> Access only when visitor center open</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.doorFramesAtLeast32"> Door frames at least 32 in. (81 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.accessOnlyWhenCenterOpen"> Access only when center open</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.doorFramesAtLeast32"> Door frames at least 32 in. (81 cm.) wide</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.stallSizeMin6060"> Stall size min. 60 in. x 60 in. (152 cm. x 152 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.toiletSeatHeightOK"> Toilet seat height 17-19 in. (43-48 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.sinkHeightOK"> Sink height max. 34 in. (86 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.mirrorBottomOK"> Mirror bottom max. 40 in. (102 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.handDryersOK"> Hand dryers max. 48 in. (122 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.toiletSeatHeight17to19"> Toilet seat height 17-19 in. (43-48 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.sinkHeightMax34"> Sink height max. 34 in. (86 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.mirrorBottomMax40"> Mirror bottom max. 40 in. (102 cm.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.handDryersMax48"> Hand dryers max. 48 in. (122 cm.)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.thresholdNotOnSlant"> Threshold not on slant</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.allGender"> All-gender</label>
                 </div>
@@ -228,7 +231,7 @@
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.noRamps"> No ramps</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.ratioOneToTwelve"> Slope no steeper than 1:12 (8%)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.slopeNoSteeperThan1to12"> Slope no steeper than 1:12 (8%)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.steeperButManageable"> Steeper but manageable</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.verySteep"> Very steep</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.widthAtLeast36"> Width at least 36 in. (91 cm.)</label>

@@ -110,7 +110,10 @@ function setupMenu() {
 }
 
 function updateActiveSectionInMenu() {
-    document.querySelectorAll('.section-nav-btn').forEach(btn => {
+    const sectionNavBtns = document.querySelectorAll('.section-nav-btn');
+    if (sectionNavBtns.length === 0) return; // Menu not initialized yet
+    
+    sectionNavBtns.forEach(btn => {
         btn.classList.remove('active');
         if (parseInt(btn.dataset.section) === currentSection) {
             btn.classList.add('active');

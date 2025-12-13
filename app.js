@@ -1,6 +1,6 @@
 // Global state
 let currentSection = 1;
-const totalSections = 18;
+const totalSections = 21;
 let photoFiles = [];
 
 // Initialize app

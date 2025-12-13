@@ -6,6 +6,7 @@ let photoFiles = [];
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
+    setupMenu();
     setupPhotoUpload();
     updateProgress();
     loadSavedData();
@@ -39,6 +40,94 @@ function setupNavigation() {
     submitBtn.addEventListener('click', generateJSON);
 }
 
+// Menu system
+function setupMenu() {
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const sectionNavBtns = document.querySelectorAll('.section-nav-btn');
+    
+    // Open menu
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        updateActiveSectionInMenu();
+    });
+    
+    // Close menu
+    const closeMenu = () => {
+        navMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    };
+    
+    closeMenuBtn.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    
+    // Section navigation
+    sectionNavBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const section = parseInt(btn.dataset.section);
+            saveFormData();
+            currentSection = section;
+            showSection(currentSection);
+            closeMenu();
+        });
+    });
+    
+    // Menu actions
+    document.getElementById('menuGenerateJson').addEventListener('click', () => {
+        closeMenu();
+        generateJSON();
+    });
+    
+    document.getElementById('menuEmailJson').addEventListener('click', () => {
+        closeMenu();
+        emailJSON();
+    });
+    
+    document.getElementById('menuSaveProgress').addEventListener('click', () => {
+        saveFormData();
+        showMessage('Progress saved successfully!', 'success');
+        closeMenu();
+    });
+    
+    document.getElementById('menuClearForm').addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear all form data? This cannot be undone.')) {
+            localStorage.removeItem('birdabilityFormData');
+            localStorage.removeItem('birdabilityPhotos');
+            closeMenu();
+            location.reload();
+        }
+    });
+    
+    // ESC key to close menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+}
+
+function updateActiveSectionInMenu() {
+    document.querySelectorAll('.section-nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (parseInt(btn.dataset.section) === currentSection) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+function emailJSON() {
+    const data = getFormData();
+    const jsonOutput = JSON.stringify(data, null, 2);
+    
+    const subject = encodeURIComponent(`Birdability Report: ${data.generalInformation.locationName || 'New Site'}`);
+    const body = encodeURIComponent(`Please find the attached Birdability accessibility report.\n\nReport ID: ${data.id}\nLocation: ${data.generalInformation.locationName}\nCreated: ${data.createdAt}\n\n--- JSON Data ---\n${jsonOutput}`);
+    
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
 function showSection(sectionNumber) {
     // Hide all sections
     document.querySelectorAll('.form-section').forEach(section => {
@@ -67,6 +156,7 @@ function showSection(sectionNumber) {
     }
 
     updateProgress();
+    updateActiveSectionInMenu();
     window.scrollTo(0, 0);
 }
 

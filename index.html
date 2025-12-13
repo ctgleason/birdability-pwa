@@ -12,55 +12,55 @@
     <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
+    <!-- Navigation Menu -->
+    <div id="navMenu" class="nav-menu">
+        <div class="nav-menu-header">
+            <h2>Menu</h2>
+            <button id="closeMenuBtn" class="close-menu-btn" aria-label="Close menu">×</button>
+        </div>
+        
+        <div class="nav-menu-content">
+            <div class="menu-section">
+                <h3>Actions</h3>
+                <button class="menu-action-btn" id="menuGenerateJson">📄 Generate JSON</button>
+                <button class="menu-action-btn" id="menuEmailJson">📧 Email JSON</button>
+                <button class="menu-action-btn" id="menuSaveProgress">💾 Save Progress</button>
+                <button class="menu-action-btn" id="menuClearForm">🗑️ Clear Form</button>
+            </div>
+            
+            <div class="menu-section">
+                <h3>Jump to Section</h3>
+                <div class="section-nav-list">
+                    <button class="section-nav-btn" data-section="1">1. General Information</button>
+                    <button class="section-nav-btn" data-section="2">2. Parking</button>
+                    <button class="section-nav-btn" data-section="3">3. Trail Surfaces</button>
+                    <button class="section-nav-btn" data-section="4">4. Trail Slopes</button>
+                    <button class="section-nav-btn" data-section="5">5. Trail Width & Pullouts</button>
+                    <button class="section-nav-btn" data-section="6">6. Benches</button>
+                    <button class="section-nav-btn" data-section="7">7. Gates</button>
+                    <button class="section-nav-btn" data-section="8">8. Steps</button>
+                    <button class="section-nav-btn" data-section="9">9. Ramps</button>
+                    <button class="section-nav-btn" data-section="10">10. Railings</button>
+                    <button class="section-nav-btn" data-section="11">11. Bathrooms</button>
+                    <button class="section-nav-btn" data-section="12">12. Bird Blinds</button>
+                    <button class="section-nav-btn" data-section="13">13. Services</button>
+                    <button class="section-nav-btn" data-section="14">14. Blind Facilities</button>
+                    <button class="section-nav-btn" data-section="15">15. Other Trail Users</button>
+                    <button class="section-nav-btn" data-section="16">16. Trail Use Popularity</button>
+                    <button class="section-nav-btn" data-section="17">17. Maintenance & Safety</button>
+                    <button class="section-nav-btn" data-section="18">18. Photos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menuOverlay" class="menu-overlay"></div>
+
     <div class="container">
         <header>
             <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
             <h1>🐦 Birdability Accessibility Questionnaire</h1>
             <p class="subtitle">Help us map accessible birding sites</p>
         </header>
-
-        <!-- Navigation Menu -->
-        <div id="navMenu" class="nav-menu">
-            <div class="nav-menu-header">
-                <h2>Menu</h2>
-                <button id="closeMenuBtn" class="close-menu-btn" aria-label="Close menu">×</button>
-            </div>
-            
-            <div class="nav-menu-content">
-                <div class="menu-section">
-                    <h3>Actions</h3>
-                    <button class="menu-action-btn" id="menuGenerateJson">📄 Generate JSON</button>
-                    <button class="menu-action-btn" id="menuEmailJson">📧 Email JSON</button>
-                    <button class="menu-action-btn" id="menuSaveProgress">💾 Save Progress</button>
-                    <button class="menu-action-btn" id="menuClearForm">🗑️ Clear Form</button>
-                </div>
-                
-                <div class="menu-section">
-                    <h3>Jump to Section</h3>
-                    <div class="section-nav-list">
-                        <button class="section-nav-btn" data-section="1">1. General Information</button>
-                        <button class="section-nav-btn" data-section="2">2. Parking</button>
-                        <button class="section-nav-btn" data-section="3">3. Trail Surfaces</button>
-                        <button class="section-nav-btn" data-section="4">4. Trail Slopes</button>
-                        <button class="section-nav-btn" data-section="5">5. Trail Width & Pullouts</button>
-                        <button class="section-nav-btn" data-section="6">6. Benches</button>
-                        <button class="section-nav-btn" data-section="7">7. Gates</button>
-                        <button class="section-nav-btn" data-section="8">8. Steps</button>
-                        <button class="section-nav-btn" data-section="9">9. Ramps</button>
-                        <button class="section-nav-btn" data-section="10">10. Railings</button>
-                        <button class="section-nav-btn" data-section="11">11. Bathrooms</button>
-                        <button class="section-nav-btn" data-section="12">12. Bird Blinds</button>
-                        <button class="section-nav-btn" data-section="13">13. Services</button>
-                        <button class="section-nav-btn" data-section="14">14. Blind Facilities</button>
-                        <button class="section-nav-btn" data-section="15">15. Other Trail Users</button>
-                        <button class="section-nav-btn" data-section="16">16. Trail Use Popularity</button>
-                        <button class="section-nav-btn" data-section="17">17. Maintenance & Safety</button>
-                        <button class="section-nav-btn" data-section="18">18. Photos</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="menuOverlay" class="menu-overlay"></div>
 
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>

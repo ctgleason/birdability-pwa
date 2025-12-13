@@ -167,11 +167,15 @@
                     <label><input type="checkbox" name="accessibilityDetailed.parking.noParkingArea"> No parking area</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.pullOffAreas"> Pull-off areas (for car birding)</label>
                     
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.signedAccessibleParkingSpaces"> Signed accessible parking spaces. Number:</label>
-                    <input type="text" name="accessibilityDetailed.parking.signedAccessibleParkingSpacesNumber" placeholder="Number" style="width: 100px; margin-left: 10px;">
+                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                        <label><input type="checkbox" name="accessibilityDetailed.parking.signedAccessibleParkingSpaces"> Signed accessible parking spaces. Number:</label>
+                        <input type="number" name="accessibilityDetailed.parking.signedAccessibleParkingSpacesNumber" placeholder="Number" style="width: 80px; margin-left: 10px;">
+                    </div>
                     
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.vanAccessibleParkingSpaces"> Van accessible parking spaces. Parking space is 132 in. (3.3 m.) wide, with extra 60 in. (1.5 m.) wide aisle/side space for a ramp. Number:</label>
-                    <input type="text" name="accessibilityDetailed.parking.vanAccessibleParkingSpacesNumber" placeholder="Number" style="width: 100px; margin-left: 10px;">
+                    <div style="display: flex; align-items: center; margin: 8px 0;">
+                        <label style="flex: 1;"><input type="checkbox" name="accessibilityDetailed.parking.vanAccessibleParkingSpaces"> Van accessible parking spaces. Parking space is 132 in. (3.3 m.) wide, with extra 60 in. (1.5 m.) wide aisle/side space for a ramp. Number:</label>
+                        <input type="number" name="accessibilityDetailed.parking.vanAccessibleParkingSpacesNumber" placeholder="Number" style="width: 80px; margin-left: 10px;">
+                    </div>
                     
                     <label><input type="checkbox" name="accessibilityDetailed.parking.curbCutsPresent"> Curb cuts present from parking lot to sidewalk/trail</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceIsPaved"> Surface is paved</label>

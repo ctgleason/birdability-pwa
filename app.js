@@ -137,8 +137,8 @@ function showSection(sectionNumber) {
         section.classList.remove('active');
     });
 
-    // Show current section
-    const currentSectionEl = document.querySelector(`[data-section="${sectionNumber}"]`);
+    // Show current section - be specific to avoid matching menu buttons
+    const currentSectionEl = document.querySelector(`.form-section[data-section="${sectionNumber}"]`);
     if (currentSectionEl) {
         currentSectionEl.classList.add('active');
     }

@@ -239,12 +239,12 @@
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.noRamps"> No ramps</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.slopeNoSteeperThan1to12"> Slope no steeper than 1:12 (8.3%)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.steeperButManageable"> Steeper but manageable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.verySteep"> Very steep</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.widthAtLeast36"> Width at least 36 in. (91 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.flatLandingsMin6060"> Flat landings min. 60 in. x 60 in. (152 cm. x 152 cm.)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.handrailsPresent"> Handrails present</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.widthAtLeast36"> Ramps at least 36 in. (91 cm) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.slopeNoSteeperThan1to12"> For every 1 in. (2.5 cm) the ramp rises, it extends out 12 in. (30.5 cm) (no greater than 1:12 ratio, or no steeper than 8.33%)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.steeperButManageable"> Ramps are steeper than 1:12, but not so steep it feels like an effort to use</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.verySteep"> Ramps are very steep</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.ramps.flatLandingsMin6060"> Flat landings between slopes or when ramps change direction are at least 60 in. x 60 in. (1.5 m x 1.5 m)</label>
                 </div>
 
                 <div class="form-group">
@@ -282,16 +282,15 @@
             </section>
 <!-- Trail width and pullouts -->
             <section class="form-section" data-section="7">
-                <h2>Trail width and pullouts</h2>
+                <h2>Trail width and pull-outs</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.atLeast60WholeTrail"> At least 60 in. (152 cm.) for whole trail</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.atLeast48WholeTrail"> At least 48 in. (122 cm.) for whole trail</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.narrowerAreasOccasional"> Narrower areas: occasional</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.narrowerAreasFrequent"> Narrower areas: frequent</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.edgeDropoffsTooSteep"> Edge drop-offs too steep for safe wheelchair use</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.edgesSafeDistance"> Edges start a safe distance from center (suggested 48 in./122 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.hasPullouts"> Has pullouts for passing</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.relativelyNarrow"> Trail is relatively narrow (it would be somewhat difficult to pass others if using a mobility device)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.noPullouts"> No pull-outs (passing spaces) along the trail</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.atLeast60"> Trail is at least 60 in. (1.5 m) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.atLeast36"> Trail is at least 36 in. (91 cm) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.pulloutsEvery1000ft"> Pull-outs occur at least every 1,000 ft (305 m)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailWidthPullouts.pulloutsLessFrequent"> Pull-outs are less frequent</label>
                 </div>
 
                 <div class="form-group">
@@ -410,9 +409,12 @@
 <!-- Shade cover -->
             <section class="form-section" data-section="14">
                 <h2>Shade cover</h2>
-                <div class="form-group">
-                    <label for="shadeCover">Describe shade availability along trail</label>
-                    <textarea id="shadeCover" name="accessibilityDetailed.shadeCover" rows="3" placeholder="e.g., Full sun, partial shade, mostly shaded"></textarea>
+                
+                <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.shadeCover.completely"> Completely</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.shadeCover.somewhat"> Somewhat</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.shadeCover.notAtAll"> Not at all</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.shadeCover.someShadedSomeNot"> Some sections of the trail are shaded, some are not</label>
                 </div>
 
                 <div class="form-group">
@@ -425,13 +427,13 @@
                 <h2>Trail use and popularity</h2>
                 
                 <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.veryBusy"> Very busy; difficult to find a parking space or to pass other trail users</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.somewhatBusy"> Somewhat busy; still easy to navigate the trail with other visitors</label>
                     <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.notBusy"> Not busy</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.somewhatBusy"> Somewhat busy</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailUsePopularity.veryBusy"> Very busy</label>
                 </div>
 
                 <div class="form-group">
-                    <label for="trailUsePopularityComments">Comments</label>
+                    <label for="trailUsePopularityComments">Comments, including busy season/s and time/s of day or week</label>
                     <textarea id="trailUsePopularityComments" name="accessibilityDetailed.trailUsePopularity.comments" rows="3"></textarea>
                 </div>
             </section>
@@ -440,12 +442,11 @@
                 <h2>Other trail users</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.cyclists"> Cyclists</label>
                     <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.mountainBikes"> Mountain bikes</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.inlineSkaters"> Inline skaters</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.cyclists"> Cyclists (especially on bike paths)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.horses"> Horses</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.motorVehicles"> Motor vehicles</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.none"> None</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.motorVehicles"> Motor vehicles, including golf carts</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.otherTrailUsers.inlineSkiers"> In-line skiers</label>
                 </div>
 
                 <div class="form-group">
@@ -460,19 +461,19 @@
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noBirdBlind"> No bird blind</label>
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noDoorOrEntryway"> No door or entryway</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtLeast32in"> Doorway at least 32 in. (81 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorCanBeOpenedAndHeldWithOneHand"> Door can be opened and held with one hand</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noLipAtThreshold"> No lip at threshold</label>
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope"> Doorway at top of ramp or on cross slope</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.enoughSpaceInsideForWheelchairs"> Enough space inside for wheelchairs (60 in. x 60 in./152 cm. x 152 cm. min.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.interiorBenchesMovable"> Interior benches movable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.viewingWindowsBottom30to40in"> Viewing windows bottom 30-40 in. (76-102 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.shelvesNoDeeperThan6in"> Shelves no deeper than 6 in. (15 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.roofProvidesShade"> Roof provides shade</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorCanBeOpenedAndHeldWithOneHand"> Door can be opened and held open easily with one hand while passing through</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noLipAtThreshold"> No lip at the threshold of the doorway</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtLeast32in"> Doorway at least 32 in. (81 cm) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.enoughSpaceInsideForWheelchairs"> Enough space inside for wheelchairs to maneuver easily</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.viewingWindowsBottom30to40in"> Viewing windows: bottom edge is 30-40 in. (76 cm -1 m) from the floor</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.shelvesNoDeeperThan6in"> Shelves or ledges in front of windows are no deeper than 6 in. (15 cm)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.interiorBenchesMovable"> Interior benches are movable</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.roofProvidesShade"> Roof or other structure provides shade</label>
                 </div>
 
                 <div class="form-group">
-                    <label for="birdBlindsComments">Comments</label>
+                    <label for="birdBlindsComments">Comments, including surface of bird blind floor</label>
                     <textarea id="birdBlindsComments" name="accessibilityDetailed.birdBlinds.comments" rows="3"></textarea>
                 </div>
             </section>
@@ -480,12 +481,12 @@
             <section class="form-section" data-section="18">
                 <h2>Maintenance</h2>
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.grassySurfacesMownFrequently"> Grassy surfaces mown frequently</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.treeBranchesClearAbove7ft"> Tree branches clear above 7 ft. (2.1 m.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.vegetationPrunedNextToTrail"> Vegetation pruned next to trail</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.leavesRemovedInFallWinter"> Leaves removed in fall/winter</label>
                     <label><input type="checkbox" name="accessibilityDetailed.maintenance.plowedFrequentlyInWinter"> Plowed frequently in winter</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.significantSurfaceDamage"> Significant surface damage</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.leavesRemovedInFallWinter"> Leaves removed in fall/winter</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.grassySurfacesMownFrequently"> All grassy trail surfaces are mown frequently</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.vegetationPrunedNextToTrail"> Vegetation next to the trail is pruned so it does not encroach over the trail</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.treeBranchesClearAbove7ft"> Tree branches do not extend over the surface of the trail below the height of 7 ft (2.1 m)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.maintenance.significantSurfaceDamage"> Significant cracks, potholes, or loose, damaged or uneven boards in trail surface</label>
                 </div>
 
                 <div class="form-group">
@@ -497,37 +498,38 @@
             <section class="form-section" data-section="19">
                 <h2>Nearby noise</h2>
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.nearbyTraffic"> Nearby traffic</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.nearAirportOrFlightPath"> Near airport or flight path</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.ongoingIndustrial"> Ongoing industrial</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.intermittentConstruction"> Intermittent construction</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.intermittentConstruction"> Intermittent nearby construction noise</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.ongoingIndustrial"> Ongoing industrial noise</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.nearbyTraffic"> Nearby traffic noise</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.nearAirportOrFlightPath"> Near an airport/heavily trafficked flight path</label>
                     <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.loudBoatsNearby"> Loud boats nearby</label>
                     <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.dirtBikesNearby"> Dirt bikes nearby</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.largeGroupsOftenUseLocation"> Large groups often use location</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.nearbyNoise.largeGroupsOftenUseLocation"> Large groups of people often use this location for social gatherings</label>
                 </div>
 
                 <div class="form-group">
-                    <label for="nearbyNoiseComments">Comments</label>
+                    <label for="nearbyNoiseComments">Comments, including busy season(s) and time/s of day or week</label>
                     <textarea id="nearbyNoiseComments" name="accessibilityDetailed.nearbyNoise.comments" rows="3"></textarea>
                 </div>
             </section>
 <!-- Safety concerns -->
             <section class="form-section" data-section="20">
-                <h2>Safety concerns</h2>
+                <h2>Potential safety concerns</h2>
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.wellUsedDidntFeelDeserted"> Well used, didn't feel deserted</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.notWellUsedFewOtherUsers"> Not well used, few other users</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.parkingWellLitAtNight"> Parking well lit at night</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.trailWellLitAtNight"> Trail well lit at night</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.noticeablePresenceOfAuthorities"> Noticeable presence of authorities</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.wellUsedDidntFeelDeserted"> Well used; didn't feel deserted</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.notWellUsedFewOtherUsers"> Not well-used; few other users</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.bordersPrivatePropertyKeepOutSigns"> Location borders a private property with 'keep out' or 'no trespassing' signs visible at the parking area or along the trail</label>
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.dogsOftenOffLeash"> Dogs often off leash</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.ticksOrChiggersConcern"> Ticks or chiggers concern</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.wildlifeReported"> Wildlife reported (bears, alligators, snakes)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.parkingWellLitAtNight"> Parking is well lit at night</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.trailWellLitAtNight"> Trail is well lit at night</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.ticksOrChiggersConcern"> Ticks or chiggers are a concern</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.bearsOrMountainLionsReported"> Bears or mountain lions frequently reported</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.noticeablePresenceOfAuthorities"> Noticeable presence of police, Border Patrol or other authorities</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.usedAsIsolatedPartySpot"> Used as an isolated party spot, or for large, loud gatherings</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.hateSymbolsPresent"> Hate symbols, including graffiti, Confederate flags</label>
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.usedForHunting"> Used for hunting</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.bordersPrivatePropertyKeepOutSigns"> Borders private property ("Keep Out" signs)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.usedAsIsolatedPartySpot"> Used as isolated party spot</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.evidenceOfDrugOrAlcoholUse"> Evidence of drug or alcohol use</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.hateSymbolsPresent"> Hate symbols present</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.largeGroupsOftenUseLocation"> Large groups of people often use this location for social gatherings</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.evidenceOfDrugOrAlcoholUse"> Evidence of recreational drug or alcohol use (for example: syringes, drug paraphernalia)</label>
                 </div>
 
                 <div class="form-group">

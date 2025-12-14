@@ -50,15 +50,28 @@ function mapToSurvey123(checklistData) {
         if (gi.trailOutAndBack) params['type_of_trail'] = 'out_and_back';
         if (gi.trailLollipop) params['type_of_trail'] = 'lollipop';
         
-        // Entrance fee (note: Survey123 doesn't have entrance_fee, only park_fee)
-        // We'll skip entrance fee since it doesn't exist in Survey123
+        // Park fee (covers both entrance fee and parking fee in Survey123)
+        // Survey123 question: "Is there an entrance fee? Is there a parking fee?"
+        const hasEntranceFee = gi.entranceFee === true || gi.entranceFee === 'true';
+        const hasParkingFee = gi.parkingFee === true || gi.parkingFee === 'true';
         
-        // Parking fee (Survey123 calls it park_fee)
-        if (gi.parkingFee !== undefined) {
-            params['park_fee'] = gi.parkingFee ? 'Yes' : 'No';
-        }
-        if (gi.parkingFeeDetails) {
-            params['park_fee_cost'] = gi.parkingFeeDetails;
+        if (hasEntranceFee || hasParkingFee) {
+            params['park_fee'] = 'Yes';
+            
+            // Combine fee details if both exist
+            const feeParts = [];
+            if (gi.entranceFeeDetails) feeParts.push('Entrance: ' + gi.entranceFeeDetails);
+            if (gi.parkingFeeDetails) feeParts.push('Parking: ' + gi.parkingFeeDetails);
+            
+            if (feeParts.length > 0) {
+                params['park_fee_cost'] = feeParts.join(', ');
+            } else if (gi.entranceFeeDetails) {
+                params['park_fee_cost'] = gi.entranceFeeDetails;
+            } else if (gi.parkingFeeDetails) {
+                params['park_fee_cost'] = gi.parkingFeeDetails;
+            }
+        } else if (hasEntranceFee === false && hasParkingFee === false) {
+            params['park_fee'] = 'No';
         }
         
         // Public transportation

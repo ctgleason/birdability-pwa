@@ -1,7 +1,8 @@
 // Global state
 let currentSection = 1;
 const totalSections = 21;
-let photoFiles = [];
+let photoFiles = []; // Metadata only for JSON
+let actualPhotoFiles = []; // Actual File objects for email attachment
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,49 +139,46 @@ function emailJSON() {
     const data = getFormData();
     const jsonOutput = JSON.stringify(data, null, 2);
     
-    // Create a FormData-like structure for email
-    // Note: mailto: protocol cannot directly attach files, so we'll create download links
-    // The user's email client will handle the attachments when they paste the links
-    
-    let photoAttachmentInfo = '';
-    if (photoFiles.length > 0) {
-        photoAttachmentInfo = '\n\n--- Photos ---\n';
-        photoAttachmentInfo += `This report includes ${photoFiles.length} photo(s).\n`;
-        photoAttachmentInfo += 'Please use the "Save JSON" or "Download JSON" button to save the complete report with photo references.\n';
-        photoFiles.forEach((photo, index) => {
-            photoAttachmentInfo += `${index + 1}. ${photo.name} (${Math.round(photo.size / 1024)}KB)\n`;
-        });
-    }
-    
     const subject = encodeURIComponent(`Birdability Report: ${data.generalInformation.locationName || 'New Site'}`);
-    const body = encodeURIComponent(`Please find the Birdability accessibility report.\n\nReport ID: ${data.id}\nLocation: ${data.generalInformation.locationName}\nCreated: ${data.createdAt}${photoAttachmentInfo}\n\n--- JSON Data ---\n${jsonOutput}`);
     
-    // For modern browsers, we can try to create a better experience
-    if (navigator.share && photoFiles.length > 0) {
-        // Convert dataURLs back to files for sharing
-        Promise.all(photoFiles.map(async (photo) => {
-            const response = await fetch(photo.dataUrl);
-            const blob = await response.blob();
-            return new File([blob], photo.name, { type: photo.type });
-        })).then(files => {
-            // Create JSON file
-            const jsonBlob = new Blob([jsonOutput], { type: 'application/json' });
-            const jsonFile = new File([jsonBlob], `birdability-report-${data.id}.json`, { type: 'application/json' });
-            
-            // Share with all files
-            navigator.share({
-                title: `Birdability Report: ${data.generalInformation.locationName || 'New Site'}`,
-                text: `Report ID: ${data.id}\nLocation: ${data.generalInformation.locationName}`,
-                files: [jsonFile, ...files]
-            }).catch(err => {
-                // Fallback to mailto if share fails
-                window.location.href = `mailto:?subject=${subject}&body=${body}`;
-            });
+    // For modern browsers with Web Share API, share JSON and photos together
+    if (navigator.share && actualPhotoFiles.length > 0) {
+        // Create JSON file
+        const jsonBlob = new Blob([jsonOutput], { type: 'application/json' });
+        const jsonFile = new File([jsonBlob], `birdability-report-${data.id}.json`, { type: 'application/json' });
+        
+        // Get actual photo files
+        const photoFilesToShare = actualPhotoFiles.map(p => p.file);
+        
+        // Share with all files
+        navigator.share({
+            title: `Birdability Report: ${data.generalInformation.locationName || 'New Site'}`,
+            text: `Report ID: ${data.id}\nLocation: ${data.generalInformation.locationName}\nCreated: ${data.createdAt}`,
+            files: [jsonFile, ...photoFilesToShare]
+        }).catch(err => {
+            console.error('Share failed:', err);
+            // Fallback to mailto without photos
+            fallbackEmailWithoutPhotos(subject, data, jsonOutput);
         });
     } else {
-        // Fallback to standard mailto
-        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        // Fallback to mailto without photos
+        fallbackEmailWithoutPhotos(subject, data, jsonOutput);
     }
+}
+
+function fallbackEmailWithoutPhotos(subject, data, jsonOutput) {
+    let photoInfo = '';
+    if (photoFiles.length > 0) {
+        photoInfo = '\n\n--- Photos ---\n';
+        photoInfo += `This report includes ${photoFiles.length} photo(s).\n`;
+        photoInfo += 'Note: Photos cannot be attached via email link. Please use the "Save JSON" button to download the report, then manually attach the photos.\n';
+        photoFiles.forEach((photo, index) => {
+            photoInfo += `${index + 1}. ${photo.name} (${Math.round(photo.size / 1024)}KB)\n`;
+        });
+    }
+    
+    const body = encodeURIComponent(`Please find the Birdability accessibility report.\n\nReport ID: ${data.id}\nLocation: ${data.generalInformation.locationName}\nCreated: ${data.createdAt}${photoInfo}\n\n--- JSON Data ---\n${jsonOutput}`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
 function showSection(sectionNumber) {
@@ -255,24 +253,26 @@ function handlePhotoUpload(files) {
         if (file.type.startsWith('image/')) {
             const photoId = `photo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
             
-            // Store file reference and read as data URL for later use
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                photoFiles.push({
-                    id: photoId,
-                    name: file.name,
-                    size: file.size,
-                    type: file.type,
-                    timestamp: new Date().toISOString(),
-                    dataUrl: e.target.result // Store the actual image data
-                });
-                saveFormData();
-            };
-            reader.readAsDataURL(file);
+            // Store metadata only (for JSON)
+            photoFiles.push({
+                id: photoId,
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Store actual file for email attachment
+            actualPhotoFiles.push({
+                id: photoId,
+                file: file
+            });
 
             displayPhoto(file, photoId);
         }
     });
+    
+    saveFormData();
 }
 
 function displayPhoto(file, photoId) {
@@ -298,6 +298,7 @@ function displayPhoto(file, photoId) {
 
 function removePhoto(photoId) {
     photoFiles = photoFiles.filter(photo => photo.id !== photoId);
+    actualPhotoFiles = actualPhotoFiles.filter(photo => photo.id !== photoId);
     
     const photoItem = document.querySelector(`[data-photo-id="${photoId}"]`);
     if (photoItem) {
@@ -648,6 +649,8 @@ function showMessage(message, type) {
 function saveFormData() {
     const data = getFormData();
     localStorage.setItem('birdabilityFormData', JSON.stringify(data));
+    // Note: photoFiles only contains metadata, not actual image data
+    // Actual photo files (actualPhotoFiles) are not persisted and will be lost on page reload
     localStorage.setItem('birdabilityPhotos', JSON.stringify(photoFiles));
 }
 
@@ -667,8 +670,9 @@ function loadSavedData() {
     if (savedPhotos) {
         try {
             photoFiles = JSON.parse(savedPhotos);
-            // Note: We can't restore the actual image previews from localStorage
-            // Only the metadata is preserved
+            // Note: Actual photo files (actualPhotoFiles) cannot be restored from localStorage
+            // Users will need to re-attach photos if they reload the page
+            // Only metadata is preserved in the JSON output
         } catch (e) {
             console.error('Error loading saved photos:', e);
         }

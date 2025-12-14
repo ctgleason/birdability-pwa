@@ -77,27 +77,65 @@
                 <h2>General Information</h2>
                 
                 <div class="form-group">
-                    <label for="reportName">Report Name</label>
+                    <label for="reportName"><strong>Report Name</strong></label>
                     <input type="text" id="reportName" name="name" placeholder="Enter report name">
                 </div>
 
                 <div class="form-group">
-                    <label for="trailName">Trail/bird blind name</label>
+                    <label for="locationName"><strong>Area/Sanctuary Name</strong></label>
+                    <input type="text" id="locationName" name="generalInformation.locationName" placeholder="Enter area or sanctuary name">
+                </div>
+
+                <div class="form-group">
+                    <label for="trailName"><strong>Trail/bird blind name</strong></label>
                     <input type="text" id="trailName" name="generalInformation.trailName" placeholder="Enter trail or bird blind name">
                 </div>
 
                 <div class="form-group">
-                    <label for="locationName">Location name</label>
-                    <input type="text" id="locationName" name="generalInformation.locationName" placeholder="Enter location name">
+                    <label for="websiteUrl"><strong>Website (optional)</strong></label>
+                    <input type="url" id="websiteUrl" name="generalInformation.websiteUrl" placeholder="https://example.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="lengthOfTrail">Length of trail</label>
+                    <label><strong>Drop a pin at the location of the trailhead, blind, or observation platform</strong></label>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0 10px 0;">Select your current location or choose on the map</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button type="button" id="useCurrentLocationBtn" class="btn btn-secondary" style="flex: 1;">📍 Use Current Location</button>
+                        <button type="button" id="chooseOnMapBtn" class="btn btn-secondary" style="flex: 1;">🗺️ Choose on Map</button>
+                    </div>
+                    <input type="hidden" id="latitude" name="generalInformation.latitude">
+                    <input type="hidden" id="longitude" name="generalInformation.longitude">
+                    <div id="locationDisplay" style="font-size: 0.9em; color: #666; margin-top: 5px;"></div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label><strong>Good car birding?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="generalInformation.goodCarBirding" value="true"> Yes</label>
+                        <label><input type="radio" name="generalInformation.goodCarBirding" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="goodCarBirdingDetails"><strong>If yes, describe</strong></label>
+                    <textarea id="goodCarBirdingDetails" name="generalInformation.goodCarBirdingDetails" rows="2" placeholder="Describe car birding opportunities"></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label><strong>Units of measurement preferred</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="generalInformation.unitsPreferred" value="miles"> Miles</label>
+                        <label><input type="radio" name="generalInformation.unitsPreferred" value="kilometers"> Kilometers</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lengthOfTrail"><strong>Length of trail</strong></label>
                     <input type="text" id="lengthOfTrail" name="generalInformation.lengthOfTrail" placeholder="e.g., 2.5 miles or 1 km">
                 </div>
 
                 <div class="form-group checkbox-group">
-                    <label>Trail type</label>
+                    <label><strong>Trail type</strong></label>
                     <div class="checkbox-row">
                         <label><input type="checkbox" name="generalInformation.trailLoop"> Loop</label>
                         <label><input type="checkbox" name="generalInformation.trailOutAndBack"> Out and back</label>
@@ -106,56 +144,55 @@
                 </div>
 
                 <div class="form-group checkbox-group">
-                    <label>Entrance fee?</label>
-                    <div class="radio-row">
-                        <label><input type="radio" name="generalInformation.entranceFee" value="true"> Yes</label>
-                        <label><input type="radio" name="generalInformation.entranceFee" value="false"> No</label>
+                    <label><strong>Entrance fee?</strong></label>
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                        <div class="radio-row">
+                            <label><input type="radio" name="generalInformation.entranceFee" value="true"> Yes</label>
+                            <label><input type="radio" name="generalInformation.entranceFee" value="false"> No</label>
+                        </div>
+                        <input type="text" id="entranceFeeDetails" name="generalInformation.entranceFeeDetails" placeholder="Fee amount" style="flex: 1; min-width: 150px;">
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="entranceFeeDetails">If yes, how much?</label>
-                    <input type="text" id="entranceFeeDetails" name="generalInformation.entranceFeeDetails" placeholder="Fee amount">
                 </div>
 
                 <div class="form-group checkbox-group">
-                    <label>Parking fee?</label>
+                    <label><strong>Parking fee?</strong></label>
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                        <div class="radio-row">
+                            <label><input type="radio" name="generalInformation.parkingFee" value="true"> Yes</label>
+                            <label><input type="radio" name="generalInformation.parkingFee" value="false"> No</label>
+                        </div>
+                        <input type="text" id="parkingFeeDetails" name="generalInformation.parkingFeeDetails" placeholder="Fee amount" style="flex: 1; min-width: 150px;">
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label><strong>Is there nearby access to public transportation?</strong></label>
                     <div class="radio-row">
-                        <label><input type="radio" name="generalInformation.parkingFee" value="true"> Yes</label>
-                        <label><input type="radio" name="generalInformation.parkingFee" value="false"> No</label>
+                        <label><input type="radio" name="generalInformation.publicTransitAccess" value="true"> Yes</label>
+                        <label><input type="radio" name="generalInformation.publicTransitAccess" value="false"> No</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="parkingFeeDetails">If yes, how much?</label>
-                    <input type="text" id="parkingFeeDetails" name="generalInformation.parkingFeeDetails" placeholder="Fee amount">
-                </div>
-
-                <div class="form-group">
-                    <label for="publicTransitInfo">Access by public transit? If yes, describe</label>
+                    <label for="publicTransitInfo"><strong>If yes, describe</strong></label>
                     <textarea id="publicTransitInfo" name="generalInformation.publicTransitInfo" rows="2" placeholder="Describe public transit access"></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="walkingOrBikingInfo">Access by walking or biking? If yes, describe</label>
-                    <textarea id="walkingOrBikingInfo" name="generalInformation.walkingOrBikingInfo" rows="2" placeholder="Describe walking or biking access"></textarea>
-                </div>
-
                 <div class="form-group checkbox-group">
-                    <label>Good car birding?</label>
+                    <label><strong>Is there walking or biking access from nearby residential areas?</strong></label>
                     <div class="radio-row">
-                        <label><input type="radio" name="generalInformation.goodCarBirding" value="true"> Yes</label>
-                        <label><input type="radio" name="generalInformation.goodCarBirding" value="false"> No</label>
+                        <label><input type="radio" name="generalInformation.walkingBikingAccess" value="true"> Yes</label>
+                        <label><input type="radio" name="generalInformation.walkingBikingAccess" value="false"> No</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="goodCarBirdingDetails">If yes, describe</label>
-                    <textarea id="goodCarBirdingDetails" name="generalInformation.goodCarBirdingDetails" rows="2" placeholder="Describe car birding opportunities"></textarea>
+                    <label for="walkingOrBikingInfo"><strong>If yes, describe</strong></label>
+                    <textarea id="walkingOrBikingInfo" name="generalInformation.walkingOrBikingInfo" rows="2" placeholder="Describe walking or biking access"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="generalNotes">Notes</label>
+                    <label for="generalNotes"><strong>Notes</strong></label>
                     <textarea id="generalNotes" name="generalInformation.notes" rows="3" placeholder="Additional notes"></textarea>
                 </div>
             </section>

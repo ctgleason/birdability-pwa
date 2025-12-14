@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     setupMenu();
     setupPhotoUpload();
+    setupLocationPicker();
     updateProgress();
     loadSavedData();
     
@@ -234,6 +235,70 @@ function setupPhotoUpload() {
     photoInput?.addEventListener('change', (e) => {
         handlePhotoUpload(e.target.files);
         e.target.value = ''; // Reset input
+    });
+}
+
+// Location picker handling
+function setupLocationPicker() {
+    const useCurrentLocationBtn = document.getElementById('useCurrentLocationBtn');
+    const chooseOnMapBtn = document.getElementById('chooseOnMapBtn');
+    const latInput = document.getElementById('latitude');
+    const lonInput = document.getElementById('longitude');
+    const locationDisplay = document.getElementById('locationDisplay');
+
+    useCurrentLocationBtn?.addEventListener('click', () => {
+        if ('geolocation' in navigator) {
+            useCurrentLocationBtn.textContent = '📍 Getting location...';
+            useCurrentLocationBtn.disabled = true;
+            
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude.toFixed(6);
+                    const lon = position.coords.longitude.toFixed(6);
+                    latInput.value = lat;
+                    lonInput.value = lon;
+                    locationDisplay.textContent = `Location set: ${lat}, ${lon}`;
+                    useCurrentLocationBtn.textContent = '📍 Use Current Location';
+                    useCurrentLocationBtn.disabled = false;
+                    saveFormData();
+                },
+                (error) => {
+                    alert('Unable to get location: ' + error.message);
+                    useCurrentLocationBtn.textContent = '📍 Use Current Location';
+                    useCurrentLocationBtn.disabled = false;
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by your browser');
+        }
+    });
+
+    chooseOnMapBtn?.addEventListener('click', () => {
+        // Open Google Maps for selecting location
+        const currentLat = latInput.value || '0';
+        const currentLon = lonInput.value || '0';
+        const mapUrl = `https://www.google.com/maps/@${currentLat},${currentLon},15z`;
+        
+        const userInput = prompt(
+            'Please use Google Maps to find your location, then enter the coordinates here.\\n\\n' +
+            'To get coordinates from Google Maps:\\n' +
+            '1. Right-click on the location\\n' +
+            '2. Click on the coordinates to copy them\\n' +
+            '3. Paste them below (format: latitude, longitude)\\n\\n' +
+            'Example: 40.7128, -74.0060'
+        );
+        
+        if (userInput) {
+            const coords = userInput.split(',').map(c => c.trim());
+            if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+                latInput.value = parseFloat(coords[0]).toFixed(6);
+                lonInput.value = parseFloat(coords[1]).toFixed(6);
+                locationDisplay.textContent = `Location set: ${latInput.value}, ${lonInput.value}`;
+                saveFormData();
+            } else {
+                alert('Invalid coordinates format. Please use: latitude, longitude');
+            }
+        }
     });
 }
 

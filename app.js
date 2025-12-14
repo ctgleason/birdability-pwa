@@ -691,10 +691,10 @@ function saveJSON() {
     const jsonOutput = JSON.stringify(data, null, 2);
     
     // Get report name - it's stored at the top level as 'name'
-    const reportName = (data.name && data.name.trim()) || 'New Site';
+    const reportName = (data.name && data.name.trim()) || 'new_site';
     
     const sanitizedName = reportName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-    const suggestedFilename = `${sanitizedName}-${data.id.slice(0, 8)}.json`;
+    const suggestedFilename = `birdability-${sanitizedName}.json`;
     
     // Prompt user to confirm or edit filename
     const userFilename = prompt('Enter filename for the report:', suggestedFilename);

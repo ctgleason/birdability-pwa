@@ -203,24 +203,22 @@
                 <h2>Parking</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.noParkingArea"> No parking area</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.pullOffAreas"> Pull-off areas (for car birding)</label>
-                    
-                    <div style="display: flex; align-items: center; margin: 8px 0;">
-                        <label><input type="checkbox" name="accessibilityDetailed.parking.signedAccessibleParkingSpaces"> Signed accessible parking spaces. Number:</label>
-                        <input type="number" name="accessibilityDetailed.parking.signedAccessibleParkingSpacesNumber" placeholder="Number" style="width: 80px; margin-left: 10px;">
+                    <label><strong>Is there parking?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.parking.hasParking" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.parking.hasParking" value="false"> No</label>
                     </div>
-                    
-                    <div style="display: flex; align-items: center; margin: 8px 0;">
-                        <label style="flex: 1;"><input type="checkbox" name="accessibilityDetailed.parking.vanAccessibleParkingSpaces"> Van accessible parking spaces. Parking space is 132 in. (3.3 m.) wide, with extra 60 in. (1.5 m.) wide aisle/side space for a ramp. Number:</label>
-                        <input type="number" name="accessibilityDetailed.parking.vanAccessibleParkingSpacesNumber" placeholder="Number" style="width: 80px; margin-left: 10px;">
-                    </div>
-                    
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.curbCutsPresent"> Curb cuts present from parking lot to sidewalk/trail</label>
+                </div>
+
+                <div id="parkingDetails" class="form-group checkbox-group" style="margin-left: 20px;">
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.pullOffAreas"> There is a pull-off area (for car birding)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.signedAccessibleParkingSpaces"> There are signed, regular-sized accessible parking spaces (min. 96 in. (2.4 m) wide, with no additional side space for a ramp)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.vanAccessibleParkingSpaces"> There are van accessible parking spaces (132 in. (3.3 m) wide, with additional 60 in. (1.5 m) wide aisle/side space for a ramp)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.curbCutsPresent"> There are curb cuts present from parking lot to sidewalk/trail</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceIsPaved"> Surface is paved</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceIsGravel"> Surface is gravel</label>
                     <label><input type="checkbox" name="accessibilityDetailed.parking.surfaceHasManyPotholes"> Surface has many potholes/bumps</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.parking.parkingOnUnmanageableSlope"> Parking on unmanageable slope</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.parking.parkingOnUnmanageableSlope"> Parking is on an unmanageable slope</label>
                 </div>
 
                 <div class="form-group">
@@ -253,9 +251,16 @@
                 <h2>Bathrooms</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.noBathrooms"> No bathrooms</label>
+                    <label><strong>Are there bathrooms?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.bathrooms.hasBathrooms" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.bathrooms.hasBathrooms" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="bathroomsDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.accessOnlyWhenCenterOpen"> Bathroom access only available when visitor center is open</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.portableRestrooms"> Portable restrooms</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.bathrooms.portableRestrooms"> Regular portable restrooms</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.wheelchairAccessiblePortable"> Wheelchair accessible portable restrooms</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.allGender"> All gender bathrooms, rather than 'male' or 'female'</label>
                     <label><input type="checkbox" name="accessibilityDetailed.bathrooms.doorFramesAtLeast32"> Door frames at least 32 in. (81 cm) across</label>
@@ -279,7 +284,14 @@
                 <p>Ramps may go up to observation platforms or bird blinds, or in and out of buildings.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.ramps.noRamps"> No ramps</label>
+                    <label><strong>Are there ramps?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.ramps.hasRamps" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.ramps.hasRamps" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="rampsDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.handrailsPresent"> Handrails present</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.widthAtLeast36"> Ramps at least 36 in. (91 cm) wide</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.slopeNoSteeperThan1to12"> For every 1 in. (2.5 cm) the ramp rises, it extends out 12 in. (30.5 cm) (no greater than 1:12 ratio, or no steeper than 8.33%)</label>
@@ -359,8 +371,10 @@
                 <p>Even one small step can prevent a location from being truly accessible.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.yes"> Yes</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.no"> No</label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.steps.present" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.steps.present" value="false"> No</label>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -373,7 +387,14 @@
                 <h2>Benches</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.benches.noBenches"> No benches along the trail</label>
+                    <label><strong>Are there benches?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.benches.hasBenches" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.benches.hasBenches" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="benchesDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.benches.benchesEvery200m"> Benches occur every 1/8 mile (200 m)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.benches.benchesLessFrequent"> Benches are less frequent</label>
                     <label><input type="checkbox" name="accessibilityDetailed.benches.benchesWithArmrests"> Benches have at least one armrest</label>
@@ -392,7 +413,14 @@
                 <p>Examples of large obstacles on a trail that would restrict some wheelchair users or people using service animals.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.noGatesOrBollards"> No gates or bollards</label>
+                    <label><strong>Are there gates or bollards?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.gates.hasGates" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.gates.hasGates" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="gatesDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.gates.spaceAtLeast36in"> Space between bollards at least 36 in. (91 cm.)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.gates.gatesAtLeast36in"> Gates are at least 36 in. (91 cm) wide</label>
                     <label><input type="checkbox" name="accessibilityDetailed.gates.gatesNarrowerThan36in"> Gates are narrower than 36 in. (91 cm)</label>
@@ -413,7 +441,14 @@
                 <p>These are used to keep visitors on a boardwalk, bridge or viewpoint.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.railings.noRailings"> No railings</label>
+                    <label><strong>Are there railings?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.railings.hasRailings" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.railings.hasRailings" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="railingsDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.railings.smallLipOnEdge"> Small lip (approximately 1-2 in. or 2.5-5 cm high) on edge of boardwalk</label>
                     <label><input type="checkbox" name="accessibilityDetailed.railings.topRailingsOptimizeSight"> Top railings are not thick/deep, and are placed to optimize, not obstruct, a seated person's line of sight (which is, on average 35-45 in. or 88-114 cm from the ground)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.railings.topRailingThickAndObstructive"> Top railing is thick and hard to see beyond while seated</label>
@@ -497,7 +532,14 @@
                 <p>If there is more than one at this location, please consider submitting a separate Birdability Site Review for each bird blind.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noBirdBlind"> No bird blind</label>
+                    <label><strong>Are there bird blinds?</strong></label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="accessibilityDetailed.birdBlinds.hasBirdBlinds" value="true"> Yes</label>
+                        <label><input type="radio" name="accessibilityDetailed.birdBlinds.hasBirdBlinds" value="false"> No</label>
+                    </div>
+                </div>
+
+                <div id="birdBlindsDetails" class="form-group checkbox-group" style="margin-left: 20px;">
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noDoorOrEntryway"> No door or entryway</label>
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope"> Doorway at top of ramp or on cross slope</label>
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.doorCanBeOpenedAndHeldWithOneHand"> Door can be opened and held open easily with one hand while passing through</label>

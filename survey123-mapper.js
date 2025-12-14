@@ -113,8 +113,136 @@ function mapToSurvey123(checklistData) {
         
         // Parking
         if (ad.parking) {
-            if (ad.parking.noParking) params['is_there_parking'] = 'no';
-            // Map other parking fields...
+            // Is there parking? (Yes/No)
+            if (ad.parking.hasParking === 'true') {
+                params['is_there_parking'] = 'yes';
+                // Parking details (only if yes)
+                if (ad.parking.pullOffAreas) params['pull_off'] = 'yes';
+                if (ad.parking.curbCuts) params['curb_cuts'] = 'yes';
+                if (ad.parking.surfacePaved) params['paved'] = 'yes';
+                if (ad.parking.surfaceGravel) params['grael'] = 'yes'; // Note: Survey123 has typo "grael"
+                if (ad.parking.manyPotholes) params['potholes'] = 'yes';
+                if (ad.parking.parkingOnSlope) params['unmangeable_slope'] = 'yes';
+            } else if (ad.parking.hasParking === 'false') {
+                params['is_there_parking'] = 'no';
+            }
+        }
+        
+        // Bathrooms
+        if (ad.bathrooms) {
+            // Are there bathrooms? (Yes/No)
+            if (ad.bathrooms.hasBathrooms === 'true') {
+                params['are_there_bathrooms'] = 'yes';
+                // Bathroom details (only if yes)
+                if (ad.bathrooms.regularPortableRestrooms) params['regular_portable'] = 'yes';
+                if (ad.bathrooms.accessiblePortableRestrooms) params['accessible_portable'] = 'yes';
+                if (ad.bathrooms.onlyAccessibleWhenVisitorsCenterOpen) params['only_visitors_center'] = 'yes';
+                if (ad.bathrooms.doorFramesAtLeast32in) params['door_frames'] = 'yes';
+                if (ad.bathrooms.stallSizeAtLeast60by60in) params['stall_size'] = 'yes';
+                if (ad.bathrooms.toiletSeatHeight17to19in) params['toilet'] = 'yes';
+                if (ad.bathrooms.sinkAt34inOrLower) params['sink'] = 'yes';
+                if (ad.bathrooms.mirrorBottomAt40inOrLower) params['mirror'] = 'yes';
+                if (ad.bathrooms.handDryersAt48inOrLower) params['hand_dryers'] = 'yes';
+                if (ad.bathrooms.thresholdNotOnSlant) params['threshold'] = 'yes';
+                if (ad.bathrooms.allGenderBathrooms) params['all_gender'] = 'yes';
+            } else if (ad.bathrooms.hasBathrooms === 'false') {
+                params['are_there_bathrooms'] = 'no';
+            }
+        }
+        
+        // Ramps
+        if (ad.ramps) {
+            // Are there ramps? (Yes/No)
+            if (ad.ramps.hasRamps === 'true') {
+                params['are_there_ramps'] = 'yes';
+                // Ramp details (only if yes)
+                if (ad.ramps.perfectRamp) params['perfect_ramp'] = 'yes';
+                if (ad.ramps.steeperRamp) params['steeper_ramp'] = 'yes';
+                if (ad.ramps.verySteepRamp) params['very_steep_ramp'] = 'yes';
+                if (ad.ramps.wideRamps) params['wide_ramps'] = 'yes';
+                if (ad.ramps.flatLandings) params['flat_landings'] = 'yes';
+                if (ad.ramps.handrails) params['handrails'] = 'yes';
+            } else if (ad.ramps.hasRamps === 'false') {
+                params['are_there_ramps'] = 'no';
+            }
+        }
+        
+        // Steps
+        if (ad.steps) {
+            // Are any steps present? (Yes/No)
+            if (ad.steps.present === 'true') {
+                params['steps'] = 'yes';
+                if (ad.steps.comments) params['steps_comments'] = ad.steps.comments;
+            } else if (ad.steps.present === 'false') {
+                params['steps'] = 'no';
+            }
+        }
+        
+        // Benches
+        if (ad.benches) {
+            // Are there benches? (Yes/No)
+            if (ad.benches.hasBenches === 'true') {
+                params['are_there_benches'] = 'yes';
+                // Bench details (only if yes)
+                if (ad.benches.benchesEvery200m) params['benches_1_8'] = 'yes';
+                if (ad.benches.benchesLessFrequent) params['benches_less_frequent'] = 'yes';
+                if (ad.benches.benchesWithArmrests) params['armrest'] = 'yes';
+                if (ad.benches.benchesConnectedByPavedSurface) params['bench_trail'] = 'yes';
+            } else if (ad.benches.hasBenches === 'false') {
+                params['are_there_benches'] = 'no';
+            }
+        }
+        
+        // Gates
+        if (ad.gates) {
+            // Are there gates or bollards? (Yes/No)
+            if (ad.gates.hasGates === 'true') {
+                params['are_there_gates'] = 'yes';
+                // Gate details (only if yes)
+                if (ad.gates.spaceAtLeast36in) params['space_between_bollards'] = 'yes';
+                if (ad.gates.gatesAtLeast36in) params['wide_gates'] = 'yes';
+                if (ad.gates.gatesNarrowerThan36in) params['narrower_gates'] = 'yes';
+                if (ad.gates.swingKissingGate) params['swing_gates'] = 'yes';
+                if (ad.gates.roadClosureGateNoAlternative) params['road_closure_gates_no_path'] = 'yes';
+                if (ad.gates.roadClosureGateWithPathAtLeast36in) params['road_closure_gates'] = 'yes';
+            } else if (ad.gates.hasGates === 'false') {
+                params['are_there_gates'] = 'no';
+            }
+        }
+        
+        // Railings
+        if (ad.railings) {
+            // Are there railings? (Yes/No)
+            if (ad.railings.hasRailings === 'true') {
+                params['are_there_railings'] = 'yes';
+                // Railing details (only if yes)
+                if (ad.railings.smallLipOnEdge) params['small_lip'] = 'yes';
+                if (ad.railings.topRailingsOptimizeSight) params['accessible_top_railing'] = 'yes';
+                if (ad.railings.topRailingThickAndObstructive) params['inaccessible_top_railing'] = 'yes';
+            } else if (ad.railings.hasRailings === 'false') {
+                params['are_there_railings'] = 'no';
+            }
+        }
+        
+        // Bird Blinds
+        if (ad.birdBlinds) {
+            // Are there bird blinds? (Yes/No)
+            if (ad.birdBlinds.hasBirdBlinds === 'true') {
+                params['are_there_bird_blinds'] = 'yes';
+                // Bird blind details (only if yes)
+                if (ad.birdBlinds.noDoorOrEntryway) params['no_doorway'] = 'yes';
+                if (ad.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope) params['doorway_at_top'] = 'yes';
+                if (ad.birdBlinds.doorCanBeOpenedAndHeldWithOneHand) params['door_can_open'] = 'yes';
+                if (ad.birdBlinds.noLipAtThreshold) params['no_lip'] = 'yes';
+                if (ad.birdBlinds.doorwayAtLeast32in) params['wide_door'] = 'yes';
+                if (ad.birdBlinds.enoughSpaceInsideForWheelchairs) params['enough_space'] = 'yes';
+                if (ad.birdBlinds.viewingWindowsBottom30to40in) params['viewing_windows'] = 'yes';
+                if (ad.birdBlinds.shelvesNoDeeperThan6in) params['shallow_shelves'] = 'yes';
+                if (ad.birdBlinds.interiorBenchesMovable) params['interior_benches'] = 'yes';
+                if (ad.birdBlinds.roofProvidesShade) params['roof'] = 'yes';
+            } else if (ad.birdBlinds.hasBirdBlinds === 'false') {
+                params['are_there_bird_blinds'] = 'no';
+            }
         }
         
         // Services
@@ -122,47 +250,11 @@ function mapToSurvey123(checklistData) {
             if (ad.services.visitorCenter) params['visitors_center'] = 'yes';
             if (ad.services.staffOrVolunteers) params['staff'] = 'yes';
             if (ad.services.interpretivePrograms) params['interpretive_programs'] = 'yes';
-            if (ad.services.accessibleTramOrMotorizedTour) params['tram'] = 'yes';
-            if (ad.services.gatedAreasAccessibleIfArranged) params['gated_areas'] = 'yes';
+            if (ad.services.accessibleTram) params['tram'] = 'yes';
+            if (ad.services.gatedAccessibleIfArranged) params['gated_areas'] = 'yes';
             if (ad.services.mealsAvailable) params['meals'] = 'yes';
-            if (ad.services.waterFountainsOutsideBuildings) params['water_fountains'] = 'yes';
+            if (ad.services.waterFountainsOutside) params['water_fountains'] = 'yes';
             if (ad.services.accessibleWaterFountains) params['accessible_water_fountains'] = 'yes';
-        }
-        
-        // Bathrooms
-        if (ad.bathrooms) {
-            if (ad.bathrooms.noBathrooms) params['are_there_bathrooms'] = 'no';
-            if (ad.bathrooms.onlyInVisitorCenter) params['only_visitors_center'] = 'yes';
-            if (ad.bathrooms.regularPortable) params['regular_portable'] = 'yes';
-            if (ad.bathrooms.wheelchairAccessiblePortable) params['accessible_portable'] = 'yes';
-            if (ad.bathrooms.allGender) params['all_gender'] = 'yes';
-            if (ad.bathrooms.doorFramesAtLeast32) params['door_frames'] = 'yes';
-            if (ad.bathrooms.thresholdNotOnSlant) params['threshold'] = 'yes';
-            if (ad.bathrooms.stallSizeMin6060) params['stall_size'] = 'yes';
-            if (ad.bathrooms.toiletSeatHeight17to19) params['toilet'] = 'yes';
-            if (ad.bathrooms.sinkHeightMax34) params['sink'] = 'yes';
-            if (ad.bathrooms.mirrorBottomMax40) params['mirror'] = 'yes';
-            if (ad.bathrooms.handDryersMax35) params['hand_dryers'] = 'yes';
-        }
-        
-        // Benches
-        if (ad.benches) {
-            if (ad.benches.noBenches) params['are_there_benches'] = 'no';
-            if (ad.benches.benchesEvery200m) params['benches_1_8'] = 'yes';
-            if (ad.benches.benchesLessFrequent) params['benches_less_frequent'] = 'yes';
-            if (ad.benches.benchesWithArmrests) params['armrest'] = 'yes';
-            if (ad.benches.benchesConnectedByPavedSurface) params['bench_trail'] = 'yes';
-        }
-        
-        // Gates
-        if (ad.gates) {
-            if (ad.gates.noGatesOrBollards) params['are_there_gates'] = 'no';
-            if (ad.gates.spaceAtLeast36in) params['space_between_bollards'] = 'yes';
-            if (ad.gates.gatesAtLeast36in) params['wide_gates'] = 'yes';
-            if (ad.gates.gatesNarrowerThan36in) params['narrower_gates'] = 'yes';
-            if (ad.gates.swingKissingGate) params['swing_gates'] = 'yes';
-            if (ad.gates.roadClosureGateNoAlternative) params['road_closure_gates_no_path'] = 'yes';
-            if (ad.gates.roadClosureGateWithPathAtLeast36in) params['road_closure_gates'] = 'yes';
         }
         
         // Features for blind/low vision

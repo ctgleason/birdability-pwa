@@ -297,16 +297,13 @@
             </section>
 <!-- Trail slopes -->
             <section class="form-section" data-section="8">
-                <h2>Trail slopes</h2>
+                <h2>Trail slope(s)</h2>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.flat"> Flat</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.flatWithMinorUndulations"> Flat with minor undulations</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.gradualSlope"> Gradual slope (max. 1:20/5%)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.gentleSlope"> Gentle slope (max. 1:12/8.3%)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.moderateSlope"> Moderate slope (max. 1:10/10%)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.steepSections"> Steep sections</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.challengingTerrain"> Challenging terrain</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.completelyFlat"> Entire trail is completely flat</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.noSteeperThan1to20"> Trail slopes are no steeper than a ratio of 1:20 (5% gradient)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.relativelyFlatButSteeperThan1to20"> Trail slopes are relatively flat, but steeper than 1:20 (5% gradient)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.trailSlopes.verySteep"> Trail slopes are very steep</label>
                 </div>
 
                 <div class="form-group">
@@ -316,20 +313,17 @@
             </section>
 <!-- Steps present? -->
             <section class="form-section" data-section="9">
-                <h2>Steps present?</h2>
+                <h2>Are any steps present?</h2>
+                
+                <p>Even one small step can prevent a location from being truly accessible.</p>
                 
                 <div class="form-group checkbox-group">
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.noSteps"> No steps</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.stepsAvoidable"> Steps: avoidable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.stepsUnavoidable"> Steps: unavoidable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.stepRisersUniform"> Step risers uniform</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.stepRisersVariable"> Step risers variable</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.handrails"> Handrails</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.steps.highCurbsAtParkingLot"> High curbs at parking lot</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.steps.yes"> Yes</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.steps.no"> No</label>
                 </div>
 
                 <div class="form-group">
-                    <label for="stepsComments">Comments</label>
+                    <label for="stepsComments">Comments, including number of steps and location</label>
                     <textarea id="stepsComments" name="accessibilityDetailed.steps.comments" rows="3"></textarea>
                 </div>
             </section>
@@ -371,17 +365,19 @@
             </section>
 <!-- Railings -->
             <section class="form-section" data-section="12">
-                <h2>Railings</h2>
+                <h2>Railings or safety barriers</h2>
+                
+                <p>These are used to keep visitors on a boardwalk, bridge or viewpoint.</p>
                 
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.railings.noRailings"> No railings</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.railings.topRailOptimized"> Top rail optimized (open view under rail; height 34-38 in./86-97 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.railings.topRailObstructive"> Top rail obstructive (solid boards or rail below line of sight)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.railings.smallLip"> Small lip (e.g., higher surface on one side of trail than other)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.railings.smallLipOnEdge"> Small lip (approximately 1-2 in. or 2.5-5 cm high) on edge of boardwalk</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.railings.topRailingsOptimizeSight"> Top railings are not thick/deep, and are placed to optimize, not obstruct, a seated person's line of sight (which is, on average 35-45 in. or 88-114 cm from the ground)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.railings.topRailingThickAndObstructive"> Top railing is thick and hard to see beyond while seated</label>
                 </div>
 
                 <div class="form-group">
-                    <label for="railingsComments">Comments</label>
+                    <label for="railingsComments">Comments, including type of vertical or horizontal bars present, and spacing between each bar</label>
                     <textarea id="railingsComments" name="accessibilityDetailed.railings.comments" rows="3"></textarea>
                 </div>
             </section>
@@ -455,6 +451,8 @@
             <section class="form-section" data-section="17">
                 <h2>Bird blinds</h2>
                 
+                <p>If there is more than one at this location, please consider submitting a separate Birdability Site Review for each bird blind.</p>
+                
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noBirdBlind"> No bird blind</label>
                     <label><input type="checkbox" name="accessibilityDetailed.birdBlinds.noDoorOrEntryway"> No door or entryway</label>
@@ -512,6 +510,9 @@
 <!-- Safety concerns -->
             <section class="form-section" data-section="20">
                 <h2>Potential safety concerns</h2>
+                
+                <p>Even if you felt safe at this location, let us know if you noticed any of these at this site or within approx. 2 miles (3 km) of the parking area.</p>
+                
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.wellUsedDidntFeelDeserted"> Well used; didn't feel deserted</label>
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.notWellUsedFewOtherUsers"> Not well-used; few other users</label>

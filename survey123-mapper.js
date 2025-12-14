@@ -5,6 +5,16 @@ const SURVEY123_BASE_URL = 'https://survey123.arcgis.com/share/7b5a83ebc9044268a
 const FIELD_PREFIX = 'field:';
 const BASE_PATH = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/';
 
+// Helper function to check if value is "true" (handles both string and boolean)
+function isTrue(value) {
+    return value === 'true' || value === true;
+}
+
+// Helper function to check if value is "false" (handles both string and boolean)
+function isFalse(value) {
+    return value === 'false' || value === false;
+}
+
 // Map our checklist fields to Survey123 fields
 function mapToSurvey123(checklistData) {
     const params = {};
@@ -117,7 +127,7 @@ function mapToSurvey123(checklistData) {
         if (ad.parking) {
             console.log('Parking data:', ad.parking);
             // Is there parking? (Yes/No)
-            if (ad.parking.hasParking === 'true') {
+            if (isTrue(ad.parking.hasParking)) {
                 params['birding_location_accessibility_/is_there_parking'] = 'Yes';
                 // Parking details (only if yes) - these are under parking_info/
                 if (ad.parking.pullOffAreas) params['birding_location_accessibility_/parking_info/pull_off'] = 'Yes';
@@ -128,7 +138,7 @@ function mapToSurvey123(checklistData) {
                 if (ad.parking.surfaceGravel) params['birding_location_accessibility_/parking_info/grael'] = 'Yes'; // Note: Survey123 has typo "grael"
                 if (ad.parking.manyPotholes) params['birding_location_accessibility_/parking_info/potholes'] = 'Yes';
                 if (ad.parking.parkingOnSlope) params['birding_location_accessibility_/parking_info/unmangeable_slope'] = 'Yes';
-            } else if (ad.parking.hasParking === 'false') {
+            } else if (isFalse(ad.parking.hasParking)) {
                 params['birding_location_accessibility_/is_there_parking'] = 'No';
             }
         }
@@ -136,7 +146,7 @@ function mapToSurvey123(checklistData) {
         // Bathrooms
         if (ad.bathrooms) {
             // Are there bathrooms? (Yes/No)
-            if (ad.bathrooms.hasBathrooms === 'true') {
+            if (isTrue(ad.bathrooms.hasBathrooms)) {
                 params['birding_location_accessibility_/are_there_bathrooms'] = 'Yes';
                 // Bathroom details (only if yes)
                 if (ad.bathrooms.regularPortableRestrooms) params['birding_location_accessibility_/bathrooms_info/regular_portable'] = 'Yes';
@@ -150,7 +160,7 @@ function mapToSurvey123(checklistData) {
                 if (ad.bathrooms.handDryersAt48inOrLower) params['birding_location_accessibility_/bathrooms_info/hand_dryers'] = 'Yes';
                 if (ad.bathrooms.thresholdNotOnSlant) params['birding_location_accessibility_/bathrooms_info/threshold'] = 'Yes';
                 if (ad.bathrooms.allGenderBathrooms) params['birding_location_accessibility_/bathrooms_info/all_gender'] = 'Yes';
-            } else if (ad.bathrooms.hasBathrooms === 'false') {
+            } else if (isFalse(ad.bathrooms.hasBathrooms)) {
                 params['birding_location_accessibility_/are_there_bathrooms'] = 'No';
             }
         }
@@ -158,7 +168,7 @@ function mapToSurvey123(checklistData) {
         // Ramps
         if (ad.ramps) {
             // Are there ramps? (Yes/No)
-            if (ad.ramps.hasRamps === 'true') {
+            if (isTrue(ad.ramps.hasRamps)) {
                 params['birding_location_accessibility_/are_there_ramps'] = 'Yes';
                 // Ramp details (only if yes)
                 if (ad.ramps.perfectRamp) params['birding_location_accessibility_/ramps_info/perfect_ramp'] = 'Yes';
@@ -167,7 +177,7 @@ function mapToSurvey123(checklistData) {
                 if (ad.ramps.wideRamps) params['birding_location_accessibility_/ramps_info/wide_ramps'] = 'Yes';
                 if (ad.ramps.flatLandings) params['birding_location_accessibility_/ramps_info/flat_landings'] = 'Yes';
                 if (ad.ramps.handrails) params['birding_location_accessibility_/ramps_info/handrails'] = 'Yes';
-            } else if (ad.ramps.hasRamps === 'false') {
+            } else if (isFalse(ad.ramps.hasRamps)) {
                 params['birding_location_accessibility_/are_there_ramps'] = 'No';
             }
         }
@@ -175,10 +185,10 @@ function mapToSurvey123(checklistData) {
         // Steps
         if (ad.steps) {
             // Are any steps present? (Yes/No)
-            if (ad.steps.present === 'true') {
+            if (isTrue(ad.steps.present)) {
                 params['birding_location_accessibility_/steps'] = 'Yes';
                 if (ad.steps.comments) params['birding_location_accessibility_/steps_comments'] = ad.steps.comments;
-            } else if (ad.steps.present === 'false') {
+            } else if (isFalse(ad.steps.present)) {
                 params['birding_location_accessibility_/steps'] = 'No';
             }
         }
@@ -186,14 +196,14 @@ function mapToSurvey123(checklistData) {
         // Benches
         if (ad.benches) {
             // Are there benches? (Yes/No)
-            if (ad.benches.hasBenches === 'true') {
+            if (isTrue(ad.benches.hasBenches)) {
                 params['birding_location_accessibility_/are_there_benches'] = 'Yes';
                 // Bench details (only if yes)
                 if (ad.benches.benchesEvery200m) params['birding_location_accessibility_/benches_info/benches_1_8'] = 'Yes';
                 if (ad.benches.benchesLessFrequent) params['birding_location_accessibility_/benches_info/benches_less_frequent'] = 'Yes';
                 if (ad.benches.benchesWithArmrests) params['birding_location_accessibility_/benches_info/armrest'] = 'Yes';
                 if (ad.benches.benchesConnectedByPavedSurface) params['birding_location_accessibility_/benches_info/bench_trail'] = 'Yes';
-            } else if (ad.benches.hasBenches === 'false') {
+            } else if (isFalse(ad.benches.hasBenches)) {
                 params['birding_location_accessibility_/are_there_benches'] = 'No';
             }
         }
@@ -201,7 +211,7 @@ function mapToSurvey123(checklistData) {
         // Gates
         if (ad.gates) {
             // Are there gates or bollards? (Yes/No)
-            if (ad.gates.hasGates === 'true') {
+            if (isTrue(ad.gates.hasGates)) {
                 params['birding_location_accessibility_/are_there_gates'] = 'Yes';
                 // Gate details (only if yes)
                 if (ad.gates.spaceAtLeast36in) params['birding_location_accessibility_/gates_info/space_between_bollards'] = 'Yes';
@@ -210,7 +220,7 @@ function mapToSurvey123(checklistData) {
                 if (ad.gates.swingKissingGate) params['birding_location_accessibility_/gates_info/swing_gates'] = 'Yes';
                 if (ad.gates.roadClosureGateNoAlternative) params['birding_location_accessibility_/gates_info/road_closure_gates_no_path'] = 'Yes';
                 if (ad.gates.roadClosureGateWithPathAtLeast36in) params['birding_location_accessibility_/gates_info/road_closure_gates'] = 'Yes';
-            } else if (ad.gates.hasGates === 'false') {
+            } else if (isFalse(ad.gates.hasGates)) {
                 params['birding_location_accessibility_/are_there_gates'] = 'No';
             }
         }
@@ -218,13 +228,13 @@ function mapToSurvey123(checklistData) {
         // Railings
         if (ad.railings) {
             // Are there railings? (Yes/No)
-            if (ad.railings.hasRailings === 'true') {
+            if (isTrue(ad.railings.hasRailings)) {
                 params['birding_location_accessibility_/are_there_railings'] = 'Yes';
                 // Railing details (only if yes)
                 if (ad.railings.smallLipOnEdge) params['birding_location_accessibility_/railings_info/small_lip'] = 'Yes';
                 if (ad.railings.topRailingsOptimizeSight) params['birding_location_accessibility_/railings_info/accessible_top_railing'] = 'Yes';
                 if (ad.railings.topRailingThickAndObstructive) params['birding_location_accessibility_/railings_info/inaccessible_top_railing'] = 'Yes';
-            } else if (ad.railings.hasRailings === 'false') {
+            } else if (isFalse(ad.railings.hasRailings)) {
                 params['birding_location_accessibility_/are_there_railings'] = 'No';
             }
         }
@@ -232,7 +242,7 @@ function mapToSurvey123(checklistData) {
         // Bird Blinds
         if (ad.birdBlinds) {
             // Are there bird blinds? (Yes/No)
-            if (ad.birdBlinds.hasBirdBlinds === 'true') {
+            if (isTrue(ad.birdBlinds.hasBirdBlinds)) {
                 params['birding_location_accessibility_/are_there_bird_blinds'] = 'Yes';
                 // Bird blind details (only if yes)
                 if (ad.birdBlinds.noDoorOrEntryway) params['birding_location_accessibility_/bird_blinds_info/no_doorway'] = 'Yes';
@@ -245,7 +255,7 @@ function mapToSurvey123(checklistData) {
                 if (ad.birdBlinds.shelvesNoDeeperThan6in) params['birding_location_accessibility_/bird_blinds_info/shallow_shelves'] = 'Yes';
                 if (ad.birdBlinds.interiorBenchesMovable) params['birding_location_accessibility_/bird_blinds_info/interior_benches'] = 'Yes';
                 if (ad.birdBlinds.roofProvidesShade) params['birding_location_accessibility_/bird_blinds_info/roof'] = 'Yes';
-            } else if (ad.birdBlinds.hasBirdBlinds === 'false') {
+            } else if (isFalse(ad.birdBlinds.hasBirdBlinds)) {
                 params['birding_location_accessibility_/are_there_bird_blinds'] = 'No';
             }
         }

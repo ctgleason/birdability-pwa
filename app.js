@@ -432,10 +432,12 @@ function updateConditionalSections() {
         const selectedValue = document.querySelector(`input[name="${radioName}"]:checked`)?.value;
         const detailsDiv = document.getElementById(detailsId);
         
-        console.log(`Conditional check - ${radioName}: selected="${selectedValue}", showing=${selectedValue === 'true'}`);
+        // Check for both string 'true' and boolean true
+        const shouldShow = selectedValue === 'true' || selectedValue === true;
+        console.log(`Conditional check - ${radioName}: selected="${selectedValue}" (type: ${typeof selectedValue}), showing=${shouldShow}`);
         
         if (detailsDiv) {
-            detailsDiv.style.display = selectedValue === 'true' ? 'block' : 'none';
+            detailsDiv.style.display = shouldShow ? 'block' : 'none';
         }
     });
 }
@@ -748,11 +750,7 @@ function getInputValue(input) {
         return input.checked;
     } else if (input.type === 'radio') {
         if (input.checked) {
-            // Check if the value is a boolean string
-            if (input.value === 'true' || input.value === 'false') {
-                return input.value === 'true';
-            }
-            // Otherwise return the actual value
+            // Return the value as-is (keep 'true'/'false' as strings)
             return input.value;
         }
         return null;
@@ -1021,15 +1019,9 @@ function setFieldValue(fieldPath, value) {
         if (input.type === 'checkbox') {
             input.checked = Boolean(value);
         } else if (input.type === 'radio') {
-            // For radio buttons, check if the value matches
-            // Handle both boolean and string values
-            if (typeof value === 'boolean') {
-                input.checked = (input.value === 'true' && value) || (input.value === 'false' && !value);
-            } else if (value === 'true' || value === 'false') {
-                input.checked = (input.value === value);
-            } else {
-                input.checked = (input.value === String(value));
-            }
+            // For radio buttons, match the value
+            // Convert value to string for comparison since radio values are always strings
+            input.checked = (input.value === String(value));
         } else if (input.tagName === 'TEXTAREA' || input.type === 'text' || input.type === 'hidden' || input.type === 'url') {
             input.value = value || '';
         }

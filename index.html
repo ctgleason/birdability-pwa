@@ -52,7 +52,6 @@
                     <button class="section-nav-btn" data-section="19">Nearby noise</button>
                     <button class="section-nav-btn" data-section="20">Safety concerns</button>
                     <button class="section-nav-btn" data-section="21">Final thoughts</button>
-                    <button class="section-nav-btn" data-section="22">Photo attachments</button>
                 </div>
             </div>
         </div>
@@ -551,15 +550,16 @@
                 <div class="info-box" style="margin-top: 20px; padding: 15px; background-color: #f0f8ff; border-left: 4px solid #0066cc; border-radius: 4px;">
                     <p style="margin: 0; font-style: italic;">Sometimes pictures speak a thousand words. Don't forget to take up to eight photos of trail conditions, trail signage, obstacles, etc. to upload as you're submitting to the Birdability Map. And thanks!</p>
                 </div>
-            </section>
-<!-- Photo attachments -->
-            <section class="form-section" data-section="22">
-                <h2>Photo attachments</h2>
-                <p>Add photos from your device. Photos will be stored as references, not embedded data.</p>
                 
-                <div class="form-group">
-                    <label for="photoInput">Select Photos</label>
-                    <input type="file" id="photoInput" accept="image/*" multiple capture="environment">
+                <div class="form-group" style="margin-top: 30px;">
+                    <label>Photo attachments</label>
+                    <p style="margin-top: 5px; margin-bottom: 10px; font-size: 0.9em; color: #666;">Add photos from your device. Photos will be stored as references, not embedded data.</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button type="button" id="takePictureBtn" class="btn btn-secondary" style="flex: 1;">📷 Take Picture</button>
+                        <button type="button" id="choosePhotosBtn" class="btn btn-secondary" style="flex: 1;">🖼️ Choose from Library</button>
+                    </div>
+                    <input type="file" id="photoInputCamera" accept="image/*" capture="environment" style="display: none;">
+                    <input type="file" id="photoInputLibrary" accept="image/*" multiple style="display: none;">
                     <div id="photoList" class="photo-list"></div>
                 </div>
             </section>

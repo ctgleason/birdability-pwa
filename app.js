@@ -1,6 +1,6 @@
 // Global state
 let currentSection = 1;
-const totalSections = 22;
+const totalSections = 21;
 let photoFiles = [];
 
 // Initialize app
@@ -187,31 +187,58 @@ function updateProgress() {
 
 // Photo upload handling
 function setupPhotoUpload() {
-    const photoInput = document.getElementById('photoInput');
-    const photoList = document.getElementById('photoList');
+    const photoInputCamera = document.getElementById('photoInputCamera');
+    const photoInputLibrary = document.getElementById('photoInputLibrary');
+    const takePictureBtn = document.getElementById('takePictureBtn');
+    const choosePhotosBtn = document.getElementById('choosePhotosBtn');
 
-    photoInput.addEventListener('change', (e) => {
-        const files = Array.from(e.target.files);
-        
-        files.forEach(file => {
-            if (file.type.startsWith('image/')) {
-                const photoId = `photo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-                photoFiles.push({
-                    id: photoId,
-                    name: file.name,
-                    size: file.size,
-                    type: file.type,
-                    timestamp: new Date().toISOString()
-                });
-
-                displayPhoto(file, photoId);
-            }
-        });
-
-        // Clear input
-        photoInput.value = '';
-        saveFormData();
+    takePictureBtn?.addEventListener('click', () => {
+        photoInputCamera.click();
     });
+    
+    choosePhotosBtn?.addEventListener('click', () => {
+        photoInputLibrary.click();
+    });
+
+    photoInputCamera?.addEventListener('change', (e) => {
+        handlePhotoUpload(e.target.files);
+        e.target.value = ''; // Reset input
+    });
+    
+    photoInputLibrary?.addEventListener('change', (e) => {
+        handlePhotoUpload(e.target.files);
+        e.target.value = ''; // Reset input
+    });
+}
+
+function handlePhotoUpload(files) {
+    const filesArray = Array.from(files);
+    
+    // Limit to 8 photos total
+    const remainingSlots = 8 - photoFiles.length;
+    if (remainingSlots <= 0) {
+        alert('Maximum of 8 photos allowed');
+        return;
+    }
+    
+    const filesToAdd = filesArray.slice(0, remainingSlots);
+    
+    filesToAdd.forEach(file => {
+        if (file.type.startsWith('image/')) {
+            const photoId = `photo_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            photoFiles.push({
+                id: photoId,
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                timestamp: new Date().toISOString()
+            });
+
+            displayPhoto(file, photoId);
+        }
+    });
+
+    saveFormData();
 }
 
 function displayPhoto(file, photoId) {

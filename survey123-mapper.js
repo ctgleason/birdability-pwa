@@ -29,7 +29,7 @@ function mapToSurvey123(checklistData) {
         
         // Car birding
         if (gi.goodCarBirding !== undefined) {
-            params['car_birding'] = gi.goodCarBirding ? 'yes' : 'no';
+            params['car_birding'] = gi.goodCarBirding ? 'Yes' : 'No';
         }
         if (gi.goodCarBirdingDetails) {
             params['car_birding_comments'] = gi.goodCarBirdingDetails;
@@ -37,7 +37,7 @@ function mapToSurvey123(checklistData) {
         
         // Unit of measure
         if (gi.unitsPreferred) {
-            params['unit_of_measure'] = gi.unitsPreferred; // 'miles' or 'kilometers'
+            params['unit_of_measure'] = gi.unitsPreferred === 'miles' ? 'mi' : 'km';
         }
         
         // Length of trail
@@ -50,9 +50,12 @@ function mapToSurvey123(checklistData) {
         if (gi.trailOutAndBack) params['type_of_trail'] = 'out_and_back';
         if (gi.trailLollipop) params['type_of_trail'] = 'lollipop';
         
+        // Entrance fee (note: Survey123 doesn't have entrance_fee, only park_fee)
+        // We'll skip entrance fee since it doesn't exist in Survey123
+        
         // Parking fee (Survey123 calls it park_fee)
         if (gi.parkingFee !== undefined) {
-            params['park_fee'] = gi.parkingFee ? 'yes' : 'no';
+            params['park_fee'] = gi.parkingFee ? 'Yes' : 'No';
         }
         if (gi.parkingFeeDetails) {
             params['park_fee_cost'] = gi.parkingFeeDetails;
@@ -60,7 +63,7 @@ function mapToSurvey123(checklistData) {
         
         // Public transportation
         if (gi.publicTransitAccess !== undefined) {
-            params['public_transportation'] = gi.publicTransitAccess ? 'yes' : 'no';
+            params['public_transportation'] = gi.publicTransitAccess ? 'Yes' : 'No';
         }
         if (gi.publicTransitInfo) {
             params['public_transportation_comments'] = gi.publicTransitInfo;
@@ -68,7 +71,7 @@ function mapToSurvey123(checklistData) {
         
         // Walking/biking
         if (gi.walkingBikingAccess !== undefined) {
-            params['walk_bike'] = gi.walkingBikingAccess ? 'yes' : 'no';
+            params['walk_bike'] = gi.walkingBikingAccess ? 'Yes' : 'No';
         }
         if (gi.walkingOrBikingInfo) {
             params['walking_biking_comments'] = gi.walkingOrBikingInfo;

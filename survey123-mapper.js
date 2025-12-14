@@ -2,7 +2,6 @@
 // Converts Birdability checklist JSON to Survey123 URL parameters
 
 const SURVEY123_BASE_URL = 'https://survey123.arcgis.com/share/7b5a83ebc9044268a03b84ff9fe12c71';
-const FIELD_PREFIX = 'field:';
 const BASE_PATH = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/';
 
 // Helper function to check if value is "true" (handles both string and boolean)
@@ -411,7 +410,7 @@ function buildSurvey123URL(checklistData) {
     // Build URL manually to avoid over-encoding
     const paramPairs = [];
     
-    // Add field: prefix and base path to each parameter
+    // Add base path to each parameter
     // The params already include their section paths (general_information/ or birding_location_accessibility_/)
     for (const [key, value] of Object.entries(params)) {
         // Skip null/undefined/object values
@@ -420,7 +419,7 @@ function buildSurvey123URL(checklistData) {
             continue;
         }
         
-        const fullPath = `${FIELD_PREFIX}${BASE_PATH}${key}`;
+        const fullPath = `${BASE_PATH}${key}`;
         // Encode only the value, not the field path structure
         const encodedValue = encodeURIComponent(String(value));
         paramPairs.push(`${fullPath}=${encodedValue}`);

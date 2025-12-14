@@ -977,8 +977,9 @@ function restoreFormData(data) {
     
     // Update conditional sections visibility after DOM updates
     setTimeout(() => {
+        console.log('Running updateConditionalSections after restoreFormData');
         updateConditionalSections();
-    }, 50);
+    }, 100);
     
     // Show success message
     let message = 'Data loaded successfully!';

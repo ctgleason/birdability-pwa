@@ -16,9 +16,16 @@ function mapToSurvey123(checklistData) {
         const gi = checklistData.generalInformation;
         console.log('General Information:', gi);
         
-        // Location name
+        // Location name - combine area/sanctuary and trail/bird blind
+        const locationParts = [];
         if (gi.locationName) {
-            params['location_name'] = gi.locationName;
+            locationParts.push(`Area/Sanctuary: ${gi.locationName}`);
+        }
+        if (gi.trailName) {
+            locationParts.push(`Trail/Bird Blind: ${gi.trailName}`);
+        }
+        if (locationParts.length > 0) {
+            params['location_name'] = locationParts.join('\n');
         }
         
         // Website

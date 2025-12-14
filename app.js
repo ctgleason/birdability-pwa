@@ -690,20 +690,91 @@ function saveJSON() {
     const data = getFormData();
     const jsonOutput = JSON.stringify(data, null, 2);
     
-    // Download JSON file directly
-    const blob = new Blob([jsonOutput], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `birdability-report-${data.id}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showMessage('JSON file saved!', 'success');
+    // Generate suggested filename from location name
+    const locationName = data.generalInformation.locationName || 'New Site';
+    const sanitizedName = locationName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const suggestedFilename = `${sanitizedName}-${data.id.slice(0, 8)}.json`;
+    
+    // Try to use File System Access API (modern browsers)
+    if ('showSaveFilePicker' in window) {
+        saveJSONWithPicker(jsonOutput, suggestedFilename);
+    } else {
+        // Fallback: Download directly
+        const blob = new Blob([jsonOutput], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = suggestedFilename;
+        a.click();
+        URL.revokeObjectURL(url);
+        showMessage('JSON file saved!', 'success');
+    }
+}
+
+async function saveJSONWithPicker(jsonOutput, suggestedFilename) {
+    try {
+        const options = {
+            suggestedName: suggestedFilename,
+            types: [{
+                description: 'JSON Files',
+                accept: {'application/json': ['.json']}
+            }]
+        };
+        
+        const handle = await window.showSaveFilePicker(options);
+        const writable = await handle.createWritable();
+        await writable.write(jsonOutput);
+        await writable.close();
+        showMessage('JSON file saved!', 'success');
+    } catch (err) {
+        if (err.name !== 'AbortError') {
+            console.error('Error saving file:', err);
+            showMessage('Error saving file', 'error');
+        }
+    }
 }
 
 function loadJSON() {
-    // Trigger file input click
-    document.getElementById('jsonFileInput').click();
+    // Try to use File System Access API (modern browsers)
+    if ('showOpenFilePicker' in window) {
+        loadJSONWithPicker();
+    } else {
+        // Fallback: Use file input
+        document.getElementById('jsonFileInput').click();
+    }
+}
+
+async function loadJSONWithPicker() {
+    try {
+        const options = {
+            types: [{
+                description: 'JSON Files',
+                accept: {'application/json': ['.json']}
+            }],
+            multiple: false
+        };
+        
+        const [fileHandle] = await window.showOpenFilePicker(options);
+        const file = await fileHandle.getFile();
+        const text = await file.text();
+        
+        try {
+            const jsonData = JSON.parse(text);
+            restoreFormData(jsonData);
+            showMessage('Data loaded successfully!', 'success');
+            // Go to first section
+            currentSection = 1;
+            showSection(currentSection);
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            showMessage('Invalid JSON file format', 'error');
+        }
+    } catch (err) {
+        if (err.name !== 'AbortError') {
+            console.error('Error opening file:', err);
+            showMessage('Error opening file', 'error');
+        }
+    }
 }
 
 function handleJsonFileSelect(event) {

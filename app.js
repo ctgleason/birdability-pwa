@@ -349,6 +349,20 @@ function setupLocationPicker() {
     });
 }
 
+function updateLocationDisplay() {
+    const latInput = document.getElementById('latitude');
+    const lonInput = document.getElementById('longitude');
+    const locationDisplay = document.getElementById('locationDisplay');
+    
+    if (latInput && lonInput && locationDisplay) {
+        if (latInput.value && lonInput.value) {
+            locationDisplay.textContent = `Location set: ${latInput.value}, ${lonInput.value}`;
+        } else {
+            locationDisplay.textContent = '';
+        }
+    }
+}
+
 function handlePhotoUpload(files) {
     const filesArray = Array.from(files);
     
@@ -826,7 +840,6 @@ async function loadJSONWithPicker() {
         try {
             const jsonData = JSON.parse(text);
             restoreFormData(jsonData);
-            showMessage('Data loaded successfully!', 'success');
             // Go to first section
             currentSection = 1;
             showSection(currentSection);
@@ -856,7 +869,6 @@ function handleJsonFileSelect(event) {
         try {
             const jsonData = JSON.parse(e.target.result);
             restoreFormData(jsonData);
-            showMessage('Data loaded successfully!', 'success');
             // Go to first section
             currentSection = 1;
             showSection(currentSection);
@@ -881,13 +893,17 @@ function restoreFormData(data) {
     if (data.photos && Array.isArray(data.photos)) {
         photoFiles = data.photos;
         updatePhotoList();
-        if (data.photos.length > 0) {
-            showMessage(`Note: ${data.photos.length} photo(s) were referenced in the file, but actual photo files cannot be restored from JSON. You'll need to re-attach photos if needed.`, 'info');
-        }
     }
     
     // Save to localStorage
     saveFormData();
+    
+    // Show success message
+    let message = 'Data loaded successfully!';
+    if (data.photos && data.photos.length > 0) {
+        message += ` Note: ${data.photos.length} photo(s) were referenced but cannot be restored from JSON.`;
+    }
+    showMessage(message, 'success');
 }
 
 function restoreFields(obj, prefix) {
@@ -928,10 +944,15 @@ function setFieldValue(fieldPath, value) {
             } else {
                 input.checked = (input.value === value);
             }
-        } else if (input.tagName === 'TEXTAREA' || input.type === 'text') {
+        } else if (input.tagName === 'TEXTAREA' || input.type === 'text' || input.type === 'hidden' || input.type === 'url') {
             input.value = value || '';
         }
     });
+    
+    // Update location display if we restored lat/lon
+    if (fieldPath === 'generalInformation.latitude' || fieldPath === 'generalInformation.longitude') {
+        updateLocationDisplay();
+    }
 }
 
 function generateJSON() {

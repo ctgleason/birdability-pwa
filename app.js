@@ -105,6 +105,11 @@ function setupMenu() {
         saveJSON();
     });
     
+    document.getElementById('menuLoadJson').addEventListener('click', () => {
+        closeMenu();
+        loadJSON();
+    });
+    
     document.getElementById('menuEmailJson').addEventListener('click', () => {
         closeMenu();
         emailJSON();

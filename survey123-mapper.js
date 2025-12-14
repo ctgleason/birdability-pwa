@@ -355,7 +355,11 @@ function mapToSurvey123(checklistData) {
         // Shade Cover
         if (ad.shadeCover) {
             console.log('Shade cover:', ad.shadeCover);
-            params['birding_location_accessibility_/shade_cover'] = ad.shadeCover;
+            if (ad.shadeCover.completely) params['birding_location_accessibility_/shade_info/completely_shaded'] = 'Yes';
+            if (ad.shadeCover.somewhat) params['birding_location_accessibility_/shade_info/somewhat_shaded'] = 'Yes';
+            if (ad.shadeCover.notAtAll) params['birding_location_accessibility_/shade_info/not_shaded'] = 'Yes';
+            if (ad.shadeCover.someShadedSomeNot) params['birding_location_accessibility_/shade_info/parts_shaded'] = 'Yes';
+            if (ad.shadeCover.comments) params['birding_location_accessibility_/trail_shade_comments'] = ad.shadeCover.comments;
         }
         
         // Other Notes
@@ -410,9 +414,15 @@ function buildSurvey123URL(checklistData) {
     // Add field: prefix and base path to each parameter
     // The params already include their section paths (general_information/ or birding_location_accessibility_/)
     for (const [key, value] of Object.entries(params)) {
+        // Skip null/undefined/object values
+        if (value == null || typeof value === 'object') {
+            console.warn(`Skipping parameter ${key} with invalid value:`, value);
+            continue;
+        }
+        
         const fullPath = `${FIELD_PREFIX}${BASE_PATH}${key}`;
         // Encode only the value, not the field path structure
-        const encodedValue = encodeURIComponent(value);
+        const encodedValue = encodeURIComponent(String(value));
         paramPairs.push(`${fullPath}=${encodedValue}`);
     }
     

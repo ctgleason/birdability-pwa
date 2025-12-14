@@ -48,11 +48,15 @@ function setupNavigation() {
     
     // Action buttons
     document.getElementById('saveJsonBtn')?.addEventListener('click', saveJSON);
+    document.getElementById('loadJsonBtn')?.addEventListener('click', loadJSON);
     document.getElementById('emailJsonBtn')?.addEventListener('click', emailJSON);
     document.getElementById('saveProgressBtn')?.addEventListener('click', () => {
         saveFormData();
         showMessage('Progress saved successfully!', 'success');
     });
+    
+    // File input for loading JSON
+    document.getElementById('jsonFileInput')?.addEventListener('change', handleJsonFileSelect);
 }
 
 // Menu system
@@ -695,6 +699,103 @@ function saveJSON() {
     a.click();
     URL.revokeObjectURL(url);
     showMessage('JSON file saved!', 'success');
+}
+
+function loadJSON() {
+    // Trigger file input click
+    document.getElementById('jsonFileInput').click();
+}
+
+function handleJsonFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    if (!file.name.endsWith('.json')) {
+        showMessage('Please select a valid JSON file', 'error');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const jsonData = JSON.parse(e.target.result);
+            restoreFormData(jsonData);
+            showMessage('Data loaded successfully!', 'success');
+            // Go to first section
+            currentSection = 1;
+            showSection(currentSection);
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            showMessage('Invalid JSON file format', 'error');
+        }
+    };
+    reader.readAsText(file);
+    
+    // Reset file input so same file can be loaded again
+    event.target.value = '';
+}
+
+function restoreFormData(data) {
+    const form = document.getElementById('questionnaireForm');
+    
+    // Restore all form fields
+    restoreFields(data, '');
+    
+    // Restore photos metadata (actual files can't be restored from JSON)
+    if (data.photos && Array.isArray(data.photos)) {
+        photoFiles = data.photos;
+        updatePhotoList();
+        if (data.photos.length > 0) {
+            showMessage(`Note: ${data.photos.length} photo(s) were referenced in the file, but actual photo files cannot be restored from JSON. You'll need to re-attach photos if needed.`, 'info');
+        }
+    }
+    
+    // Save to localStorage
+    saveFormData();
+}
+
+function restoreFields(obj, prefix) {
+    for (const key in obj) {
+        if (!obj.hasOwnProperty(key)) continue;
+        
+        const fieldPath = prefix ? `${prefix}.${key}` : key;
+        const value = obj[key];
+        
+        // Skip metadata fields
+        if (key === 'id' || key === 'createdAt' || key === 'photos') continue;
+        
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+            // Recurse into nested objects
+            restoreFields(value, fieldPath);
+        } else {
+            // Set field value
+            setFieldValue(fieldPath, value);
+        }
+    }
+}
+
+function setFieldValue(fieldPath, value) {
+    const form = document.getElementById('questionnaireForm');
+    
+    // Try to find input by name
+    const inputs = form.querySelectorAll(`[name="${fieldPath}"]`);
+    
+    if (inputs.length === 0) return;
+    
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            input.checked = Boolean(value);
+        } else if (input.type === 'radio') {
+            // For radio buttons, check if the value matches
+            if (typeof value === 'boolean') {
+                input.checked = (input.value === 'true' && value) || (input.value === 'false' && !value);
+            } else {
+                input.checked = (input.value === value);
+            }
+        } else if (input.tagName === 'TEXTAREA' || input.type === 'text') {
+            input.value = value || '';
+        }
+    });
 }
 
 function generateJSON() {

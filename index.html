@@ -608,9 +608,13 @@
             <!-- Action Buttons (shown on final section) -->
             <div id="actionButtons" class="nav-buttons" style="display: none; margin-top: 20px; gap: 10px;">
                 <button type="button" id="saveJsonBtn" class="btn btn-success">Save JSON</button>
+                <button type="button" id="loadJsonBtn" class="btn btn-primary">Load JSON</button>
                 <button type="button" id="emailJsonBtn" class="btn btn-primary">Email JSON</button>
                 <button type="button" id="saveProgressBtn" class="btn btn-secondary">Save Progress</button>
             </div>
+            
+            <!-- Hidden file input for loading JSON -->
+            <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
         </form>
 
         <div id="outputSection" style="display: none;">

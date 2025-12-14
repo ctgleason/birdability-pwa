@@ -1,8 +1,9 @@
-const CACHE_NAME = 'birdability-v1';
+const CACHE_NAME = 'birdability-v2';
 const urlsToCache = [
   './index.html',
   './styles.css',
   './app.js',
+  './survey123-mapper.js',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'

@@ -237,6 +237,8 @@
             <section class="form-section" data-section="5">
                 <h2>Ramps</h2>
                 
+                <p>Ramps may go up to observation platforms or bird blinds, or in and out of buildings.</p>
+                
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.noRamps"> No ramps</label>
                     <label><input type="checkbox" name="accessibilityDetailed.ramps.handrailsPresent"> Handrails present</label>
@@ -348,14 +350,16 @@
             <section class="form-section" data-section="11">
                 <h2>Gates/bollards</h2>
                 
+                <p>Examples of large obstacles on a trail that would restrict some wheelchair users or people using service animals.</p>
+                
                 <div class="form-group checkbox-group">
                     <label><input type="checkbox" name="accessibilityDetailed.gates.noGatesOrBollards"> No gates or bollards</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.gatesAtLeast36in"> Gates at least 36 in. (91 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.gatesNarrowerThan36in"> Gates narrower than 36 in. (91 cm.)</label>
                     <label><input type="checkbox" name="accessibilityDetailed.gates.spaceAtLeast36in"> Space between bollards at least 36 in. (91 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.swingKissingGate"> Swing gate/kissing gate</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.roadClosureGateWithPathAtLeast36in"> Road closure gate with bypass path at least 36 in. (91 cm.)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.gates.roadClosureGateNoAlternative"> Road closure gate, no alternative</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.gates.gatesAtLeast36in"> Gates are at least 36 in. (91 cm) wide</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.gates.gatesNarrowerThan36in"> Gates are narrower than 36 in. (91 cm)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.gates.swingKissingGate"> Swing or 'kissing' gate</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.gates.roadClosureGateNoAlternative"> Road closure gate with no alternative route</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.gates.roadClosureGateWithPathAtLeast36in"> Road closure gate with a path around or beside it at least 36 in. (91 cm) wide</label>
                 </div>
 
                 <div class="form-group">
@@ -381,17 +385,17 @@
                     <textarea id="railingsComments" name="accessibilityDetailed.railings.comments" rows="3"></textarea>
                 </div>
             </section>
-<!-- Facilities for blind and low-vision visitors -->
+<!-- Features for visitors who are blind or have low vision -->
             <section class="form-section" data-section="13">
-                <h2>Facilities for blind and low-vision visitors</h2>
+                <h2>Features for visitors who are blind or have low vision</h2>
                 
                 <div class="form-group checkbox-group">
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.guideRopes"> Guide ropes along the side of the trail for self-guiding</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.audioRecordings"> Audio recordings of interpretive sign content</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileComponentsOnSigns"> Tactile components on signs</label>
                     <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.brailleOnSigns"> Braille on signs</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileComponentsOnSigns"> Tactile components on signs (e.g., raised lettering, images, maps)</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileMarkersOnSurface"> Tactile markers on surface</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.guideRopes"> Guide ropes</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.audioRecordings"> Audio recordings</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.additionalResourcesLoan"> Additional resources for loan (binoculars, walking sticks, etc.)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.tactileMarkersOnSurface"> Tactile markers on the surface of the trail</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.blindFacilities.additionalResourcesLoan"> Additional resources available to loan (for example, large print or braille information booklets, audio guide)</label>
                 </div>
 
                 <div class="form-group">
@@ -525,9 +529,7 @@
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.noticeablePresenceOfAuthorities"> Noticeable presence of police, Border Patrol or other authorities</label>
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.usedAsIsolatedPartySpot"> Used as an isolated party spot, or for large, loud gatherings</label>
                     <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.hateSymbolsPresent"> Hate symbols, including graffiti, Confederate flags</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.usedForHunting"> Used for hunting</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.largeGroupsOftenUseLocation"> Large groups of people often use this location for social gatherings</label>
-                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.evidenceOfDrugOrAlcoholUse"> Evidence of recreational drug or alcohol use (for example: syringes, drug paraphernalia)</label>
+                    <label><input type="checkbox" name="accessibilityDetailed.safetyConcerns.evidenceOfDrugOrAlcoholUse"> Evidence of recreational drug or alcohol use</label>
                 </div>
 
                 <div class="form-group">

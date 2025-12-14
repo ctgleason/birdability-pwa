@@ -517,7 +517,6 @@ input[type="file"] {
         width: 100%;
     }
 
-    .radio-row,
     .checkbox-row {
         flex-direction: column;
         gap: 10px;

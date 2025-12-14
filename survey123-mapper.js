@@ -8,9 +8,13 @@ const FIELD_PREFIX = 'field:';
 function mapToSurvey123(checklistData) {
     const params = {};
     
+    // Debug logging
+    console.log('Survey123 Mapper - Input data:', checklistData);
+    
     // General Information mapping
     if (checklistData.generalInformation) {
         const gi = checklistData.generalInformation;
+        console.log('General Information:', gi);
         
         // Location name
         if (gi.locationName) {
@@ -25,7 +29,10 @@ function mapToSurvey123(checklistData) {
         // Coordinates (point location)
         // Survey123 geopoint format: lat,lon,alt,acc (altitude and accuracy are optional)
         if (gi.latitude && gi.longitude) {
+            console.log('Location data - lat:', gi.latitude, 'lon:', gi.longitude);
             params['point'] = `${gi.latitude},${gi.longitude},0,0`;
+        } else {
+            console.log('No location data found. gi.latitude:', gi.latitude, 'gi.longitude:', gi.longitude);
         }
         
         // Car birding
@@ -38,6 +45,7 @@ function mapToSurvey123(checklistData) {
         
         // Unit of measure
         if (gi.unitsPreferred) {
+            console.log('Units preferred value:', gi.unitsPreferred, 'Type:', typeof gi.unitsPreferred);
             params['unit_of_measure'] = (gi.unitsPreferred === 'miles' || gi.unitsPreferred === 'mi') ? 'mi' : 'km';
         }
         
@@ -182,6 +190,7 @@ function mapToSurvey123(checklistData) {
         }
     }
     
+    console.log('Survey123 Mapper - Final params:', params);
     return params;
 }
 

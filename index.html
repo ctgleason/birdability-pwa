@@ -627,6 +627,34 @@
                     <textarea id="finalThoughts" name="finalThoughts" rows="6" placeholder="Likely birds found here, seasonal conditions, overall difficulty, or any other helpful information..."></textarea>
                 </div>
                 
+                <!-- Overall Rating -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label><strong>Overall Rating</strong></label>
+                    <p style="margin-top: 10px; margin-bottom: 15px;">How would you rate the overall accessibility of this location?</p>
+                    <div style="margin-left: 20px;">
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="radio" name="overallRating" value="5">
+                            <strong>5</strong> - Wonderfully accessible for the widest possible range of users. (Very few birding locations are in this category.)
+                        </label>
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="radio" name="overallRating" value="4">
+                            <strong>4</strong> - Very accessible for many users.
+                        </label>
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="radio" name="overallRating" value="3">
+                            <strong>3</strong> - Moderately accessible, but improvements can be made.
+                        </label>
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="radio" name="overallRating" value="2">
+                            <strong>2</strong> - Somewhat accessible, but only for some users.
+                        </label>
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="radio" name="overallRating" value="1">
+                            <strong>1</strong> - Some accessibility features are present, but overall not a particularly accessible location.
+                        </label>
+                    </div>
+                </div>
+                
                 <div class="info-box" style="margin-top: 20px; padding: 15px; background-color: #f0f8ff; border-left: 4px solid #0066cc; border-radius: 4px;">
                     <p style="margin: 0; font-style: italic;">Sometimes pictures speak a thousand words. Don't forget to take up to eight photos of trail conditions, trail signage, obstacles, etc. to upload as you're submitting to the Birdability Map. And thanks!</p>
                 </div>
@@ -636,6 +664,23 @@
                     <button type="button" id="attachPhotosBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">📷 Attach photos</button>
                     <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
                     <div id="photoList" class="photo-list"></div>
+                </div>
+                
+                <!-- Photo Permissions -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label><strong>Photo permissions</strong></label>
+                    <p style="margin-top: 10px; margin-bottom: 10px;">Please check this if uploading photos.</p>
+                    <label style="display: block; margin-left: 20px;">
+                        <input type="checkbox" name="photoPermissions">
+                        I certify I own the right to share these photos publicly, and I grant permission to Birdability and National Audubon to use these photos.
+                    </label>
+                </div>
+                
+                <!-- Alternative Text for Photos -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label for="photoAltText"><strong>Alternative text for photos</strong></label>
+                    <p style="margin-top: 10px; margin-bottom: 10px;">Please briefly describe what each photo shows. This allows people who use screen reader software to understand the images.</p>
+                    <textarea id="photoAltText" name="photoAltText" rows="10" placeholder="1.&#10;2.&#10;3.&#10;4.&#10;5.&#10;6.&#10;7.&#10;8."></textarea>
                 </div>
             </section>
 

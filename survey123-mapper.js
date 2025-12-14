@@ -137,21 +137,21 @@ function mapToSurvey123(checklistData) {
         if (ad.bathrooms) {
             // Are there bathrooms? (Yes/No)
             if (ad.bathrooms.hasBathrooms === 'true') {
-                params['are_there_bathrooms'] = 'Yes';
+                params['birding_location_accessibility_/are_there_bathrooms'] = 'Yes';
                 // Bathroom details (only if yes)
-                if (ad.bathrooms.regularPortableRestrooms) params['regular_portable'] = 'Yes';
-                if (ad.bathrooms.accessiblePortableRestrooms) params['accessible_portable'] = 'Yes';
-                if (ad.bathrooms.onlyAccessibleWhenVisitorsCenterOpen) params['only_visitors_center'] = 'Yes';
-                if (ad.bathrooms.doorFramesAtLeast32in) params['door_frames'] = 'Yes';
-                if (ad.bathrooms.stallSizeAtLeast60by60in) params['stall_size'] = 'Yes';
-                if (ad.bathrooms.toiletSeatHeight17to19in) params['toilet'] = 'Yes';
-                if (ad.bathrooms.sinkAt34inOrLower) params['sink'] = 'Yes';
-                if (ad.bathrooms.mirrorBottomAt40inOrLower) params['mirror'] = 'Yes';
-                if (ad.bathrooms.handDryersAt48inOrLower) params['hand_dryers'] = 'Yes';
-                if (ad.bathrooms.thresholdNotOnSlant) params['threshold'] = 'Yes';
-                if (ad.bathrooms.allGenderBathrooms) params['all_gender'] = 'Yes';
+                if (ad.bathrooms.regularPortableRestrooms) params['birding_location_accessibility_/bathrooms_info/regular_portable'] = 'Yes';
+                if (ad.bathrooms.accessiblePortableRestrooms) params['birding_location_accessibility_/bathrooms_info/accessible_portable'] = 'Yes';
+                if (ad.bathrooms.onlyAccessibleWhenVisitorsCenterOpen) params['birding_location_accessibility_/bathrooms_info/only_visitors_center'] = 'Yes';
+                if (ad.bathrooms.doorFramesAtLeast32in) params['birding_location_accessibility_/bathrooms_info/door_frames'] = 'Yes';
+                if (ad.bathrooms.stallSizeAtLeast60by60in) params['birding_location_accessibility_/bathrooms_info/stall_size'] = 'Yes';
+                if (ad.bathrooms.toiletSeatHeight17to19in) params['birding_location_accessibility_/bathrooms_info/toilet'] = 'Yes';
+                if (ad.bathrooms.sinkAt34inOrLower) params['birding_location_accessibility_/bathrooms_info/sink'] = 'Yes';
+                if (ad.bathrooms.mirrorBottomAt40inOrLower) params['birding_location_accessibility_/bathrooms_info/mirror'] = 'Yes';
+                if (ad.bathrooms.handDryersAt48inOrLower) params['birding_location_accessibility_/bathrooms_info/hand_dryers'] = 'Yes';
+                if (ad.bathrooms.thresholdNotOnSlant) params['birding_location_accessibility_/bathrooms_info/threshold'] = 'Yes';
+                if (ad.bathrooms.allGenderBathrooms) params['birding_location_accessibility_/bathrooms_info/all_gender'] = 'Yes';
             } else if (ad.bathrooms.hasBathrooms === 'false') {
-                params['are_there_bathrooms'] = 'No';
+                params['birding_location_accessibility_/are_there_bathrooms'] = 'No';
             }
         }
         
@@ -159,16 +159,16 @@ function mapToSurvey123(checklistData) {
         if (ad.ramps) {
             // Are there ramps? (Yes/No)
             if (ad.ramps.hasRamps === 'true') {
-                params['are_there_ramps'] = 'Yes';
+                params['birding_location_accessibility_/are_there_ramps'] = 'Yes';
                 // Ramp details (only if yes)
-                if (ad.ramps.perfectRamp) params['perfect_ramp'] = 'Yes';
-                if (ad.ramps.steeperRamp) params['steeper_ramp'] = 'Yes';
-                if (ad.ramps.verySteepRamp) params['very_steep_ramp'] = 'Yes';
-                if (ad.ramps.wideRamps) params['wide_ramps'] = 'Yes';
-                if (ad.ramps.flatLandings) params['flat_landings'] = 'Yes';
-                if (ad.ramps.handrails) params['handrails'] = 'Yes';
+                if (ad.ramps.perfectRamp) params['birding_location_accessibility_/ramps_info/perfect_ramp'] = 'Yes';
+                if (ad.ramps.steeperRamp) params['birding_location_accessibility_/ramps_info/steeper_ramp'] = 'Yes';
+                if (ad.ramps.verySteepRamp) params['birding_location_accessibility_/ramps_info/very_steep_ramp'] = 'Yes';
+                if (ad.ramps.wideRamps) params['birding_location_accessibility_/ramps_info/wide_ramps'] = 'Yes';
+                if (ad.ramps.flatLandings) params['birding_location_accessibility_/ramps_info/flat_landings'] = 'Yes';
+                if (ad.ramps.handrails) params['birding_location_accessibility_/ramps_info/handrails'] = 'Yes';
             } else if (ad.ramps.hasRamps === 'false') {
-                params['are_there_ramps'] = 'No';
+                params['birding_location_accessibility_/are_there_ramps'] = 'No';
             }
         }
         
@@ -176,10 +176,10 @@ function mapToSurvey123(checklistData) {
         if (ad.steps) {
             // Are any steps present? (Yes/No)
             if (ad.steps.present === 'true') {
-                params['steps'] = 'Yes';
-                if (ad.steps.comments) params['steps_comments'] = ad.steps.comments;
+                params['birding_location_accessibility_/steps'] = 'Yes';
+                if (ad.steps.comments) params['birding_location_accessibility_/steps_comments'] = ad.steps.comments;
             } else if (ad.steps.present === 'false') {
-                params['steps'] = 'No';
+                params['birding_location_accessibility_/steps'] = 'No';
             }
         }
         
@@ -187,14 +187,14 @@ function mapToSurvey123(checklistData) {
         if (ad.benches) {
             // Are there benches? (Yes/No)
             if (ad.benches.hasBenches === 'true') {
-                params['are_there_benches'] = 'Yes';
+                params['birding_location_accessibility_/are_there_benches'] = 'Yes';
                 // Bench details (only if yes)
-                if (ad.benches.benchesEvery200m) params['benches_1_8'] = 'Yes';
-                if (ad.benches.benchesLessFrequent) params['benches_less_frequent'] = 'Yes';
-                if (ad.benches.benchesWithArmrests) params['armrest'] = 'Yes';
-                if (ad.benches.benchesConnectedByPavedSurface) params['bench_trail'] = 'Yes';
+                if (ad.benches.benchesEvery200m) params['birding_location_accessibility_/benches_info/benches_1_8'] = 'Yes';
+                if (ad.benches.benchesLessFrequent) params['birding_location_accessibility_/benches_info/benches_less_frequent'] = 'Yes';
+                if (ad.benches.benchesWithArmrests) params['birding_location_accessibility_/benches_info/armrest'] = 'Yes';
+                if (ad.benches.benchesConnectedByPavedSurface) params['birding_location_accessibility_/benches_info/bench_trail'] = 'Yes';
             } else if (ad.benches.hasBenches === 'false') {
-                params['are_there_benches'] = 'No';
+                params['birding_location_accessibility_/are_there_benches'] = 'No';
             }
         }
         
@@ -202,16 +202,16 @@ function mapToSurvey123(checklistData) {
         if (ad.gates) {
             // Are there gates or bollards? (Yes/No)
             if (ad.gates.hasGates === 'true') {
-                params['are_there_gates'] = 'Yes';
+                params['birding_location_accessibility_/are_there_gates'] = 'Yes';
                 // Gate details (only if yes)
-                if (ad.gates.spaceAtLeast36in) params['space_between_bollards'] = 'Yes';
-                if (ad.gates.gatesAtLeast36in) params['wide_gates'] = 'Yes';
-                if (ad.gates.gatesNarrowerThan36in) params['narrower_gates'] = 'Yes';
-                if (ad.gates.swingKissingGate) params['swing_gates'] = 'Yes';
-                if (ad.gates.roadClosureGateNoAlternative) params['road_closure_gates_no_path'] = 'Yes';
-                if (ad.gates.roadClosureGateWithPathAtLeast36in) params['road_closure_gates'] = 'Yes';
+                if (ad.gates.spaceAtLeast36in) params['birding_location_accessibility_/gates_info/space_between_bollards'] = 'Yes';
+                if (ad.gates.gatesAtLeast36in) params['birding_location_accessibility_/gates_info/wide_gates'] = 'Yes';
+                if (ad.gates.gatesNarrowerThan36in) params['birding_location_accessibility_/gates_info/narrower_gates'] = 'Yes';
+                if (ad.gates.swingKissingGate) params['birding_location_accessibility_/gates_info/swing_gates'] = 'Yes';
+                if (ad.gates.roadClosureGateNoAlternative) params['birding_location_accessibility_/gates_info/road_closure_gates_no_path'] = 'Yes';
+                if (ad.gates.roadClosureGateWithPathAtLeast36in) params['birding_location_accessibility_/gates_info/road_closure_gates'] = 'Yes';
             } else if (ad.gates.hasGates === 'false') {
-                params['are_there_gates'] = 'No';
+                params['birding_location_accessibility_/are_there_gates'] = 'No';
             }
         }
         
@@ -219,13 +219,13 @@ function mapToSurvey123(checklistData) {
         if (ad.railings) {
             // Are there railings? (Yes/No)
             if (ad.railings.hasRailings === 'true') {
-                params['are_there_railings'] = 'Yes';
+                params['birding_location_accessibility_/are_there_railings'] = 'Yes';
                 // Railing details (only if yes)
-                if (ad.railings.smallLipOnEdge) params['small_lip'] = 'Yes';
-                if (ad.railings.topRailingsOptimizeSight) params['accessible_top_railing'] = 'Yes';
-                if (ad.railings.topRailingThickAndObstructive) params['inaccessible_top_railing'] = 'Yes';
+                if (ad.railings.smallLipOnEdge) params['birding_location_accessibility_/railings_info/small_lip'] = 'Yes';
+                if (ad.railings.topRailingsOptimizeSight) params['birding_location_accessibility_/railings_info/accessible_top_railing'] = 'Yes';
+                if (ad.railings.topRailingThickAndObstructive) params['birding_location_accessibility_/railings_info/inaccessible_top_railing'] = 'Yes';
             } else if (ad.railings.hasRailings === 'false') {
-                params['are_there_railings'] = 'No';
+                params['birding_location_accessibility_/are_there_railings'] = 'No';
             }
         }
         
@@ -233,156 +233,156 @@ function mapToSurvey123(checklistData) {
         if (ad.birdBlinds) {
             // Are there bird blinds? (Yes/No)
             if (ad.birdBlinds.hasBirdBlinds === 'true') {
-                params['are_there_bird_blinds'] = 'Yes';
+                params['birding_location_accessibility_/are_there_bird_blinds'] = 'Yes';
                 // Bird blind details (only if yes)
-                if (ad.birdBlinds.noDoorOrEntryway) params['no_doorway'] = 'Yes';
-                if (ad.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope) params['doorway_at_top'] = 'Yes';
-                if (ad.birdBlinds.doorCanBeOpenedAndHeldWithOneHand) params['door_can_open'] = 'Yes';
-                if (ad.birdBlinds.noLipAtThreshold) params['no_lip'] = 'Yes';
-                if (ad.birdBlinds.doorwayAtLeast32in) params['wide_door'] = 'Yes';
-                if (ad.birdBlinds.enoughSpaceInsideForWheelchairs) params['enough_space'] = 'Yes';
-                if (ad.birdBlinds.viewingWindowsBottom30to40in) params['viewing_windows'] = 'Yes';
-                if (ad.birdBlinds.shelvesNoDeeperThan6in) params['shallow_shelves'] = 'Yes';
-                if (ad.birdBlinds.interiorBenchesMovable) params['interior_benches'] = 'Yes';
-                if (ad.birdBlinds.roofProvidesShade) params['roof'] = 'Yes';
+                if (ad.birdBlinds.noDoorOrEntryway) params['birding_location_accessibility_/bird_blinds_info/no_doorway'] = 'Yes';
+                if (ad.birdBlinds.doorwayAtTopOfRampOrOnCrossSlope) params['birding_location_accessibility_/bird_blinds_info/doorway_at_top'] = 'Yes';
+                if (ad.birdBlinds.doorCanBeOpenedAndHeldWithOneHand) params['birding_location_accessibility_/bird_blinds_info/door_can_open'] = 'Yes';
+                if (ad.birdBlinds.noLipAtThreshold) params['birding_location_accessibility_/bird_blinds_info/no_lip'] = 'Yes';
+                if (ad.birdBlinds.doorwayAtLeast32in) params['birding_location_accessibility_/bird_blinds_info/wide_door'] = 'Yes';
+                if (ad.birdBlinds.enoughSpaceInsideForWheelchairs) params['birding_location_accessibility_/bird_blinds_info/enough_space'] = 'Yes';
+                if (ad.birdBlinds.viewingWindowsBottom30to40in) params['birding_location_accessibility_/bird_blinds_info/viewing_windows'] = 'Yes';
+                if (ad.birdBlinds.shelvesNoDeeperThan6in) params['birding_location_accessibility_/bird_blinds_info/shallow_shelves'] = 'Yes';
+                if (ad.birdBlinds.interiorBenchesMovable) params['birding_location_accessibility_/bird_blinds_info/interior_benches'] = 'Yes';
+                if (ad.birdBlinds.roofProvidesShade) params['birding_location_accessibility_/bird_blinds_info/roof'] = 'Yes';
             } else if (ad.birdBlinds.hasBirdBlinds === 'false') {
-                params['are_there_bird_blinds'] = 'No';
+                params['birding_location_accessibility_/are_there_bird_blinds'] = 'No';
             }
         }
         
         // Services
         if (ad.services) {
-            if (ad.services.visitorCenter) params['visitors_center'] = 'Yes';
-            if (ad.services.staffOrVolunteers) params['staff'] = 'Yes';
-            if (ad.services.interpretivePrograms) params['interpretive_programs'] = 'Yes';
-            if (ad.services.accessibleTram) params['tram'] = 'Yes';
-            if (ad.services.gatedAccessibleIfArranged) params['gated_areas'] = 'Yes';
-            if (ad.services.mealsAvailable) params['meals'] = 'Yes';
-            if (ad.services.waterFountainsOutside) params['water_fountains'] = 'Yes';
-            if (ad.services.accessibleWaterFountains) params['accessible_water_fountains'] = 'Yes';
+            if (ad.services.visitorCenter) params['birding_location_accessibility_/visitors_center'] = 'Yes';
+            if (ad.services.staffOrVolunteers) params['birding_location_accessibility_/staff'] = 'Yes';
+            if (ad.services.interpretivePrograms) params['birding_location_accessibility_/interpretive_programs'] = 'Yes';
+            if (ad.services.accessibleTram) params['birding_location_accessibility_/tram'] = 'Yes';
+            if (ad.services.gatedAccessibleIfArranged) params['birding_location_accessibility_/gated_areas'] = 'Yes';
+            if (ad.services.mealsAvailable) params['birding_location_accessibility_/meals'] = 'Yes';
+            if (ad.services.waterFountainsOutside) params['birding_location_accessibility_/water_fountains'] = 'Yes';
+            if (ad.services.accessibleWaterFountains) params['birding_location_accessibility_/accessible_water_fountains'] = 'Yes';
         }
         
         // Trail Surfaces
         if (ad.trailSurfaces) {
             console.log('Trail surfaces data:', ad.trailSurfaces);
-            if (ad.trailSurfaces.asphalt) params['asphalt'] = 'Yes';
-            if (ad.trailSurfaces.concrete) params['concrete'] = 'Yes';
-            if (ad.trailSurfaces.woodenBoardwalk) params['boardwalk'] = 'Yes';
-            if (ad.trailSurfaces.wellPackedCrushedStone) params['packed_stone'] = 'Yes';
-            if (ad.trailSurfaces.looseCrushedStoneOrGravel) params['loose_stone'] = 'Yes';
-            if (ad.trailSurfaces.hardPackedSoil) params['hard_soil'] = 'Yes';
-            if (ad.trailSurfaces.looseDirt) params['loose_dirt'] = 'Yes';
-            if (ad.trailSurfaces.sand) params['sand'] = 'Yes';
-            if (ad.trailSurfaces.mulch) params['mulch'] = 'Yes';
-            if (ad.trailSurfaces.thickGrass) params['grass'] = 'Yes';
-            if (ad.trailSurfaces.muddySections) params['muddy'] = 'Yes';
-            if (ad.trailSurfaces.rutsAndPotholes) params['ruts'] = 'Yes';
-            if (ad.trailSurfaces.protrudingRootsAndRocks) params['roots_rocks'] = 'Yes';
-            if (ad.trailSurfaces.comments) params['trail_surface_comments'] = ad.trailSurfaces.comments;
+            if (ad.trailSurfaces.asphalt) params['birding_location_accessibility_/asphalt'] = 'Yes';
+            if (ad.trailSurfaces.concrete) params['birding_location_accessibility_/concrete'] = 'Yes';
+            if (ad.trailSurfaces.woodenBoardwalk) params['birding_location_accessibility_/boardwalk'] = 'Yes';
+            if (ad.trailSurfaces.wellPackedCrushedStone) params['birding_location_accessibility_/packed_stone'] = 'Yes';
+            if (ad.trailSurfaces.looseCrushedStoneOrGravel) params['birding_location_accessibility_/loose_stone'] = 'Yes';
+            if (ad.trailSurfaces.hardPackedSoil) params['birding_location_accessibility_/hard_soil'] = 'Yes';
+            if (ad.trailSurfaces.looseDirt) params['birding_location_accessibility_/loose_dirt'] = 'Yes';
+            if (ad.trailSurfaces.sand) params['birding_location_accessibility_/sand'] = 'Yes';
+            if (ad.trailSurfaces.mulch) params['birding_location_accessibility_/mulch'] = 'Yes';
+            if (ad.trailSurfaces.thickGrass) params['birding_location_accessibility_/grass'] = 'Yes';
+            if (ad.trailSurfaces.muddySections) params['birding_location_accessibility_/muddy'] = 'Yes';
+            if (ad.trailSurfaces.rutsAndPotholes) params['birding_location_accessibility_/ruts'] = 'Yes';
+            if (ad.trailSurfaces.protrudingRootsAndRocks) params['birding_location_accessibility_/roots_rocks'] = 'Yes';
+            if (ad.trailSurfaces.comments) params['birding_location_accessibility_/trail_surface_comments'] = ad.trailSurfaces.comments;
         }
         
         // Trail Slopes
         if (ad.trailSlopes) {
             console.log('Trail slopes data:', ad.trailSlopes);
-            if (ad.trailSlopes.completelyFlat) params['flat'] = 'Yes';
-            if (ad.trailSlopes.noSteeperThan1to20) params['steep_trail'] = 'Yes';
-            if (ad.trailSlopes.steeperThan1to20) params['steeper_trail'] = 'Yes';
-            if (ad.trailSlopes.verySteep) params['very_steep_trail'] = 'Yes';
-            if (ad.trailSlopes.comments) params['trail_slope_comments'] = ad.trailSlopes.comments;
+            if (ad.trailSlopes.completelyFlat) params['birding_location_accessibility_/flat'] = 'Yes';
+            if (ad.trailSlopes.noSteeperThan1to20) params['birding_location_accessibility_/steep_trail'] = 'Yes';
+            if (ad.trailSlopes.steeperThan1to20) params['birding_location_accessibility_/steeper_trail'] = 'Yes';
+            if (ad.trailSlopes.verySteep) params['birding_location_accessibility_/very_steep_trail'] = 'Yes';
+            if (ad.trailSlopes.comments) params['birding_location_accessibility_/trail_slope_comments'] = ad.trailSlopes.comments;
         }
         
         // Trail Width and Pullouts
         if (ad.trailWidthPullouts) {
             console.log('Trail width/pullouts data:', ad.trailWidthPullouts);
-            if (ad.trailWidthPullouts.atLeast36in) params['wide_trail'] = 'Yes';
-            if (ad.trailWidthPullouts.atLeast60in) params['extra_wide_trail'] = 'Yes';
-            if (ad.trailWidthPullouts.relativelyNarrow) params['narrow_trail'] = 'Yes';
-            if (ad.trailWidthPullouts.noPullouts) params['no_pullouts'] = 'Yes';
-            if (ad.trailWidthPullouts.pulloutsEvery1000ft) params['pullouts_1_8'] = 'Yes';
-            if (ad.trailWidthPullouts.pulloutsLessFrequent) params['pullouts'] = 'Yes';
-            if (ad.trailWidthPullouts.comments) params['trail_width_comments'] = ad.trailWidthPullouts.comments;
+            if (ad.trailWidthPullouts.atLeast36in) params['birding_location_accessibility_/wide_trail'] = 'Yes';
+            if (ad.trailWidthPullouts.atLeast60in) params['birding_location_accessibility_/extra_wide_trail'] = 'Yes';
+            if (ad.trailWidthPullouts.relativelyNarrow) params['birding_location_accessibility_/narrow_trail'] = 'Yes';
+            if (ad.trailWidthPullouts.noPullouts) params['birding_location_accessibility_/no_pullouts'] = 'Yes';
+            if (ad.trailWidthPullouts.pulloutsEvery1000ft) params['birding_location_accessibility_/pullouts_1_8'] = 'Yes';
+            if (ad.trailWidthPullouts.pulloutsLessFrequent) params['birding_location_accessibility_/pullouts'] = 'Yes';
+            if (ad.trailWidthPullouts.comments) params['birding_location_accessibility_/trail_width_comments'] = ad.trailWidthPullouts.comments;
         }
         
         // Other Trail Users
         if (ad.otherTrailUsers) {
             console.log('Other trail users data:', ad.otherTrailUsers);
-            if (ad.otherTrailUsers.cyclists) params['cyclists'] = 'Yes';
-            if (ad.otherTrailUsers.mountainBikes) params['mountain_bikes'] = 'Yes';
-            if (ad.otherTrailUsers.inlineSkaters) params['inline_skaters'] = 'Yes';
-            if (ad.otherTrailUsers.horses) params['horses'] = 'Yes';
-            if (ad.otherTrailUsers.motorVehicles) params['motor_vehicles'] = 'Yes';
-            if (ad.otherTrailUsers.comments) params['other_trail_users_comments'] = ad.otherTrailUsers.comments;
+            if (ad.otherTrailUsers.cyclists) params['birding_location_accessibility_/cyclists'] = 'Yes';
+            if (ad.otherTrailUsers.mountainBikes) params['birding_location_accessibility_/mountain_bikes'] = 'Yes';
+            if (ad.otherTrailUsers.inlineSkaters) params['birding_location_accessibility_/inline_skaters'] = 'Yes';
+            if (ad.otherTrailUsers.horses) params['birding_location_accessibility_/horses'] = 'Yes';
+            if (ad.otherTrailUsers.motorVehicles) params['birding_location_accessibility_/motor_vehicles'] = 'Yes';
+            if (ad.otherTrailUsers.comments) params['birding_location_accessibility_/other_trail_users_comments'] = ad.otherTrailUsers.comments;
         }
         
         // Trail Use/Popularity
         if (ad.trailUsePopularity) {
             console.log('Trail use/popularity data:', ad.trailUsePopularity);
-            if (ad.trailUsePopularity.notBusy) params['not_busy'] = 'Yes';
-            if (ad.trailUsePopularity.somewhatBusy) params['somewhat_busy'] = 'Yes';
-            if (ad.trailUsePopularity.veryBusy) params['very_busy'] = 'Yes';
-            if (ad.trailUsePopularity.comments) params['trail_use_comments'] = ad.trailUsePopularity.comments;
+            if (ad.trailUsePopularity.notBusy) params['birding_location_accessibility_/not_busy'] = 'Yes';
+            if (ad.trailUsePopularity.somewhatBusy) params['birding_location_accessibility_/somewhat_busy'] = 'Yes';
+            if (ad.trailUsePopularity.veryBusy) params['birding_location_accessibility_/very_busy'] = 'Yes';
+            if (ad.trailUsePopularity.comments) params['birding_location_accessibility_/trail_use_comments'] = ad.trailUsePopularity.comments;
         }
         
         // Safety Concerns
         if (ad.safetyConcerns) {
             console.log('Safety concerns data:', ad.safetyConcerns);
-            if (ad.safetyConcerns.wellUsedDidntFeelDeserted) params['well_used'] = 'Yes';
-            if (ad.safetyConcerns.notWellUsedFewOtherUsers) params['not_well_used'] = 'Yes';
-            if (ad.safetyConcerns.parkingWellLitAtNight) params['parking_lit'] = 'Yes';
-            if (ad.safetyConcerns.trailWellLitAtNight) params['trail_lit'] = 'Yes';
-            if (ad.safetyConcerns.noticeablePresenceOfAuthorities) params['authorities'] = 'Yes';
-            if (ad.safetyConcerns.dogsOftenOffLeash) params['dogs_off_leash'] = 'Yes';
-            if (ad.safetyConcerns.ticksOrChiggersConcern) params['ticks'] = 'Yes';
-            if (ad.safetyConcerns.wildlifeReported) params['wildlife'] = 'Yes';
-            if (ad.safetyConcerns.usedForHunting) params['hunting'] = 'Yes';
-            if (ad.safetyConcerns.bordersPrivatePropertyKeepOutSigns) params['private_property'] = 'Yes';
-            if (ad.safetyConcerns.usedAsIsolatedPartySpot) params['party_spot'] = 'Yes';
-            if (ad.safetyConcerns.evidenceOfDrugOrAlcoholUse) params['drug_alcohol'] = 'Yes';
-            if (ad.safetyConcerns.hateSymbolsPresent) params['hate_symbols'] = 'Yes';
-            if (ad.safetyConcerns.comments) params['safety_comments'] = ad.safetyConcerns.comments;
+            if (ad.safetyConcerns.wellUsedDidntFeelDeserted) params['birding_location_accessibility_/well_used'] = 'Yes';
+            if (ad.safetyConcerns.notWellUsedFewOtherUsers) params['birding_location_accessibility_/not_well_used'] = 'Yes';
+            if (ad.safetyConcerns.parkingWellLitAtNight) params['birding_location_accessibility_/parking_lit'] = 'Yes';
+            if (ad.safetyConcerns.trailWellLitAtNight) params['birding_location_accessibility_/trail_lit'] = 'Yes';
+            if (ad.safetyConcerns.noticeablePresenceOfAuthorities) params['birding_location_accessibility_/authorities'] = 'Yes';
+            if (ad.safetyConcerns.dogsOftenOffLeash) params['birding_location_accessibility_/dogs_off_leash'] = 'Yes';
+            if (ad.safetyConcerns.ticksOrChiggersConcern) params['birding_location_accessibility_/ticks'] = 'Yes';
+            if (ad.safetyConcerns.wildlifeReported) params['birding_location_accessibility_/wildlife'] = 'Yes';
+            if (ad.safetyConcerns.usedForHunting) params['birding_location_accessibility_/hunting'] = 'Yes';
+            if (ad.safetyConcerns.bordersPrivatePropertyKeepOutSigns) params['birding_location_accessibility_/private_property'] = 'Yes';
+            if (ad.safetyConcerns.usedAsIsolatedPartySpot) params['birding_location_accessibility_/party_spot'] = 'Yes';
+            if (ad.safetyConcerns.evidenceOfDrugOrAlcoholUse) params['birding_location_accessibility_/drug_alcohol'] = 'Yes';
+            if (ad.safetyConcerns.hateSymbolsPresent) params['birding_location_accessibility_/hate_symbols'] = 'Yes';
+            if (ad.safetyConcerns.comments) params['birding_location_accessibility_/safety_comments'] = ad.safetyConcerns.comments;
         }
         
         // Shade Cover
         if (ad.shadeCover) {
             console.log('Shade cover:', ad.shadeCover);
-            params['shade_cover'] = ad.shadeCover;
+            params['birding_location_accessibility_/shade_cover'] = ad.shadeCover;
         }
         
         // Other Notes
         if (ad.otherNotes) {
             console.log('Other notes:', ad.otherNotes);
-            params['other_notes'] = ad.otherNotes;
+            params['birding_location_accessibility_/other_notes'] = ad.otherNotes;
         }
         
         // Features for blind/low vision
         if (ad.blindFacilities) {
-            if (ad.blindFacilities.guideRopes) params['guide_ropes'] = 'Yes';
-            if (ad.blindFacilities.audioRecordings) params['audio'] = 'Yes';
-            if (ad.blindFacilities.tactileComponentsOnSigns) params['tactile_signs'] = 'Yes';
-            if (ad.blindFacilities.brailleOnSigns) params['braille'] = 'Yes';
-            if (ad.blindFacilities.tactileMarkersOnSurface) params['tactile_markers'] = 'Yes';
-            if (ad.blindFacilities.additionalResourcesLoan) params['additional_resources'] = 'Yes';
+            if (ad.blindFacilities.guideRopes) params['birding_location_accessibility_/guide_ropes'] = 'Yes';
+            if (ad.blindFacilities.audioRecordings) params['birding_location_accessibility_/audio'] = 'Yes';
+            if (ad.blindFacilities.tactileComponentsOnSigns) params['birding_location_accessibility_/tactile_signs'] = 'Yes';
+            if (ad.blindFacilities.brailleOnSigns) params['birding_location_accessibility_/braille'] = 'Yes';
+            if (ad.blindFacilities.tactileMarkersOnSurface) params['birding_location_accessibility_/tactile_markers'] = 'Yes';
+            if (ad.blindFacilities.additionalResourcesLoan) params['birding_location_accessibility_/additional_resources'] = 'Yes';
         }
         
         // Maintenance
         if (ad.maintenance) {
-            if (ad.maintenance.grassySurfacesMownFrequently) params['mown_frequently'] = 'Yes';
-            if (ad.maintenance.treeBranchesClearAbove7ft) params['tree_branches'] = 'Yes';
-            if (ad.maintenance.vegetationPrunedNextToTrail) params['pruned_vegetation'] = 'Yes';
-            if (ad.maintenance.leavesRemovedInFallWinter) params['leaves_removed'] = 'Yes';
-            if (ad.maintenance.plowedFrequentlyInWinter) params['plowed'] = 'Yes';
-            if (ad.maintenance.significantSurfaceDamage) params['damage'] = 'Yes';
+            if (ad.maintenance.grassySurfacesMownFrequently) params['birding_location_accessibility_/mown_frequently'] = 'Yes';
+            if (ad.maintenance.treeBranchesClearAbove7ft) params['birding_location_accessibility_/tree_branches'] = 'Yes';
+            if (ad.maintenance.vegetationPrunedNextToTrail) params['birding_location_accessibility_/pruned_vegetation'] = 'Yes';
+            if (ad.maintenance.leavesRemovedInFallWinter) params['birding_location_accessibility_/leaves_removed'] = 'Yes';
+            if (ad.maintenance.plowedFrequentlyInWinter) params['birding_location_accessibility_/plowed'] = 'Yes';
+            if (ad.maintenance.significantSurfaceDamage) params['birding_location_accessibility_/damage'] = 'Yes';
         }
         
         // Nearby noise
         if (ad.nearbyNoise) {
-            if (ad.nearbyNoise.nearbyTraffic) params['traffic'] = 'Yes';
-            if (ad.nearbyNoise.nearAirportOrFlightPath) params['airport'] = 'Yes';
-            if (ad.nearbyNoise.ongoingIndustrial) params['industrial'] = 'Yes';
-            if (ad.nearbyNoise.intermittentConstruction) params['construction'] = 'Yes';
-            if (ad.nearbyNoise.loudBoatsNearby) params['boats'] = 'Yes';
-            if (ad.nearbyNoise.dirtBikesNearby) params['dirt_bikes'] = 'Yes';
-            if (ad.nearbyNoise.largeGroupsOftenUseLocation) params['large_groups'] = 'Yes';
+            if (ad.nearbyNoise.nearbyTraffic) params['birding_location_accessibility_/traffic'] = 'Yes';
+            if (ad.nearbyNoise.nearAirportOrFlightPath) params['birding_location_accessibility_/airport'] = 'Yes';
+            if (ad.nearbyNoise.ongoingIndustrial) params['birding_location_accessibility_/industrial'] = 'Yes';
+            if (ad.nearbyNoise.intermittentConstruction) params['birding_location_accessibility_/construction'] = 'Yes';
+            if (ad.nearbyNoise.loudBoatsNearby) params['birding_location_accessibility_/boats'] = 'Yes';
+            if (ad.nearbyNoise.dirtBikesNearby) params['birding_location_accessibility_/dirt_bikes'] = 'Yes';
+            if (ad.nearbyNoise.largeGroupsOftenUseLocation) params['birding_location_accessibility_/large_groups'] = 'Yes';
         }
     }
     

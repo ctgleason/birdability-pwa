@@ -431,6 +431,9 @@ function updateConditionalSections() {
     conditionalSections.forEach(({ radioName, detailsId }) => {
         const selectedValue = document.querySelector(`input[name="${radioName}"]:checked`)?.value;
         const detailsDiv = document.getElementById(detailsId);
+        
+        console.log(`Conditional check - ${radioName}: selected="${selectedValue}", showing=${selectedValue === 'true'}`);
+        
         if (detailsDiv) {
             detailsDiv.style.display = selectedValue === 'true' ? 'block' : 'none';
         }

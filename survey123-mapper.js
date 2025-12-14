@@ -410,8 +410,8 @@ function buildSurvey123URL(checklistData) {
     // Build URL manually to avoid over-encoding
     const paramPairs = [];
     
-    // Add base path to each parameter
-    // The params already include their section paths (general_information/ or birding_location_accessibility_/)
+    // Survey123 web forms may not support URL parameters for pre-filling
+    // This creates a URL with parameters, but they may need to be passed differently
     for (const [key, value] of Object.entries(params)) {
         // Skip null/undefined/object values
         if (value == null || typeof value === 'object') {
@@ -419,10 +419,10 @@ function buildSurvey123URL(checklistData) {
             continue;
         }
         
-        const fullPath = `${BASE_PATH}${key}`;
-        // Encode only the value, not the field path structure
+        // Try using just the field name without full path
+        const fieldName = key.split('/').pop(); // Get last part after final /
         const encodedValue = encodeURIComponent(String(value));
-        paramPairs.push(`${fullPath}=${encodedValue}`);
+        paramPairs.push(`${fieldName}=${encodedValue}`);
     }
     
     const url = `${SURVEY123_BASE_URL}?${paramPairs.join('&')}`;

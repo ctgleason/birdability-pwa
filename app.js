@@ -47,6 +47,7 @@ function setupNavigation() {
     });
     
     // Action buttons
+    document.getElementById('uploadBtn')?.addEventListener('click', openInSurvey123);
     document.getElementById('saveJsonBtn')?.addEventListener('click', saveJSON);
     document.getElementById('loadJsonBtn')?.addEventListener('click', loadJSON);
     document.getElementById('emailJsonBtn')?.addEventListener('click', emailJSON);

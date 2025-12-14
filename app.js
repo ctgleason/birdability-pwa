@@ -280,11 +280,11 @@ function setupLocationPicker() {
         const mapUrl = `https://www.google.com/maps/@${currentLat},${currentLon},15z`;
         
         const userInput = prompt(
-            'Please use Google Maps to find your location, then enter the coordinates here.\\n\\n' +
-            'To get coordinates from Google Maps:\\n' +
-            '1. Right-click on the location\\n' +
-            '2. Click on the coordinates to copy them\\n' +
-            '3. Paste them below (format: latitude, longitude)\\n\\n' +
+            'Please use Google Maps to find your location, then enter the coordinates here.\n\n' +
+            'To get coordinates from Google Maps:\n' +
+            '1. Right-click on the location\n' +
+            '2. Click on the coordinates to copy them\n' +
+            '3. Paste them below (format: latitude, longitude)\n\n' +
             'Example: 40.7128, -74.0060'
         );
         

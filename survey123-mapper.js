@@ -25,7 +25,7 @@ function mapToSurvey123(checklistData) {
             locationParts.push(`Trail/Bird Blind: ${gi.trailName}`);
         }
         if (locationParts.length > 0) {
-            params['location_name'] = locationParts.join('\n');
+            params['location_name'] = locationParts.join(', ');
         }
         
         // Website
@@ -61,10 +61,10 @@ function mapToSurvey123(checklistData) {
             params['length_of_trail'] = gi.lengthOfTrail;
         }
         
-        // Trail type
-        if (gi.trailLoop) params['type_of_trail'] = 'loop';
-        if (gi.trailOutAndBack) params['type_of_trail'] = 'out_and_back';
-        if (gi.trailLollipop) params['type_of_trail'] = 'lollipop';
+        // Trail type (single selection)
+        if (gi.trailType) {
+            params['type_of_trail'] = gi.trailType;
+        }
         
         // Park fee (covers both entrance fee and parking fee in Survey123)
         // Survey123 question: "Is there an entrance fee? Is there a parking fee?"

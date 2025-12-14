@@ -217,19 +217,16 @@ Trail Name: ${gi.trailName || 'NOT SET'}
 Website: ${gi.websiteUrl || 'NOT SET'}
 Latitude: ${gi.latitude || 'NOT SET'}
 Longitude: ${gi.longitude || 'NOT SET'}
-Units Preferred: ${gi.unitsPreferred || 'NOT SET'}
-Length of Trail: ${gi.lengthOfTrail || 'NOT SET'}
 
-PARKING:
-Has Parking: ${parking.hasParking || 'NOT SET'}
+PARKING (Type check):
+Has Parking: "${parking.hasParking}" (type: ${typeof parking.hasParking})
 Pull-off areas: ${parking.pullOffAreas}
 Regular accessible: ${parking.regularAccessible}
 Van accessible: ${parking.vanAccessible}
 Curb cuts: ${parking.curbCuts}
 Paved: ${parking.surfacePaved}
-Gravel: ${parking.surfaceGravel}
-Potholes: ${parking.manyPotholes}
-On slope: ${parking.parkingOnSlope}
+
+URL LENGTH: ${survey123URL.length} characters
 
 Click OK to continue to Survey123, or Cancel to stay here.
             `.trim();

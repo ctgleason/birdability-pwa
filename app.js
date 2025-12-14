@@ -91,6 +91,11 @@ function setupMenu() {
     });
     
     // Menu actions
+    document.getElementById('menuOpenSurvey123')?.addEventListener('click', () => {
+        closeMenu();
+        openInSurvey123();
+    });
+    
     document.getElementById('menuGenerateJson').addEventListener('click', () => {
         closeMenu();
         saveJSON();
@@ -180,6 +185,26 @@ function fallbackEmailWithoutPhotos(subject, data, jsonOutput) {
     
     const body = encodeURIComponent(`Please find the Birdability accessibility report.\n\nReport ID: ${data.id}\nLocation: ${data.generalInformation.locationName}\nCreated: ${data.createdAt}${photoInfo}\n\n--- JSON Data ---\n${jsonOutput}`);
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+function openInSurvey123() {
+    const data = getFormData();
+    
+    // Check if buildSurvey123URL is available
+    if (typeof buildSurvey123URL === 'function') {
+        try {
+            const survey123URL = buildSurvey123URL(data);
+            
+            // Open Survey123 form in new window/tab
+            window.open(survey123URL, '_blank');
+            showMessage('Opening Survey123 form with your data...', 'success');
+        } catch (error) {
+            console.error('Error building Survey123 URL:', error);
+            showMessage('Error preparing Survey123 data', 'error');
+        }
+    } else {
+        showMessage('Survey123 mapper not loaded', 'error');
+    }
 }
 
 function showSection(sectionNumber) {

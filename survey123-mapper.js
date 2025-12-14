@@ -120,6 +120,8 @@ function mapToSurvey123(checklistData) {
                 params['is_there_parking'] = 'yes';
                 // Parking details (only if yes)
                 if (ad.parking.pullOffAreas) params['pull_off'] = 'yes';
+                if (ad.parking.regularAccessible) params['regular_accessible'] = 'yes';
+                if (ad.parking.vanAccessible) params['van_accessible'] = 'yes';
                 if (ad.parking.curbCuts) params['curb_cuts'] = 'yes';
                 if (ad.parking.surfacePaved) params['paved'] = 'yes';
                 if (ad.parking.surfaceGravel) params['grael'] = 'yes'; // Note: Survey123 has typo "grael"

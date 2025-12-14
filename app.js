@@ -207,6 +207,7 @@ function openInSurvey123() {
             
             // Show debug info
             const gi = data.generalInformation;
+            const parking = data.accessibilityDetailed?.parking || {};
             const debugInfo = `
 DEBUG INFO:
 -----------
@@ -217,6 +218,17 @@ Latitude: ${gi.latitude || 'NOT SET'}
 Longitude: ${gi.longitude || 'NOT SET'}
 Units Preferred: ${gi.unitsPreferred || 'NOT SET'}
 Length of Trail: ${gi.lengthOfTrail || 'NOT SET'}
+
+PARKING:
+Has Parking: ${parking.hasParking || 'NOT SET'}
+Pull-off areas: ${parking.pullOffAreas}
+Regular accessible: ${parking.regularAccessible}
+Van accessible: ${parking.vanAccessible}
+Curb cuts: ${parking.curbCuts}
+Paved: ${parking.surfacePaved}
+Gravel: ${parking.surfaceGravel}
+Potholes: ${parking.manyPotholes}
+On slope: ${parking.parkingOnSlope}
 
 Click OK to continue to Survey123, or Cancel to stay here.
             `.trim();
@@ -468,12 +480,14 @@ function getFormData() {
         accessibilityDetailed: {
             parking: {
                 hasParking: "",
+                pullOffAreas: false,
+                regularAccessible: false,
+                vanAccessible: false,
+                curbCuts: false,
                 surfacePaved: false,
                 surfaceGravel: false,
-                pullOffAreas: false,
-                curbCuts: false,
-                parkingOnSlope: false,
                 manyPotholes: false,
+                parkingOnSlope: false,
                 comments: ""
             },
             trailSurfaces: {

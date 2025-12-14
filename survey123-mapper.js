@@ -110,9 +110,11 @@ function mapToSurvey123(checklistData) {
     // Accessibility Details mapping
     if (checklistData.accessibilityDetailed) {
         const ad = checklistData.accessibilityDetailed;
+        console.log('Accessibility Detailed:', ad);
         
         // Parking
         if (ad.parking) {
+            console.log('Parking data:', ad.parking);
             // Is there parking? (Yes/No)
             if (ad.parking.hasParking === 'true') {
                 params['is_there_parking'] = 'yes';
@@ -255,6 +257,98 @@ function mapToSurvey123(checklistData) {
             if (ad.services.mealsAvailable) params['meals'] = 'yes';
             if (ad.services.waterFountainsOutside) params['water_fountains'] = 'yes';
             if (ad.services.accessibleWaterFountains) params['accessible_water_fountains'] = 'yes';
+        }
+        
+        // Trail Surfaces
+        if (ad.trailSurfaces) {
+            console.log('Trail surfaces data:', ad.trailSurfaces);
+            if (ad.trailSurfaces.asphalt) params['asphalt'] = 'yes';
+            if (ad.trailSurfaces.concrete) params['concrete'] = 'yes';
+            if (ad.trailSurfaces.woodenBoardwalk) params['boardwalk'] = 'yes';
+            if (ad.trailSurfaces.wellPackedCrushedStone) params['packed_stone'] = 'yes';
+            if (ad.trailSurfaces.looseCrushedStoneOrGravel) params['loose_stone'] = 'yes';
+            if (ad.trailSurfaces.hardPackedSoil) params['hard_soil'] = 'yes';
+            if (ad.trailSurfaces.looseDirt) params['loose_dirt'] = 'yes';
+            if (ad.trailSurfaces.sand) params['sand'] = 'yes';
+            if (ad.trailSurfaces.mulch) params['mulch'] = 'yes';
+            if (ad.trailSurfaces.thickGrass) params['grass'] = 'yes';
+            if (ad.trailSurfaces.muddySections) params['muddy'] = 'yes';
+            if (ad.trailSurfaces.rutsAndPotholes) params['ruts'] = 'yes';
+            if (ad.trailSurfaces.protrudingRootsAndRocks) params['roots_rocks'] = 'yes';
+            if (ad.trailSurfaces.comments) params['trail_surface_comments'] = ad.trailSurfaces.comments;
+        }
+        
+        // Trail Slopes
+        if (ad.trailSlopes) {
+            console.log('Trail slopes data:', ad.trailSlopes);
+            if (ad.trailSlopes.completelyFlat) params['flat'] = 'yes';
+            if (ad.trailSlopes.noSteeperThan1to20) params['steep_trail'] = 'yes';
+            if (ad.trailSlopes.steeperThan1to20) params['steeper_trail'] = 'yes';
+            if (ad.trailSlopes.verySteep) params['very_steep_trail'] = 'yes';
+            if (ad.trailSlopes.comments) params['trail_slope_comments'] = ad.trailSlopes.comments;
+        }
+        
+        // Trail Width and Pullouts
+        if (ad.trailWidthPullouts) {
+            console.log('Trail width/pullouts data:', ad.trailWidthPullouts);
+            if (ad.trailWidthPullouts.atLeast36in) params['wide_trail'] = 'yes';
+            if (ad.trailWidthPullouts.atLeast60in) params['extra_wide_trail'] = 'yes';
+            if (ad.trailWidthPullouts.relativelyNarrow) params['narrow_trail'] = 'yes';
+            if (ad.trailWidthPullouts.noPullouts) params['no_pullouts'] = 'yes';
+            if (ad.trailWidthPullouts.pulloutsEvery1000ft) params['pullouts_1_8'] = 'yes';
+            if (ad.trailWidthPullouts.pulloutsLessFrequent) params['pullouts'] = 'yes';
+            if (ad.trailWidthPullouts.comments) params['trail_width_comments'] = ad.trailWidthPullouts.comments;
+        }
+        
+        // Other Trail Users
+        if (ad.otherTrailUsers) {
+            console.log('Other trail users data:', ad.otherTrailUsers);
+            if (ad.otherTrailUsers.cyclists) params['cyclists'] = 'yes';
+            if (ad.otherTrailUsers.mountainBikes) params['mountain_bikes'] = 'yes';
+            if (ad.otherTrailUsers.inlineSkaters) params['inline_skaters'] = 'yes';
+            if (ad.otherTrailUsers.horses) params['horses'] = 'yes';
+            if (ad.otherTrailUsers.motorVehicles) params['motor_vehicles'] = 'yes';
+            if (ad.otherTrailUsers.comments) params['other_trail_users_comments'] = ad.otherTrailUsers.comments;
+        }
+        
+        // Trail Use/Popularity
+        if (ad.trailUsePopularity) {
+            console.log('Trail use/popularity data:', ad.trailUsePopularity);
+            if (ad.trailUsePopularity.notBusy) params['not_busy'] = 'yes';
+            if (ad.trailUsePopularity.somewhatBusy) params['somewhat_busy'] = 'yes';
+            if (ad.trailUsePopularity.veryBusy) params['very_busy'] = 'yes';
+            if (ad.trailUsePopularity.comments) params['trail_use_comments'] = ad.trailUsePopularity.comments;
+        }
+        
+        // Safety Concerns
+        if (ad.safetyConcerns) {
+            console.log('Safety concerns data:', ad.safetyConcerns);
+            if (ad.safetyConcerns.wellUsedDidntFeelDeserted) params['well_used'] = 'yes';
+            if (ad.safetyConcerns.notWellUsedFewOtherUsers) params['not_well_used'] = 'yes';
+            if (ad.safetyConcerns.parkingWellLitAtNight) params['parking_lit'] = 'yes';
+            if (ad.safetyConcerns.trailWellLitAtNight) params['trail_lit'] = 'yes';
+            if (ad.safetyConcerns.noticeablePresenceOfAuthorities) params['authorities'] = 'yes';
+            if (ad.safetyConcerns.dogsOftenOffLeash) params['dogs_off_leash'] = 'yes';
+            if (ad.safetyConcerns.ticksOrChiggersConcern) params['ticks'] = 'yes';
+            if (ad.safetyConcerns.wildlifeReported) params['wildlife'] = 'yes';
+            if (ad.safetyConcerns.usedForHunting) params['hunting'] = 'yes';
+            if (ad.safetyConcerns.bordersPrivatePropertyKeepOutSigns) params['private_property'] = 'yes';
+            if (ad.safetyConcerns.usedAsIsolatedPartySpot) params['party_spot'] = 'yes';
+            if (ad.safetyConcerns.evidenceOfDrugOrAlcoholUse) params['drug_alcohol'] = 'yes';
+            if (ad.safetyConcerns.hateSymbolsPresent) params['hate_symbols'] = 'yes';
+            if (ad.safetyConcerns.comments) params['safety_comments'] = ad.safetyConcerns.comments;
+        }
+        
+        // Shade Cover
+        if (ad.shadeCover) {
+            console.log('Shade cover:', ad.shadeCover);
+            params['shade_cover'] = ad.shadeCover;
+        }
+        
+        // Other Notes
+        if (ad.otherNotes) {
+            console.log('Other notes:', ad.otherNotes);
+            params['other_notes'] = ad.otherNotes;
         }
         
         // Features for blind/low vision

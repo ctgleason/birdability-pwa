@@ -2,7 +2,7 @@
 // Converts Birdability checklist JSON to Survey123 URL parameters
 
 const SURVEY123_BASE_URL = 'https://survey123.arcgis.com/share/7b5a83ebc9044268a03b84ff9fe12c71';
-const BASE_PATH = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/';
+const FIELD_PREFIX = 'field:';
 
 // Helper function to check if value is "true" (handles both string and boolean)
 function isTrue(value) {
@@ -406,12 +406,9 @@ function mapToSurvey123(checklistData) {
 // Build Survey123 URL with parameters
 function buildSurvey123URL(checklistData) {
     const params = mapToSurvey123(checklistData);
+    const urlParams = new URLSearchParams();
     
-    // Build URL manually to avoid over-encoding
-    const paramPairs = [];
-    
-    // Survey123 web forms may not support URL parameters for pre-filling
-    // This creates a URL with parameters, but they may need to be passed differently
+    // Add field: prefix to each parameter
     for (const [key, value] of Object.entries(params)) {
         // Skip null/undefined/object values
         if (value == null || typeof value === 'object') {
@@ -419,16 +416,15 @@ function buildSurvey123URL(checklistData) {
             continue;
         }
         
-        // Try using just the field name without full path
-        const fieldName = key.split('/').pop(); // Get last part after final /
-        const encodedValue = encodeURIComponent(String(value));
-        paramPairs.push(`${fieldName}=${encodedValue}`);
+        // Extract just the field name (last part after final /)
+        const fieldName = key.split('/').pop();
+        urlParams.append(`${FIELD_PREFIX}${fieldName}`, String(value));
     }
     
-    const url = `${SURVEY123_BASE_URL}?${paramPairs.join('&')}`;
+    const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;
     console.log('Generated Survey123 URL:', url);
     console.log('URL length:', url.length);
-    console.log('Number of parameters:', paramPairs.length);
+    console.log('Number of parameters:', urlParams.toString().split('&').length);
     return url;
 }
 

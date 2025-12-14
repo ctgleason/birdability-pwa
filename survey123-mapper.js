@@ -393,6 +393,26 @@ function mapToSurvey123(checklistData) {
         }
     }
     
+    // Final Thoughts mapping
+    if (checklistData.finalThoughts) {
+        params['final_thoughts/final_comments'] = checklistData.finalThoughts;
+    }
+    
+    // Overall Rating
+    if (checklistData.overallRating) {
+        params['final_thoughts/rating'] = checklistData.overallRating;
+    }
+    
+    // Photo Permissions
+    if (checklistData.photoPermissions) {
+        params['final_thoughts/photos_permissions'] = 'Yes';
+    }
+    
+    // Alternative Text for Photos
+    if (checklistData.photoAltText) {
+        params['final_thoughts/alternative_text'] = checklistData.photoAltText;
+    }
+    
     return params;
 }
 

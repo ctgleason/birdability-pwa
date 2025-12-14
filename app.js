@@ -690,29 +690,11 @@ function saveJSON() {
     const data = getFormData();
     const jsonOutput = JSON.stringify(data, null, 2);
     
-    // Generate suggested filename from location name
-    const locationName = data.generalInformation.locationName || data.generalInformation.trailName || 'New Site';
-    console.log('Location name for filename:', locationName);
-    console.log('General Information:', data.generalInformation);
+    // Get report name - it's stored at the top level as 'name'
+    const reportName = (data.name && data.name.trim()) || 'New Site';
     
-    const sanitizedName = locationName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const sanitizedName = reportName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const suggestedFilename = `${sanitizedName}-${data.id.slice(0, 8)}.json`;
-    
-    console.log('Suggested filename:', suggestedFilename);
-    
-    // Show debug info popup
-    const debugInfo = `
-SAVE DEBUG INFO:
----------------
-Area/Sanctuary: ${data.generalInformation.locationName || 'NOT SET'}
-Trail/Bird Blind: ${data.generalInformation.trailName || 'NOT SET'}
-Location used: ${locationName}
-Suggested filename: ${suggestedFilename}
-
-Click OK to continue with save.
-    `.trim();
-    
-    if (!confirm(debugInfo)) return;
     
     // Prompt user to confirm or edit filename
     const userFilename = prompt('Enter filename for the report:', suggestedFilename);

@@ -18,13 +18,9 @@ function isFalse(value) {
 function mapToSurvey123(checklistData) {
     const params = {};
     
-    // Debug logging
-    console.log('Survey123 Mapper - Input data:', checklistData);
-    
     // General Information mapping
     if (checklistData.generalInformation) {
         const gi = checklistData.generalInformation;
-        console.log('General Information:', gi);
         
         // Location name - combine area/sanctuary and trail/bird blind
         const locationParts = [];
@@ -120,11 +116,9 @@ function mapToSurvey123(checklistData) {
     // Accessibility Details mapping
     if (checklistData.accessibilityDetailed) {
         const ad = checklistData.accessibilityDetailed;
-        console.log('Accessibility Detailed:', ad);
         
         // Parking
         if (ad.parking) {
-            console.log('Parking data:', ad.parking);
             // Is there parking? (Yes/No)
             if (isTrue(ad.parking.hasParking)) {
                 params['birding_location_accessibility_/is_there_parking'] = 'Yes';
@@ -399,7 +393,6 @@ function mapToSurvey123(checklistData) {
         }
     }
     
-    console.log('Survey123 Mapper - Final params:', params);
     return params;
 }
 
@@ -422,9 +415,6 @@ function buildSurvey123URL(checklistData) {
     }
     
     const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;
-    console.log('Generated Survey123 URL:', url);
-    console.log('URL length:', url.length);
-    console.log('Number of parameters:', urlParams.toString().split('&').length);
     return url;
 }
 

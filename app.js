@@ -204,48 +204,11 @@ function openInSurvey123() {
     // Check if buildSurvey123URL is available
     if (typeof buildSurvey123URL === 'function') {
         try {
-            console.log('=== OPENING SURVEY123 ===');
-            console.log('Form data:', data);
-            
             const survey123URL = buildSurvey123URL(data);
             
-            console.log('Generated URL length:', survey123URL.length);
-            console.log('URL preview (first 500 chars):', survey123URL.substring(0, 500));
-            
-            // Count parameters
-            const paramCount = (survey123URL.split('field:').length - 1);
-            console.log('Number of field parameters:', paramCount);
-            
-            // Show debug info
-            const gi = data.generalInformation;
-            const parking = data.accessibilityDetailed?.parking || {};
-            const debugInfo = `
-DEBUG INFO:
------------
-Location Name: ${gi.locationName || 'NOT SET'}
-Trail Name: ${gi.trailName || 'NOT SET'}
-Website: ${gi.websiteUrl || 'NOT SET'}
-Latitude: ${gi.latitude || 'NOT SET'}
-Longitude: ${gi.longitude || 'NOT SET'}
-
-PARKING (Type check):
-Has Parking: "${parking.hasParking}" (type: ${typeof parking.hasParking})
-Pull-off areas: ${parking.pullOffAreas}
-Regular accessible: ${parking.regularAccessible}
-Van accessible: ${parking.vanAccessible}
-
-URL LENGTH: ${survey123URL.length} characters
-FIELD COUNT: ${paramCount} parameters
-
-Click OK to continue to Survey123, or Cancel to stay here.
-Check the browser console for full URL details.
-            `.trim();
-            
-            if (confirm(debugInfo)) {
-                // Open Survey123 form in new window/tab
-                window.open(survey123URL, '_blank');
-                showMessage('Opening Survey123 form with your data...', 'success');
-            }
+            // Open Survey123 form in new window/tab
+            window.open(survey123URL, '_blank');
+            showMessage('Opening Survey123 form with your data...', 'success');
         } catch (error) {
             console.error('Error building Survey123 URL:', error);
             showMessage('Error preparing Survey123 data', 'error');
@@ -441,7 +404,6 @@ function updateConditionalSections() {
         
         // Check for both string 'true' and boolean true
         const shouldShow = selectedValue === 'true' || selectedValue === true;
-        console.log(`Conditional check - ${radioName}: selected="${selectedValue}" (type: ${typeof selectedValue}), showing=${shouldShow}`);
         
         if (detailsDiv) {
             detailsDiv.style.display = shouldShow ? 'block' : 'none';
@@ -982,7 +944,6 @@ function restoreFormData(data) {
     
     // Update conditional sections visibility after DOM updates
     setTimeout(() => {
-        console.log('Running updateConditionalSections after restoreFormData');
         updateConditionalSections();
     }, 100);
     

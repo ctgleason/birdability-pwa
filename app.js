@@ -653,7 +653,12 @@ function getInputValue(input) {
         return input.checked;
     } else if (input.type === 'radio') {
         if (input.checked) {
-            return input.value === 'true';
+            // Check if the value is a boolean string
+            if (input.value === 'true' || input.value === 'false') {
+                return input.value === 'true';
+            }
+            // Otherwise return the actual value
+            return input.value;
         }
         return null;
     } else {

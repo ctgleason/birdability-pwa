@@ -34,10 +34,10 @@ function mapToSurvey123(checklistData) {
         }
         
         // Coordinates (point location)
-        // Survey123 geopoint format: lat,lon,alt,acc (altitude and accuracy are optional)
+        // Survey123 geopoint format can vary, trying: lat lon (space-separated, no altitude/accuracy)
         if (gi.latitude && gi.longitude) {
             console.log('Location data - lat:', gi.latitude, 'lon:', gi.longitude);
-            params['point'] = `${gi.latitude},${gi.longitude},0,0`;
+            params['point'] = `${gi.latitude} ${gi.longitude}`;
         } else {
             console.log('No location data found. gi.latitude:', gi.latitude, 'gi.longitude:', gi.longitude);
         }

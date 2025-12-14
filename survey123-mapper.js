@@ -3,7 +3,7 @@
 
 const SURVEY123_BASE_URL = 'https://survey123.arcgis.com/share/7b5a83ebc9044268a03b84ff9fe12c71';
 const FIELD_PREFIX = 'field:';
-const FIELD_PATH_PREFIX = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/birding_location_accessibility_/';
+const BASE_PATH = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/';
 
 // Map our checklist fields to Survey123 fields
 function mapToSurvey123(checklistData) {
@@ -26,45 +26,45 @@ function mapToSurvey123(checklistData) {
             locationParts.push(`Trail/Bird Blind: ${gi.trailName}`);
         }
         if (locationParts.length > 0) {
-            params['location_name'] = locationParts.join(', ');
+            params['general_information/location_name'] = locationParts.join(', ');
         }
         
         // Website
         if (gi.websiteUrl) {
-            params['website'] = gi.websiteUrl;
+            params['general_information/website'] = gi.websiteUrl;
         }
         
         // Coordinates (point location)
         // Survey123 geopoint format can vary, trying: lat lon (space-separated, no altitude/accuracy)
         if (gi.latitude && gi.longitude) {
             console.log('Location data - lat:', gi.latitude, 'lon:', gi.longitude);
-            params['point'] = `${gi.latitude} ${gi.longitude}`;
+            params['general_information/point'] = `${gi.latitude} ${gi.longitude}`;
         } else {
             console.log('No location data found. gi.latitude:', gi.latitude, 'gi.longitude:', gi.longitude);
         }
         
         // Car birding
         if (gi.goodCarBirding !== undefined) {
-            params['car_birding'] = gi.goodCarBirding ? 'Yes' : 'No';
+            params['general_information/car_birding'] = gi.goodCarBirding ? 'Yes' : 'No';
         }
         if (gi.goodCarBirdingDetails) {
-            params['car_birding_comments'] = gi.goodCarBirdingDetails;
+            params['general_information/car_birding_comments'] = gi.goodCarBirdingDetails;
         }
         
         // Unit of measure
         if (gi.unitsPreferred) {
             console.log('Units preferred value:', gi.unitsPreferred, 'Type:', typeof gi.unitsPreferred);
-            params['unit_of_measure'] = (gi.unitsPreferred === 'miles' || gi.unitsPreferred === 'mi') ? 'mi' : 'km';
+            params['general_information/unit_of_measure'] = (gi.unitsPreferred === 'miles' || gi.unitsPreferred === 'mi') ? 'mi' : 'km';
         }
         
         // Length of trail
         if (gi.lengthOfTrail) {
-            params['length_of_trail'] = gi.lengthOfTrail;
+            params['general_information/length_of_trail'] = gi.lengthOfTrail;
         }
         
         // Trail type (single selection)
         if (gi.trailType) {
-            params['type_of_trail'] = gi.trailType;
+            params['general_information/type_of_trail'] = gi.trailType;
         }
         
         // Park fee (covers both entrance fee and parking fee in Survey123)
@@ -73,7 +73,7 @@ function mapToSurvey123(checklistData) {
         const hasParkingFee = gi.parkingFee === true || gi.parkingFee === 'true';
         
         if (hasEntranceFee || hasParkingFee) {
-            params['park_fee'] = 'Yes';
+            params['general_information/park_fee'] = 'Yes';
             
             // Combine fee details if both exist
             const feeParts = [];
@@ -81,30 +81,30 @@ function mapToSurvey123(checklistData) {
             if (gi.parkingFeeDetails) feeParts.push('Parking: ' + gi.parkingFeeDetails);
             
             if (feeParts.length > 0) {
-                params['park_fee_cost'] = feeParts.join(', ');
+                params['general_information/park_fee_cost'] = feeParts.join(', ');
             } else if (gi.entranceFeeDetails) {
-                params['park_fee_cost'] = gi.entranceFeeDetails;
+                params['general_information/park_fee_cost'] = gi.entranceFeeDetails;
             } else if (gi.parkingFeeDetails) {
-                params['park_fee_cost'] = gi.parkingFeeDetails;
+                params['general_information/park_fee_cost'] = gi.parkingFeeDetails;
             }
         } else if (hasEntranceFee === false && hasParkingFee === false) {
-            params['park_fee'] = 'No';
+            params['general_information/park_fee'] = 'No';
         }
         
         // Public transportation
         if (gi.publicTransitAccess !== undefined) {
-            params['public_transportation'] = gi.publicTransitAccess ? 'Yes' : 'No';
+            params['general_information/public_transportation'] = gi.publicTransitAccess ? 'Yes' : 'No';
         }
         if (gi.publicTransitInfo) {
-            params['public_transportation_comments'] = gi.publicTransitInfo;
+            params['general_information/public_transportation_comments'] = gi.publicTransitInfo;
         }
         
         // Walking/biking
         if (gi.walkingBikingAccess !== undefined) {
-            params['walk_bike'] = gi.walkingBikingAccess ? 'Yes' : 'No';
+            params['general_information/walk_bike'] = gi.walkingBikingAccess ? 'Yes' : 'No';
         }
         if (gi.walkingOrBikingInfo) {
-            params['walking_biking_comments'] = gi.walkingOrBikingInfo;
+            params['general_information/walking_biking_comments'] = gi.walkingOrBikingInfo;
         }
     }
     
@@ -118,18 +118,18 @@ function mapToSurvey123(checklistData) {
             console.log('Parking data:', ad.parking);
             // Is there parking? (Yes/No)
             if (ad.parking.hasParking === 'true') {
-                params['is_there_parking'] = 'yes';
+                params['birding_location_accessibility_/is_there_parking'] = 'yes';
                 // Parking details (only if yes) - these are under parking_info/
-                if (ad.parking.pullOffAreas) params['parking_info/pull_off'] = 'yes';
-                if (ad.parking.regularAccessible) params['parking_info/regular_accessible'] = 'yes';
-                if (ad.parking.vanAccessible) params['parking_info/van_accessible'] = 'yes';
-                if (ad.parking.curbCuts) params['parking_info/curb_cuts'] = 'yes';
-                if (ad.parking.surfacePaved) params['parking_info/paved'] = 'yes';
-                if (ad.parking.surfaceGravel) params['parking_info/grael'] = 'yes'; // Note: Survey123 has typo "grael"
-                if (ad.parking.manyPotholes) params['parking_info/potholes'] = 'yes';
-                if (ad.parking.parkingOnSlope) params['parking_info/unmangeable_slope'] = 'yes';
+                if (ad.parking.pullOffAreas) params['birding_location_accessibility_/parking_info/pull_off'] = 'yes';
+                if (ad.parking.regularAccessible) params['birding_location_accessibility_/parking_info/regular_accessible'] = 'yes';
+                if (ad.parking.vanAccessible) params['birding_location_accessibility_/parking_info/van_accessible'] = 'yes';
+                if (ad.parking.curbCuts) params['birding_location_accessibility_/parking_info/curb_cuts'] = 'yes';
+                if (ad.parking.surfacePaved) params['birding_location_accessibility_/parking_info/paved'] = 'yes';
+                if (ad.parking.surfaceGravel) params['birding_location_accessibility_/parking_info/grael'] = 'yes'; // Note: Survey123 has typo "grael"
+                if (ad.parking.manyPotholes) params['birding_location_accessibility_/parking_info/potholes'] = 'yes';
+                if (ad.parking.parkingOnSlope) params['birding_location_accessibility_/parking_info/unmangeable_slope'] = 'yes';
             } else if (ad.parking.hasParking === 'false') {
-                params['is_there_parking'] = 'no';
+                params['birding_location_accessibility_/is_there_parking'] = 'no';
             }
         }
         
@@ -395,9 +395,10 @@ function buildSurvey123URL(checklistData) {
     const params = mapToSurvey123(checklistData);
     const urlParams = new URLSearchParams();
     
-    // Add field: prefix and full path to each parameter
+    // Add field: prefix and base path to each parameter
+    // The params already include their section paths (general_information/ or birding_location_accessibility_/)
     for (const [key, value] of Object.entries(params)) {
-        const fullPath = `${FIELD_PREFIX}${FIELD_PATH_PREFIX}${key}`;
+        const fullPath = `${FIELD_PREFIX}${BASE_PATH}${key}`;
         urlParams.append(fullPath, value);
     }
     

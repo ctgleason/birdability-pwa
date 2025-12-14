@@ -226,25 +226,14 @@ function updateProgress() {
 
 // Photo upload handling
 function setupPhotoUpload() {
-    const photoInputCamera = document.getElementById('photoInputCamera');
-    const photoInputLibrary = document.getElementById('photoInputLibrary');
-    const takePictureBtn = document.getElementById('takePictureBtn');
-    const choosePhotosBtn = document.getElementById('choosePhotosBtn');
+    const photoInput = document.getElementById('photoInput');
+    const attachPhotosBtn = document.getElementById('attachPhotosBtn');
 
-    takePictureBtn?.addEventListener('click', () => {
-        photoInputCamera.click();
-    });
-    
-    choosePhotosBtn?.addEventListener('click', () => {
-        photoInputLibrary.click();
+    attachPhotosBtn?.addEventListener('click', () => {
+        photoInput.click();
     });
 
-    photoInputCamera?.addEventListener('change', (e) => {
-        handlePhotoUpload(e.target.files);
-        e.target.value = ''; // Reset input
-    });
-    
-    photoInputLibrary?.addEventListener('change', (e) => {
+    photoInput?.addEventListener('change', (e) => {
         handlePhotoUpload(e.target.files);
         e.target.value = ''; // Reset input
     });

@@ -552,12 +552,8 @@
                 
                 <div class="form-group" style="margin-top: 30px;">
                     <label>Photo attachments</label>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <button type="button" id="takePictureBtn" class="btn btn-secondary" style="flex: 1;">📷 Take Picture</button>
-                        <button type="button" id="choosePhotosBtn" class="btn btn-secondary" style="flex: 1;">🖼️ Choose from Library</button>
-                    </div>
-                    <input type="file" id="photoInputCamera" accept="image/*" capture="environment" style="display: none;">
-                    <input type="file" id="photoInputLibrary" accept="image/*" multiple style="display: none;">
+                    <button type="button" id="attachPhotosBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">📷 Attach photos</button>
+                    <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
                     <div id="photoList" class="photo-list"></div>
                 </div>
             </section>

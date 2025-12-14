@@ -700,6 +700,20 @@ function saveJSON() {
     
     console.log('Suggested filename:', suggestedFilename);
     
+    // Show debug info popup
+    const debugInfo = `
+SAVE DEBUG INFO:
+---------------
+Area/Sanctuary: ${data.generalInformation.locationName || 'NOT SET'}
+Trail/Bird Blind: ${data.generalInformation.trailName || 'NOT SET'}
+Location used: ${locationName}
+Suggested filename: ${suggestedFilename}
+
+Click OK to continue with save.
+    `.trim();
+    
+    if (!confirm(debugInfo)) return;
+    
     // Prompt user to confirm or edit filename
     const userFilename = prompt('Enter filename for the report:', suggestedFilename);
     if (!userFilename) return; // User cancelled

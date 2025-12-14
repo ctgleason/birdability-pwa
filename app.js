@@ -195,9 +195,27 @@ function openInSurvey123() {
         try {
             const survey123URL = buildSurvey123URL(data);
             
-            // Open Survey123 form in new window/tab
-            window.open(survey123URL, '_blank');
-            showMessage('Opening Survey123 form with your data...', 'success');
+            // Show debug info
+            const gi = data.generalInformation;
+            const debugInfo = `
+DEBUG INFO:
+-----------
+Location Name: ${gi.locationName || 'NOT SET'}
+Trail Name: ${gi.trailName || 'NOT SET'}
+Website: ${gi.websiteUrl || 'NOT SET'}
+Latitude: ${gi.latitude || 'NOT SET'}
+Longitude: ${gi.longitude || 'NOT SET'}
+Units Preferred: ${gi.unitsPreferred || 'NOT SET'}
+Length of Trail: ${gi.lengthOfTrail || 'NOT SET'}
+
+Click OK to continue to Survey123, or Cancel to stay here.
+            `.trim();
+            
+            if (confirm(debugInfo)) {
+                // Open Survey123 form in new window/tab
+                window.open(survey123URL, '_blank');
+                showMessage('Opening Survey123 form with your data...', 'success');
+            }
         } catch (error) {
             console.error('Error building Survey123 URL:', error);
             showMessage('Error preparing Survey123 data', 'error');

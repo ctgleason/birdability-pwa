@@ -1,0 +1,26 @@
+{
+  "id": "test-parking-yes-001",
+  "createdAt": "2025-12-14T12:00:00.000Z",
+  "name": "Test Site With Parking",
+  "generalInformation": {
+    "locationName": "Test Park",
+    "trailName": "Main Trail",
+    "websiteUrl": "https://example.com",
+    "latitude": "40.7128",
+    "longitude": "-74.0060"
+  },
+  "accessibilityDetailed": {
+    "parking": {
+      "hasParking": "true",
+      "pullOffAreas": true,
+      "regularAccessible": true,
+      "vanAccessible": false,
+      "curbCuts": true,
+      "surfacePaved": true,
+      "surfaceGravel": false,
+      "manyPotholes": false,
+      "parkingOnSlope": false,
+      "comments": "Test parking comments"
+    }
+  }
+}

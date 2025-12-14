@@ -204,7 +204,17 @@ function openInSurvey123() {
     // Check if buildSurvey123URL is available
     if (typeof buildSurvey123URL === 'function') {
         try {
+            console.log('=== OPENING SURVEY123 ===');
+            console.log('Form data:', data);
+            
             const survey123URL = buildSurvey123URL(data);
+            
+            console.log('Generated URL length:', survey123URL.length);
+            console.log('URL preview (first 500 chars):', survey123URL.substring(0, 500));
+            
+            // Count parameters
+            const paramCount = (survey123URL.split('field:').length - 1);
+            console.log('Number of field parameters:', paramCount);
             
             // Show debug info
             const gi = data.generalInformation;
@@ -223,12 +233,12 @@ Has Parking: "${parking.hasParking}" (type: ${typeof parking.hasParking})
 Pull-off areas: ${parking.pullOffAreas}
 Regular accessible: ${parking.regularAccessible}
 Van accessible: ${parking.vanAccessible}
-Curb cuts: ${parking.curbCuts}
-Paved: ${parking.surfacePaved}
 
 URL LENGTH: ${survey123URL.length} characters
+FIELD COUNT: ${paramCount} parameters
 
 Click OK to continue to Survey123, or Cancel to stay here.
+Check the browser console for full URL details.
             `.trim();
             
             if (confirm(debugInfo)) {

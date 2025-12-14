@@ -403,17 +403,23 @@ function mapToSurvey123(checklistData) {
 // Build Survey123 URL with parameters
 function buildSurvey123URL(checklistData) {
     const params = mapToSurvey123(checklistData);
-    const urlParams = new URLSearchParams();
+    
+    // Build URL manually to avoid over-encoding
+    const paramPairs = [];
     
     // Add field: prefix and base path to each parameter
     // The params already include their section paths (general_information/ or birding_location_accessibility_/)
     for (const [key, value] of Object.entries(params)) {
         const fullPath = `${FIELD_PREFIX}${BASE_PATH}${key}`;
-        urlParams.append(fullPath, value);
+        // Encode only the value, not the field path structure
+        const encodedValue = encodeURIComponent(value);
+        paramPairs.push(`${fullPath}=${encodedValue}`);
     }
     
-    const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;
+    const url = `${SURVEY123_BASE_URL}?${paramPairs.join('&')}`;
     console.log('Generated Survey123 URL:', url);
+    console.log('URL length:', url.length);
+    console.log('Number of parameters:', paramPairs.length);
     return url;
 }
 

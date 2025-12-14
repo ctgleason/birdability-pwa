@@ -3,6 +3,7 @@
 
 const SURVEY123_BASE_URL = 'https://survey123.arcgis.com/share/7b5a83ebc9044268a03b84ff9fe12c71';
 const FIELD_PREFIX = 'field:';
+const FIELD_PATH_PREFIX = '/xls-7b5a83ebc9044268a03b84ff9fe12c71/birding_location_accessibility_/';
 
 // Map our checklist fields to Survey123 fields
 function mapToSurvey123(checklistData) {
@@ -118,15 +119,15 @@ function mapToSurvey123(checklistData) {
             // Is there parking? (Yes/No)
             if (ad.parking.hasParking === 'true') {
                 params['is_there_parking'] = 'yes';
-                // Parking details (only if yes)
-                if (ad.parking.pullOffAreas) params['pull_off'] = 'yes';
-                if (ad.parking.regularAccessible) params['regular_accessible'] = 'yes';
-                if (ad.parking.vanAccessible) params['van_accessible'] = 'yes';
-                if (ad.parking.curbCuts) params['curb_cuts'] = 'yes';
-                if (ad.parking.surfacePaved) params['paved'] = 'yes';
-                if (ad.parking.surfaceGravel) params['grael'] = 'yes'; // Note: Survey123 has typo "grael"
-                if (ad.parking.manyPotholes) params['potholes'] = 'yes';
-                if (ad.parking.parkingOnSlope) params['unmangeable_slope'] = 'yes';
+                // Parking details (only if yes) - these are under parking_info/
+                if (ad.parking.pullOffAreas) params['parking_info/pull_off'] = 'yes';
+                if (ad.parking.regularAccessible) params['parking_info/regular_accessible'] = 'yes';
+                if (ad.parking.vanAccessible) params['parking_info/van_accessible'] = 'yes';
+                if (ad.parking.curbCuts) params['parking_info/curb_cuts'] = 'yes';
+                if (ad.parking.surfacePaved) params['parking_info/paved'] = 'yes';
+                if (ad.parking.surfaceGravel) params['parking_info/grael'] = 'yes'; // Note: Survey123 has typo "grael"
+                if (ad.parking.manyPotholes) params['parking_info/potholes'] = 'yes';
+                if (ad.parking.parkingOnSlope) params['parking_info/unmangeable_slope'] = 'yes';
             } else if (ad.parking.hasParking === 'false') {
                 params['is_there_parking'] = 'no';
             }
@@ -394,12 +395,15 @@ function buildSurvey123URL(checklistData) {
     const params = mapToSurvey123(checklistData);
     const urlParams = new URLSearchParams();
     
-    // Add field: prefix to each parameter
+    // Add field: prefix and full path to each parameter
     for (const [key, value] of Object.entries(params)) {
-        urlParams.append(`${FIELD_PREFIX}${key}`, value);
+        const fullPath = `${FIELD_PREFIX}${FIELD_PATH_PREFIX}${key}`;
+        urlParams.append(fullPath, value);
     }
     
-    return `${SURVEY123_BASE_URL}?${urlParams.toString()}`;
+    const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;
+    console.log('Generated Survey123 URL:', url);
+    return url;
 }
 
 // Export for use in main app

@@ -972,8 +972,10 @@ function restoreFormData(data) {
     // Save to localStorage
     saveFormData();
     
-    // Update conditional sections visibility
-    updateConditionalSections();
+    // Update conditional sections visibility after DOM updates
+    setTimeout(() => {
+        updateConditionalSections();
+    }, 50);
     
     // Show success message
     let message = 'Data loaded successfully!';
@@ -1016,10 +1018,13 @@ function setFieldValue(fieldPath, value) {
             input.checked = Boolean(value);
         } else if (input.type === 'radio') {
             // For radio buttons, check if the value matches
+            // Handle both boolean and string values
             if (typeof value === 'boolean') {
                 input.checked = (input.value === 'true' && value) || (input.value === 'false' && !value);
-            } else {
+            } else if (value === 'true' || value === 'false') {
                 input.checked = (input.value === value);
+            } else {
+                input.checked = (input.value === String(value));
             }
         } else if (input.tagName === 'TEXTAREA' || input.type === 'text' || input.type === 'hidden' || input.type === 'url') {
             input.value = value || '';

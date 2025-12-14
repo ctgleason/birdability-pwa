@@ -23,8 +23,9 @@ function mapToSurvey123(checklistData) {
         }
         
         // Coordinates (point location)
+        // Survey123 geopoint format: lat,lon,alt,acc (altitude and accuracy are optional)
         if (gi.latitude && gi.longitude) {
-            params['point'] = `${gi.longitude},${gi.latitude}`; // Survey123 uses lon,lat
+            params['point'] = `${gi.latitude},${gi.longitude},0,0`;
         }
         
         // Car birding
@@ -37,7 +38,7 @@ function mapToSurvey123(checklistData) {
         
         // Unit of measure
         if (gi.unitsPreferred) {
-            params['unit_of_measure'] = gi.unitsPreferred === 'miles' ? 'mi' : 'km';
+            params['unit_of_measure'] = (gi.unitsPreferred === 'miles' || gi.unitsPreferred === 'mi') ? 'mi' : 'km';
         }
         
         // Length of trail

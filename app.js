@@ -691,24 +691,58 @@ function saveJSON() {
     const jsonOutput = JSON.stringify(data, null, 2);
     
     // Generate suggested filename from location name
-    const locationName = data.generalInformation.locationName || 'New Site';
+    const locationName = data.generalInformation.locationName || data.generalInformation.trailName || 'New Site';
     const sanitizedName = locationName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const suggestedFilename = `${sanitizedName}-${data.id.slice(0, 8)}.json`;
     
-    // Try to use File System Access API (modern browsers)
+    // Prompt user to confirm or edit filename
+    const userFilename = prompt('Enter filename for the report:', suggestedFilename);
+    if (!userFilename) return; // User cancelled
+    
+    // Ensure .json extension
+    const filename = userFilename.endsWith('.json') ? userFilename : `${userFilename}.json`;
+    
+    // Try to use File System Access API (modern desktop browsers)
     if ('showSaveFilePicker' in window) {
-        saveJSONWithPicker(jsonOutput, suggestedFilename);
+        saveJSONWithPicker(jsonOutput, filename);
     } else {
-        // Fallback: Download directly
-        const blob = new Blob([jsonOutput], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = suggestedFilename;
-        a.click();
-        URL.revokeObjectURL(url);
-        showMessage('JSON file saved!', 'success');
+        // Mobile or older browsers: Use download with Web Share API fallback
+        saveJSONFallback(jsonOutput, filename);
     }
+}
+
+function saveJSONFallback(jsonOutput, filename) {
+    const blob = new Blob([jsonOutput], { type: 'application/json' });
+    
+    // Try Web Share API for mobile (better for iOS)
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], filename)] })) {
+        const file = new File([blob], filename, { type: 'application/json' });
+        navigator.share({
+            title: 'Birdability Report',
+            text: 'Save this report to your device',
+            files: [file]
+        }).then(() => {
+            showMessage('Choose where to save the file', 'success');
+        }).catch(err => {
+            if (err.name !== 'AbortError') {
+                console.error('Share failed:', err);
+                downloadJSONDirect(blob, filename);
+            }
+        });
+    } else {
+        // Direct download as last resort
+        downloadJSONDirect(blob, filename);
+    }
+}
+
+function downloadJSONDirect(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+    showMessage(`File saved as ${filename}. Check your Downloads folder.`, 'success');
 }
 
 async function saveJSONWithPicker(jsonOutput, suggestedFilename) {

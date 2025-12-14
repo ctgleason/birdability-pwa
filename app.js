@@ -250,6 +250,7 @@ function showSection(sectionNumber) {
 
     updateProgress();
     updateActiveSectionInMenu();
+    updateConditionalSections(); // Update conditional sections visibility when navigating
     window.scrollTo(0, 0);
 }
 

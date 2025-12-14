@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMenu();
     setupPhotoUpload();
     setupLocationPicker();
+    setupConditionalSections();
     updateProgress();
     loadSavedData();
     
@@ -379,6 +380,48 @@ function updateLocationDisplay() {
             locationDisplay.textContent = '';
         }
     }
+}
+
+// Setup conditional sections (show/hide based on Yes/No answers)
+function setupConditionalSections() {
+    // Define all conditional sections
+    const conditionalSections = [
+        { radioName: 'accessibilityDetailed.parking.hasParking', detailsId: 'parkingDetails' },
+        { radioName: 'accessibilityDetailed.bathrooms.hasBathrooms', detailsId: 'bathroomsDetails' },
+        { radioName: 'accessibilityDetailed.ramps.hasRamps', detailsId: 'rampsDetails' },
+        { radioName: 'accessibilityDetailed.benches.hasBenches', detailsId: 'benchesDetails' },
+        { radioName: 'accessibilityDetailed.gates.hasGates', detailsId: 'gatesDetails' },
+        { radioName: 'accessibilityDetailed.railings.hasRailings', detailsId: 'railingsDetails' },
+        { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' }
+    ];
+    
+    conditionalSections.forEach(({ radioName, detailsId }) => {
+        const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+        const detailsDiv = document.getElementById(detailsId);
+        
+        if (radios.length > 0 && detailsDiv) {
+            // Initially hide all details
+            detailsDiv.style.display = 'none';
+            
+            // Add change listener to each radio button
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const selectedValue = document.querySelector(`input[name="${radioName}"]:checked`)?.value;
+                    if (selectedValue === 'true') {
+                        detailsDiv.style.display = 'block';
+                    } else {
+                        detailsDiv.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Check initial state (for when loading saved data)
+            const selectedValue = document.querySelector(`input[name="${radioName}"]:checked`)?.value;
+            if (selectedValue === 'true') {
+                detailsDiv.style.display = 'block';
+            }
+        }
+    });
 }
 
 function handlePhotoUpload(files) {
@@ -1096,6 +1139,28 @@ function populateForm(data) {
     }
 
     populateFields(data);
+    
+    // Update conditional sections visibility after populating form
+    // Need to trigger this after a brief delay to ensure radio buttons are set
+    setTimeout(() => {
+        const conditionalSections = [
+            { radioName: 'accessibilityDetailed.parking.hasParking', detailsId: 'parkingDetails' },
+            { radioName: 'accessibilityDetailed.bathrooms.hasBathrooms', detailsId: 'bathroomsDetails' },
+            { radioName: 'accessibilityDetailed.ramps.hasRamps', detailsId: 'rampsDetails' },
+            { radioName: 'accessibilityDetailed.benches.hasBenches', detailsId: 'benchesDetails' },
+            { radioName: 'accessibilityDetailed.gates.hasGates', detailsId: 'gatesDetails' },
+            { radioName: 'accessibilityDetailed.railings.hasRailings', detailsId: 'railingsDetails' },
+            { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' }
+        ];
+        
+        conditionalSections.forEach(({ radioName, detailsId }) => {
+            const selectedValue = document.querySelector(`input[name="${radioName}"]:checked`)?.value;
+            const detailsDiv = document.getElementById(detailsId);
+            if (detailsDiv) {
+                detailsDiv.style.display = selectedValue === 'true' ? 'block' : 'none';
+            }
+        });
+    }, 100);
 }
 
 // UUID generator

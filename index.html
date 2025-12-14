@@ -22,7 +22,7 @@
         <div class="nav-menu-content">
             <div class="menu-section">
                 <h3>Actions</h3>
-                <button class="menu-action-btn" id="menuGenerateJson">📄 Generate JSON</button>
+                <button class="menu-action-btn" id="menuGenerateJson">💾 Save JSON</button>
                 <button class="menu-action-btn" id="menuEmailJson">📧 Email JSON</button>
                 <button class="menu-action-btn" id="menuSaveProgress">💾 Save Progress</button>
                 <button class="menu-action-btn" id="menuClearForm">🗑️ Clear Form</button>
@@ -43,7 +43,7 @@
                     <button class="section-nav-btn" data-section="10">Benches</button>
                     <button class="section-nav-btn" data-section="11">Gates/bollards</button>
                     <button class="section-nav-btn" data-section="12">Railings</button>
-                    <button class="section-nav-btn" data-section="13">Facilities for blind and low-vision visitors</button>
+                    <button class="section-nav-btn" data-section="13">Features for visitors who are blind or have low vision</button>
                     <button class="section-nav-btn" data-section="14">Shade cover</button>
                     <button class="section-nav-btn" data-section="15">Trail use and popularity</button>
                     <button class="section-nav-btn" data-section="16">Other trail users</button>
@@ -51,7 +51,8 @@
                     <button class="section-nav-btn" data-section="18">Maintenance</button>
                     <button class="section-nav-btn" data-section="19">Nearby noise</button>
                     <button class="section-nav-btn" data-section="20">Safety concerns</button>
-                    <button class="section-nav-btn" data-section="21">Photo attachments</button>
+                    <button class="section-nav-btn" data-section="21">Final thoughts</button>
+                    <button class="section-nav-btn" data-section="22">Photo attachments</button>
                 </div>
             </div>
         </div>
@@ -537,8 +538,22 @@
                     <textarea id="safetyConcernsComments" name="accessibilityDetailed.safetyConcerns.comments" rows="3"></textarea>
                 </div>
             </section>
-<!-- Photo attachments -->
+<!-- Final thoughts -->
             <section class="form-section" data-section="21">
+                <h2>Final thoughts</h2>
+                <p>Including likely birds found here, seasonal conditions, overall difficulty, or any other information that may be helpful to a visitor with an accessibility challenge.</p>
+                
+                <div class="form-group">
+                    <label for="finalThoughts">Final thoughts</label>
+                    <textarea id="finalThoughts" name="finalThoughts" rows="6" placeholder="Likely birds found here, seasonal conditions, overall difficulty, or any other helpful information..."></textarea>
+                </div>
+                
+                <div class="info-box" style="margin-top: 20px; padding: 15px; background-color: #f0f8ff; border-left: 4px solid #0066cc; border-radius: 4px;">
+                    <p style="margin: 0; font-style: italic;">Sometimes pictures speak a thousand words. Don't forget to take up to eight photos of trail conditions, trail signage, obstacles, etc. to upload as you're submitting to the Birdability Map. And thanks!</p>
+                </div>
+            </section>
+<!-- Photo attachments -->
+            <section class="form-section" data-section="22">
                 <h2>Photo attachments</h2>
                 <p>Add photos from your device. Photos will be stored as references, not embedded data.</p>
                 
@@ -555,7 +570,14 @@
             <div class="nav-buttons">
                 <button type="button" id="prevBtn" class="btn btn-secondary">Previous</button>
                 <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
-                <button type="button" id="submitBtn" class="btn btn-success" style="display: none;">Generate JSON</button>
+                <button type="button" id="submitBtn" class="btn btn-success" style="display: none;">Complete Review</button>
+            </div>
+            
+            <!-- Action Buttons (shown on final section) -->
+            <div id="actionButtons" class="nav-buttons" style="display: none; margin-top: 20px; gap: 10px;">
+                <button type="button" id="saveJsonBtn" class="btn btn-success">Save JSON</button>
+                <button type="button" id="emailJsonBtn" class="btn btn-primary">Email JSON</button>
+                <button type="button" id="saveProgressBtn" class="btn btn-secondary">Save Progress</button>
             </div>
         </form>
 

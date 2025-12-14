@@ -1,6 +1,6 @@
 // Global state
 let currentSection = 1;
-const totalSections = 21;
+const totalSections = 22;
 let photoFiles = [];
 
 // Initialize app
@@ -37,7 +37,20 @@ function setupNavigation() {
         }
     });
 
-    submitBtn.addEventListener('click', generateJSON);
+    submitBtn.addEventListener('click', () => {
+        // Navigate to final section
+        saveFormData();
+        currentSection = totalSections;
+        showSection(currentSection);
+    });
+    
+    // Action buttons
+    document.getElementById('saveJsonBtn')?.addEventListener('click', saveJSON);
+    document.getElementById('emailJsonBtn')?.addEventListener('click', emailJSON);
+    document.getElementById('saveProgressBtn')?.addEventListener('click', () => {
+        saveFormData();
+        showMessage('Progress saved successfully!', 'success');
+    });
 }
 
 // Menu system
@@ -78,7 +91,7 @@ function setupMenu() {
     // Menu actions
     document.getElementById('menuGenerateJson').addEventListener('click', () => {
         closeMenu();
-        generateJSON();
+        saveJSON();
     });
     
     document.getElementById('menuEmailJson').addEventListener('click', () => {
@@ -147,15 +160,18 @@ function showSection(sectionNumber) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
+    const actionButtons = document.getElementById('actionButtons');
 
     prevBtn.style.display = sectionNumber === 1 ? 'none' : 'block';
     
     if (sectionNumber === totalSections) {
         nextBtn.style.display = 'none';
-        submitBtn.style.display = 'block';
+        submitBtn.style.display = 'none';
+        if (actionButtons) actionButtons.style.display = 'flex';
     } else {
         nextBtn.style.display = 'block';
         submitBtn.style.display = 'none';
+        if (actionButtons) actionButtons.style.display = 'none';
     }
 
     updateProgress();
@@ -489,6 +505,21 @@ function setNestedProperty(obj, path, value) {
     }
 
     current[keys[keys.length - 1]] = value;
+}
+
+function saveJSON() {
+    const data = getFormData();
+    const jsonOutput = JSON.stringify(data, null, 2);
+    
+    // Download JSON file directly
+    const blob = new Blob([jsonOutput], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `birdability-report-${data.id}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showMessage('JSON file saved!', 'success');
 }
 
 function generateJSON() {

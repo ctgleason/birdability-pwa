@@ -305,6 +305,19 @@ header h1 {
     transition: background-color 0.2s ease;
 }
 
+/* Direct child label (the question label) should have normal heading weight */
+.checkbox-group > label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 0;
+    cursor: default;
+}
+
+.checkbox-group > label:hover {
+    background-color: transparent;
+}
+
 .checkbox-group label:hover {
     background-color: rgba(76, 175, 80, 0.05);
 }

@@ -692,8 +692,13 @@ function saveJSON() {
     
     // Generate suggested filename from location name
     const locationName = data.generalInformation.locationName || data.generalInformation.trailName || 'New Site';
+    console.log('Location name for filename:', locationName);
+    console.log('General Information:', data.generalInformation);
+    
     const sanitizedName = locationName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const suggestedFilename = `${sanitizedName}-${data.id.slice(0, 8)}.json`;
+    
+    console.log('Suggested filename:', suggestedFilename);
     
     // Prompt user to confirm or edit filename
     const userFilename = prompt('Enter filename for the report:', suggestedFilename);
@@ -701,6 +706,8 @@ function saveJSON() {
     
     // Ensure .json extension
     const filename = userFilename.endsWith('.json') ? userFilename : `${userFilename}.json`;
+    
+    console.log('Final filename:', filename);
     
     // Try to use File System Access API (modern desktop browsers)
     if ('showSaveFilePicker' in window) {
@@ -714,35 +721,63 @@ function saveJSON() {
 function saveJSONFallback(jsonOutput, filename) {
     const blob = new Blob([jsonOutput], { type: 'application/json' });
     
+    console.log('Attempting fallback save with filename:', filename);
+    console.log('Web Share available:', !!navigator.share);
+    console.log('Can share files:', navigator.canShare ? navigator.canShare({ files: [new File([blob], filename)] }) : 'canShare not supported');
+    
     // Try Web Share API for mobile (better for iOS)
-    if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], filename)] })) {
-        const file = new File([blob], filename, { type: 'application/json' });
-        navigator.share({
-            title: 'Birdability Report',
-            text: 'Save this report to your device',
-            files: [file]
-        }).then(() => {
-            showMessage('Choose where to save the file', 'success');
-        }).catch(err => {
-            if (err.name !== 'AbortError') {
-                console.error('Share failed:', err);
+    if (navigator.share) {
+        try {
+            const file = new File([blob], filename, { type: 'application/json' });
+            
+            // Check if we can share files
+            if (navigator.canShare && !navigator.canShare({ files: [file] })) {
+                console.log('Cannot share files, falling back to direct download');
                 downloadJSONDirect(blob, filename);
+                return;
             }
-        });
+            
+            navigator.share({
+                title: 'Birdability Report',
+                text: 'Save this report to your device',
+                files: [file]
+            }).then(() => {
+                showMessage('File shared! Save it from the share menu to your Files app.', 'success');
+            }).catch(err => {
+                if (err.name === 'AbortError') {
+                    console.log('User cancelled share');
+                } else {
+                    console.error('Share failed:', err);
+                    downloadJSONDirect(blob, filename);
+                }
+            });
+        } catch (err) {
+            console.error('Error creating file for share:', err);
+            downloadJSONDirect(blob, filename);
+        }
     } else {
         // Direct download as last resort
+        console.log('Web Share not available, using direct download');
         downloadJSONDirect(blob, filename);
     }
 }
 
 function downloadJSONDirect(blob, filename) {
+    console.log('Direct download of:', filename);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
+    document.body.appendChild(a); // iOS Safari needs element in DOM
     a.click();
-    URL.revokeObjectURL(url);
-    showMessage(`File saved as ${filename}. Check your Downloads folder.`, 'success');
+    document.body.removeChild(a);
+    
+    // Keep URL alive longer for iOS
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+    }, 100);
+    
+    showMessage(`File downloaded as "${filename}". On iOS: Long-press the download icon in Safari's address bar, or check Settings > Safari > Downloads.`, 'info');
 }
 
 async function saveJSONWithPicker(jsonOutput, suggestedFilename) {

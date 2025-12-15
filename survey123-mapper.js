@@ -404,14 +404,8 @@ function mapToSurvey123(checklistData) {
     }
     
     // Photo Permissions - explicitly check for true (boolean)
-    const debugMsg = `Photo permissions - Value: ${checklistData.photoPermissions}, Type: ${typeof checklistData.photoPermissions}, Strict true check: ${checklistData.photoPermissions === true}`;
-    console.log(debugMsg);
-    alert(debugMsg);
     if (checklistData.photoPermissions === true) {
-        console.log('Setting photos_permissions to 1');
         params['final_thoughts/photos_permissions'] = '1';
-    } else {
-        console.log('NOT setting photos_permissions (value is not true)');
     }
     
     // Alternative Text for Photos
@@ -451,7 +445,13 @@ function buildSurvey123URL(checklistData) {
         
         // Extract just the field name (last part after final /)
         const fieldName = key.split('/').pop();
-        urlParams.append(`${FIELD_PREFIX}${fieldName}`, String(value));
+        const paramName = `${FIELD_PREFIX}${fieldName}`;
+        urlParams.append(paramName, String(value));
+        
+        // Debug photos_permissions specifically
+        if (key.includes('photos_permissions')) {
+            alert(`Photo permissions URL param: ${paramName} = ${value}`);
+        }
     }
     
     const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;

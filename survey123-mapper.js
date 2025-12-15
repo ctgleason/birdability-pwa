@@ -405,7 +405,7 @@ function mapToSurvey123(checklistData) {
     
     // Photo Permissions - explicitly check for true (boolean)
     if (checklistData.photoPermissions === true) {
-        params['final_thoughts/photos_permissions'] = 'Yes';
+        params['final_thoughts/photos_permissions'] = 'i_certify';
     }
     
     // Alternative Text for Photos

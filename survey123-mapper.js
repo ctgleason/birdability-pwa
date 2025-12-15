@@ -404,7 +404,9 @@ function mapToSurvey123(checklistData) {
     }
     
     // Photo Permissions - explicitly check for true (boolean)
-    console.log('Photo permissions value:', checklistData.photoPermissions, 'Type:', typeof checklistData.photoPermissions);
+    const debugMsg = `Photo permissions - Value: ${checklistData.photoPermissions}, Type: ${typeof checklistData.photoPermissions}, Strict true check: ${checklistData.photoPermissions === true}`;
+    console.log(debugMsg);
+    alert(debugMsg);
     if (checklistData.photoPermissions === true) {
         console.log('Setting photos_permissions to 1');
         params['final_thoughts/photos_permissions'] = '1';

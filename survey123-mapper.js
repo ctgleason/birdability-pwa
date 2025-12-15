@@ -405,7 +405,7 @@ function mapToSurvey123(checklistData) {
     
     // Photo Permissions - explicitly check for true (boolean)
     if (checklistData.photoPermissions === true) {
-        params['final_thoughts/photos_permissions'] = '1';
+        params['final_thoughts/photos_permissions'] = 'Yes';
     }
     
     // Alternative Text for Photos
@@ -447,11 +447,6 @@ function buildSurvey123URL(checklistData) {
         const fieldName = key.split('/').pop();
         const paramName = `${FIELD_PREFIX}${fieldName}`;
         urlParams.append(paramName, String(value));
-        
-        // Debug photos_permissions specifically
-        if (key.includes('photos_permissions')) {
-            alert(`Photo permissions URL param: ${paramName} = ${value}`);
-        }
     }
     
     const url = `${SURVEY123_BASE_URL}?${urlParams.toString()}`;

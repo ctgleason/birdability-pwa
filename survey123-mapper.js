@@ -404,8 +404,8 @@ function mapToSurvey123(checklistData) {
     }
     
     // Photo Permissions
-    if (checklistData.photoPermissions !== undefined) {
-        params['final_thoughts/photos_permissions'] = checklistData.photoPermissions ? 'Yes' : 'No';
+    if (checklistData.photoPermissions) {
+        params['final_thoughts/photos_permissions'] = '1';
     }
     
     // Alternative Text for Photos

@@ -403,9 +403,13 @@ function mapToSurvey123(checklistData) {
         params['final_thoughts/rating'] = checklistData.overallRating;
     }
     
-    // Photo Permissions
-    if (checklistData.photoPermissions) {
+    // Photo Permissions - explicitly check for true (boolean)
+    console.log('Photo permissions value:', checklistData.photoPermissions, 'Type:', typeof checklistData.photoPermissions);
+    if (checklistData.photoPermissions === true) {
+        console.log('Setting photos_permissions to 1');
         params['final_thoughts/photos_permissions'] = '1';
+    } else {
+        console.log('NOT setting photos_permissions (value is not true)');
     }
     
     // Alternative Text for Photos

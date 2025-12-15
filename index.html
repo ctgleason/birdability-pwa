@@ -682,6 +682,39 @@
                     <p style="margin-top: 10px; margin-bottom: 10px;">Please briefly describe what each photo shows. This allows people who use screen reader software to understand the images.</p>
                     <textarea id="photoAltText" name="photoAltText" rows="10" placeholder="1.&#10;2.&#10;3.&#10;4.&#10;5.&#10;6.&#10;7.&#10;8."></textarea>
                 </div>
+                
+                <!-- Contact Information -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label><strong>Contact Information (Optional)</strong></label>
+                    <p style="margin-top: 10px; margin-bottom: 15px;">If you feel comfortable, leave your name and/or email address to allow someone to get in touch with you to ask any further clarifying questions about this site before they visit. Please be aware this information will be publicly accessible.</p>
+                    
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="checkbox" id="useSavedContactInfo" name="useSavedContactInfo">
+                        Use saved contact info
+                    </label>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <label for="contactName">Name</label>
+                        <input type="text" id="contactName" name="contactName" placeholder="Your name">
+                    </div>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <label for="contactEmail">Email Address</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="your.email@example.com">
+                    </div>
+                    
+                    <label style="display: block; margin-top: 15px;">
+                        <input type="checkbox" id="saveContactInfo" name="saveContactInfo">
+                        Save my contact info for future reports
+                    </label>
+                </div>
+                
+                <!-- Event Code -->
+                <div class="form-group" style="margin-top: 30px;">
+                    <label for="eventCode"><strong>Event Code (Optional)</strong></label>
+                    <p style="margin-top: 10px; margin-bottom: 10px;">If you are part of an event and have been given a unique code, add that here. (If you're unsure, it means this does not apply to you.)</p>
+                    <input type="text" id="eventCode" name="eventCode" placeholder="Enter event code if applicable">
+                </div>
             </section>
 
             

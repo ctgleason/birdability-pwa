@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPhotoUpload();
     setupLocationPicker();
     setupConditionalSections();
+    setupContactInfo();
     updateProgress();
     loadSavedData();
     
@@ -409,6 +410,60 @@ function updateConditionalSections() {
         if (detailsDiv) {
             detailsDiv.style.display = shouldShow ? 'block' : 'none';
         }
+    });
+}
+
+// Setup contact info save/load functionality
+function setupContactInfo() {
+    const saveCheckbox = document.getElementById('saveContactInfo');
+    const useCheckbox = document.getElementById('useSavedContactInfo');
+    const nameField = document.getElementById('contactName');
+    const emailField = document.getElementById('contactEmail');
+    
+    // Load saved contact info when "Use saved contact info" is checked
+    useCheckbox?.addEventListener('change', function() {
+        if (this.checked) {
+            const savedContact = localStorage.getItem('savedContactInfo');
+            if (savedContact) {
+                const contact = JSON.parse(savedContact);
+                if (nameField) nameField.value = contact.name || '';
+                if (emailField) emailField.value = contact.email || '';
+            } else {
+                alert('No saved contact information found.');
+                this.checked = false;
+            }
+        } else {
+            // Clear fields when unchecked
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+        }
+    });
+    
+    // Save contact info when "Save my contact info" is checked
+    saveCheckbox?.addEventListener('change', function() {
+        if (this.checked) {
+            const contactInfo = {
+                name: nameField?.value || '',
+                email: emailField?.value || ''
+            };
+            localStorage.setItem('savedContactInfo', JSON.stringify(contactInfo));
+        } else {
+            // Remove saved contact info when unchecked
+            localStorage.removeItem('savedContactInfo');
+        }
+    });
+    
+    // Also save when fields change (if save checkbox is checked)
+    [nameField, emailField].forEach(field => {
+        field?.addEventListener('blur', function() {
+            if (saveCheckbox?.checked) {
+                const contactInfo = {
+                    name: nameField?.value || '',
+                    email: emailField?.value || ''
+                };
+                localStorage.setItem('savedContactInfo', JSON.stringify(contactInfo));
+            }
+        });
     });
 }
 

@@ -413,6 +413,20 @@ function mapToSurvey123(checklistData) {
         params['final_thoughts/alternative_text'] = checklistData.photoAltText;
     }
     
+    // Contact Information
+    if (checklistData.contactName) {
+        params['contact_information_optional/name'] = checklistData.contactName;
+    }
+    
+    if (checklistData.contactEmail) {
+        params['contact_information_optional/email_address'] = checklistData.contactEmail;
+    }
+    
+    // Event Code
+    if (checklistData.eventCode) {
+        params['event_code'] = checklistData.eventCode;
+    }
+    
     return params;
 }
 

@@ -134,6 +134,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.parking.hasParking)) {
                 params['birding_location_accessibility_/is_there_parking'] = 'No';
             }
+            // Parking comments
+            if (ad.parking.comments) params['birding_location_accessibility_/parking_comments'] = ad.parking.comments;
         }
         
         // Bathrooms
@@ -156,6 +158,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.bathrooms.hasBathrooms)) {
                 params['birding_location_accessibility_/are_there_bathrooms'] = 'No';
             }
+            // Bathroom comments
+            if (ad.bathrooms.comments) params['birding_location_accessibility_/bathroom_comments'] = ad.bathrooms.comments;
         }
         
         // Ramps
@@ -173,6 +177,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.ramps.hasRamps)) {
                 params['birding_location_accessibility_/are_there_ramps'] = 'No';
             }
+            // Ramps comments
+            if (ad.ramps.comments) params['birding_location_accessibility_/ramp_comments'] = ad.ramps.comments;
         }
         
         // Steps
@@ -199,6 +205,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.benches.hasBenches)) {
                 params['birding_location_accessibility_/are_there_benches'] = 'No';
             }
+            // Benches comments
+            if (ad.benches.comments) params['birding_location_accessibility_/bench_frequency_comments'] = ad.benches.comments;
         }
         
         // Gates
@@ -216,6 +224,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.gates.hasGates)) {
                 params['birding_location_accessibility_/are_there_gates'] = 'No';
             }
+            // Gates comments
+            if (ad.gates.comments) params['birding_location_accessibility_/gates_comments'] = ad.gates.comments;
         }
         
         // Railings
@@ -230,6 +240,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.railings.hasRailings)) {
                 params['birding_location_accessibility_/are_there_railings'] = 'No';
             }
+            // Railings comments
+            if (ad.railings.comments) params['birding_location_accessibility_/railing_comments'] = ad.railings.comments;
         }
         
         // Bird Blinds
@@ -251,6 +263,8 @@ function mapToSurvey123(checklistData) {
             } else if (isFalse(ad.birdBlinds.hasBirdBlinds)) {
                 params['birding_location_accessibility_/are_there_bird_blinds'] = 'No';
             }
+            // Bird blinds comments
+            if (ad.birdBlinds.comments) params['birding_location_accessibility_/bird_blind_comments'] = ad.birdBlinds.comments;
         }
         
         // Services
@@ -263,6 +277,8 @@ function mapToSurvey123(checklistData) {
             if (ad.services.mealsAvailable) params['birding_location_accessibility_/meals'] = 'Yes';
             if (ad.services.waterFountainsOutside) params['birding_location_accessibility_/water_fountains'] = 'Yes';
             if (ad.services.accessibleWaterFountains) params['birding_location_accessibility_/accessible_water_fountains'] = 'Yes';
+            // Services comments
+            if (ad.services.comments) params['birding_location_accessibility_/additional_services_comments'] = ad.services.comments;
         }
         
         // Trail Surfaces
@@ -369,6 +385,8 @@ function mapToSurvey123(checklistData) {
             if (ad.blindFacilities.brailleOnSigns) params['birding_location_accessibility_/braille'] = 'Yes';
             if (ad.blindFacilities.tactileMarkersOnSurface) params['birding_location_accessibility_/tactile_markers'] = 'Yes';
             if (ad.blindFacilities.additionalResourcesLoan) params['birding_location_accessibility_/additional_resources'] = 'Yes';
+            // Blind facilities comments
+            if (ad.blindFacilities.comments) params['birding_location_accessibility_/features_for_visitors_comments'] = ad.blindFacilities.comments;
         }
         
         // Maintenance
@@ -379,6 +397,8 @@ function mapToSurvey123(checklistData) {
             if (ad.maintenance.leavesRemovedInFallWinter) params['birding_location_accessibility_/leaves_removed'] = 'Yes';
             if (ad.maintenance.plowedFrequentlyInWinter) params['birding_location_accessibility_/plowed'] = 'Yes';
             if (ad.maintenance.significantSurfaceDamage) params['birding_location_accessibility_/damage'] = 'Yes';
+            // Maintenance comments
+            if (ad.maintenance.comments) params['birding_location_accessibility_/maintenance_comments'] = ad.maintenance.comments;
         }
         
         // Nearby noise
@@ -390,6 +410,8 @@ function mapToSurvey123(checklistData) {
             if (ad.nearbyNoise.loudBoatsNearby) params['birding_location_accessibility_/boats'] = 'Yes';
             if (ad.nearbyNoise.dirtBikesNearby) params['birding_location_accessibility_/dirt_bikes'] = 'Yes';
             if (ad.nearbyNoise.largeGroupsOftenUseLocation) params['birding_location_accessibility_/large_groups'] = 'Yes';
+            // Noise comments
+            if (ad.nearbyNoise.comments) params['birding_location_accessibility_/noise_level_comments'] = ad.nearbyNoise.comments;
         }
     }
     

@@ -329,7 +329,7 @@ function mapToSurvey123(checklistData) {
             console.log('Other trail users data:', ad.otherTrailUsers);
             if (ad.otherTrailUsers.cyclists) params['birding_location_accessibility_/other_trail_users_info/cyclists'] = 'Yes';
             if (ad.otherTrailUsers.mountainBikes) params['birding_location_accessibility_/other_trail_users_info/mountain_bikes'] = 'Yes';
-            if (ad.otherTrailUsers.inlineSkaters) params['birding_location_accessibility_/other_trail_users_info/skiers'] = 'Yes';
+            if (ad.otherTrailUsers.inlineSkiers) params['birding_location_accessibility_/other_trail_users_info/skiers'] = 'Yes';
             if (ad.otherTrailUsers.horses) params['birding_location_accessibility_/other_trail_users_info/horses'] = 'Yes';
             if (ad.otherTrailUsers.motorVehicles) params['birding_location_accessibility_/other_trail_users_info/motor_vehicles'] = 'Yes';
             if (ad.otherTrailUsers.comments) params['birding_location_accessibility_/other_user_comments'] = ad.otherTrailUsers.comments;

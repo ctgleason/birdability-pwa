@@ -704,7 +704,7 @@ function getFormData() {
             otherTrailUsers: {
                 cyclists: false,
                 mountainBikes: false,
-                inlineSkaters: false,
+                inlineSkiers: false,
                 horses: false,
                 motorVehicles: false,
                 comments: ""

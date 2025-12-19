@@ -685,9 +685,9 @@ function getFormData() {
                 interpretivePrograms: false,
                 mealsAvailable: false,
                 accessibleWaterFountains: false,
-                waterFountainsOutside: false,
-                accessibleTram: false,
-                gatedAccessibleIfArranged: false,
+                waterFountainsOutsideBuildings: false,
+                accessibleTramOrMotorizedTour: false,
+                gatedAreasAccessibleIfArranged: false,
                 adaptiveEquipment: false,
                 comments: ""
             },

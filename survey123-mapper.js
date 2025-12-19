@@ -307,7 +307,7 @@ function mapToSurvey123(checklistData) {
             console.log('Trail slopes data:', ad.trailSlopes);
             if (ad.trailSlopes.completelyFlat) params['birding_location_accessibility_/trail_slope_info/flat'] = 'Yes';
             if (ad.trailSlopes.noSteeperThan1to20) params['birding_location_accessibility_/trail_slope_info/steep_trail'] = 'Yes';
-            if (ad.trailSlopes.steeperThan1to20) params['birding_location_accessibility_/trail_slope_info/steeper_trail'] = 'Yes';
+            if (ad.trailSlopes.relativelyFlatButSteeperThan1to20) params['birding_location_accessibility_/trail_slope_info/steeper_trail'] = 'Yes';
             if (ad.trailSlopes.verySteep) params['birding_location_accessibility_/trail_slope_info/very_steep_trail'] = 'Yes';
             if (ad.trailSlopes.comments) params['birding_location_accessibility_/trail_slope_comments'] = ad.trailSlopes.comments;
         }

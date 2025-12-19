@@ -598,7 +598,7 @@ function getFormData() {
             trailSlopes: {
                 completelyFlat: false,
                 noSteeperThan1to20: false,
-                steeperThan1to20: false,
+                relativelyFlatButSteeperThan1to20: false,
                 verySteep: false,
                 comments: ""
             },

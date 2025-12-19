@@ -603,8 +603,8 @@ function getFormData() {
                 comments: ""
             },
             trailWidthPullouts: {
-                atLeast36in: false,
-                atLeast60in: false,
+                atLeast36: false,
+                atLeast60: false,
                 relativelyNarrow: false,
                 noPullouts: false,
                 pulloutsEvery1000ft: false,

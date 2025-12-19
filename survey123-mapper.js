@@ -315,8 +315,8 @@ function mapToSurvey123(checklistData) {
         // Trail Width and Pullouts
         if (ad.trailWidthPullouts) {
             console.log('Trail width/pullouts data:', ad.trailWidthPullouts);
-            if (ad.trailWidthPullouts.atLeast36in) params['birding_location_accessibility_/trail_width_info/wide_trail'] = 'Yes';
-            if (ad.trailWidthPullouts.atLeast60in) params['birding_location_accessibility_/trail_width_info/extra_wide_trail'] = 'Yes';
+            if (ad.trailWidthPullouts.atLeast36) params['birding_location_accessibility_/trail_width_info/wide_trail'] = 'Yes';
+            if (ad.trailWidthPullouts.atLeast60) params['birding_location_accessibility_/trail_width_info/extra_wide_trail'] = 'Yes';
             if (ad.trailWidthPullouts.relativelyNarrow) params['birding_location_accessibility_/trail_width_info/narrow_trail'] = 'Yes';
             if (ad.trailWidthPullouts.noPullouts) params['birding_location_accessibility_/trail_width_info/no_pullouts'] = 'Yes';
             if (ad.trailWidthPullouts.pulloutsEvery1000ft) params['birding_location_accessibility_/trail_width_info/pullouts_1_8'] = 'Yes';

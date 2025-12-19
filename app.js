@@ -960,6 +960,27 @@ async function loadJSONWithPicker() {
     }
 }
 
+// Migrate old service property names to new ones
+function migrateServicePropertyNames(data) {
+    if (data.accessibilityDetailed && data.accessibilityDetailed.services) {
+        const services = data.accessibilityDetailed.services;
+        
+        // Migrate old property names to new ones
+        if ('accessibleTram' in services) {
+            services.accessibleTramOrMotorizedTour = services.accessibleTram;
+            delete services.accessibleTram;
+        }
+        if ('gatedAccessibleIfArranged' in services) {
+            services.gatedAreasAccessibleIfArranged = services.gatedAccessibleIfArranged;
+            delete services.gatedAccessibleIfArranged;
+        }
+        if ('waterFountainsOutside' in services) {
+            services.waterFountainsOutsideBuildings = services.waterFountainsOutside;
+            delete services.waterFountainsOutside;
+        }
+    }
+}
+
 function handleJsonFileSelect(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -973,6 +994,8 @@ function handleJsonFileSelect(event) {
     reader.onload = (e) => {
         try {
             const jsonData = JSON.parse(e.target.result);
+            // Migrate old property names to new ones
+            migrateServicePropertyNames(jsonData);
             restoreFormData(jsonData);
             // Go to first section
             currentSection = 1;
@@ -1139,6 +1162,8 @@ function loadSavedData() {
     if (savedData) {
         try {
             const data = JSON.parse(savedData);
+            // Migrate old property names to new ones
+            migrateServicePropertyNames(data);
             populateForm(data);
         } catch (e) {
             console.error('Error loading saved data:', e);

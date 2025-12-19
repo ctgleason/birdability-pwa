@@ -354,7 +354,7 @@ function mapToSurvey123(checklistData) {
             if (ad.safetyConcerns.noticeablePresenceOfAuthorities) params['birding_location_accessibility_/safety_info/police'] = 'Yes';
             if (ad.safetyConcerns.dogsOftenOffLeash) params['birding_location_accessibility_/safety_info/dogs_off_leash'] = 'Yes';
             if (ad.safetyConcerns.ticksOrChiggersConcern) params['birding_location_accessibility_/safety_info/ticks'] = 'Yes';
-            if (ad.safetyConcerns.wildlifeReported) params['birding_location_accessibility_/safety_info/bears'] = 'Yes';
+            if (ad.safetyConcerns.bearsOrMountainLionsReported) params['birding_location_accessibility_/safety_info/bears'] = 'Yes';
             if (ad.safetyConcerns.usedForHunting) params['birding_location_accessibility_/safety_info/hunting'] = 'Yes';
             if (ad.safetyConcerns.bordersPrivatePropertyKeepOutSigns) params['birding_location_accessibility_/safety_info/borders_private'] = 'Yes';
             if (ad.safetyConcerns.usedAsIsolatedPartySpot) params['birding_location_accessibility_/safety_info/party_spot'] = 'Yes';

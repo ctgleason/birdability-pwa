@@ -742,7 +742,7 @@ function getFormData() {
                 noticeablePresenceOfAuthorities: false,
                 dogsOftenOffLeash: false,
                 ticksOrChiggersConcern: false,
-                wildlifeReported: false,
+                bearsOrMountainLionsReported: false,
                 usedForHunting: false,
                 bordersPrivatePropertyKeepOutSigns: false,
                 usedAsIsolatedPartySpot: false,

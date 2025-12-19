@@ -364,7 +364,8 @@ function setupConditionalSections() {
         { radioName: 'accessibilityDetailed.benches.hasBenches', detailsId: 'benchesDetails' },
         { radioName: 'accessibilityDetailed.gates.hasGates', detailsId: 'gatesDetails' },
         { radioName: 'accessibilityDetailed.railings.hasRailings', detailsId: 'railingsDetails' },
-        { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' }
+        { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' },
+        { radioName: 'accessibilityDetailed.blindFacilities.hasBlindFacilities', detailsId: 'blindFacilitiesDetails' }
     ];
     
     conditionalSections.forEach(({ radioName, detailsId }) => {
@@ -389,6 +390,7 @@ function setupConditionalSections() {
 }
 
 // Update visibility of conditional sections based on current radio selections
+// Update visibility of conditional sections based on current radio selections
 function updateConditionalSections() {
     const conditionalSections = [
         { radioName: 'accessibilityDetailed.parking.hasParking', detailsId: 'parkingDetails' },
@@ -397,7 +399,8 @@ function updateConditionalSections() {
         { radioName: 'accessibilityDetailed.benches.hasBenches', detailsId: 'benchesDetails' },
         { radioName: 'accessibilityDetailed.gates.hasGates', detailsId: 'gatesDetails' },
         { radioName: 'accessibilityDetailed.railings.hasRailings', detailsId: 'railingsDetails' },
-        { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' }
+        { radioName: 'accessibilityDetailed.birdBlinds.hasBirdBlinds', detailsId: 'birdBlindsDetails' },
+        { radioName: 'accessibilityDetailed.blindFacilities.hasBlindFacilities', detailsId: 'blindFacilitiesDetails' }
     ];
     
     conditionalSections.forEach(({ radioName, detailsId }) => {
@@ -688,6 +691,7 @@ function getFormData() {
                 comments: ""
             },
             blindFacilities: {
+                hasBlindFacilities: "",
                 brailleOnSigns: false,
                 tactileComponentsOnSigns: false,
                 tactileMarkersOnSurface: false,

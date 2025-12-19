@@ -379,12 +379,17 @@ function mapToSurvey123(checklistData) {
         
         // Features for blind/low vision
         if (ad.blindFacilities) {
+            if (isTrue(ad.blindFacilities.hasBlindFacilities)) {
+                params['birding_location_accessibility_/blind_low_vision_features'] = 'Yes';
             if (ad.blindFacilities.guideRopes) params['birding_location_accessibility_/guide_ropes'] = 'Yes';
             if (ad.blindFacilities.audioRecordings) params['birding_location_accessibility_/audio'] = 'Yes';
             if (ad.blindFacilities.tactileComponentsOnSigns) params['birding_location_accessibility_/tactile_signs'] = 'Yes';
             if (ad.blindFacilities.brailleOnSigns) params['birding_location_accessibility_/braille'] = 'Yes';
             if (ad.blindFacilities.tactileMarkersOnSurface) params['birding_location_accessibility_/tactile_markers'] = 'Yes';
             if (ad.blindFacilities.additionalResourcesLoan) params['birding_location_accessibility_/additional_resources'] = 'Yes';
+            } else if (isFalse(ad.blindFacilities.hasBlindFacilities)) {
+                params['birding_location_accessibility_/blind_low_vision_features'] = 'No';
+            }
             // Blind facilities comments
             if (ad.blindFacilities.comments) params['birding_location_accessibility_/features_for_visitors_comments'] = ad.blindFacilities.comments;
         }

@@ -145,17 +145,17 @@ function mapToSurvey123(checklistData) {
             if (isTrue(ad.bathrooms.hasBathrooms)) {
                 params['birding_location_accessibility_/are_there_bathrooms'] = 'Yes';
                 // Bathroom details (only if yes)
-                if (ad.bathrooms.regularPortableRestrooms) params['birding_location_accessibility_/bathrooms_info/regular_portable'] = 'Yes';
-                if (ad.bathrooms.accessiblePortableRestrooms) params['birding_location_accessibility_/bathrooms_info/accessible_portable'] = 'Yes';
-                if (ad.bathrooms.onlyAccessibleWhenVisitorsCenterOpen) params['birding_location_accessibility_/bathrooms_info/only_visitors_center'] = 'Yes';
-                if (ad.bathrooms.doorFramesAtLeast32in) params['birding_location_accessibility_/bathrooms_info/door_frames'] = 'Yes';
-                if (ad.bathrooms.stallSizeAtLeast60by60in) params['birding_location_accessibility_/bathrooms_info/stall_size'] = 'Yes';
-                if (ad.bathrooms.toiletSeatHeight17to19in) params['birding_location_accessibility_/bathrooms_info/toilet'] = 'Yes';
-                if (ad.bathrooms.sinkAt34inOrLower) params['birding_location_accessibility_/bathrooms_info/sink'] = 'Yes';
-                if (ad.bathrooms.mirrorBottomAt40inOrLower) params['birding_location_accessibility_/bathrooms_info/mirror'] = 'Yes';
-                if (ad.bathrooms.handDryersAt48inOrLower) params['birding_location_accessibility_/bathrooms_info/hand_dryers'] = 'Yes';
+                if (ad.bathrooms.portableRestrooms) params['birding_location_accessibility_/bathrooms_info/regular_portable'] = 'Yes';
+                if (ad.bathrooms.wheelchairAccessiblePortable) params['birding_location_accessibility_/bathrooms_info/accessible_portable'] = 'Yes';
+                if (ad.bathrooms.accessOnlyWhenCenterOpen) params['birding_location_accessibility_/bathrooms_info/only_visitors_center'] = 'Yes';
+                if (ad.bathrooms.doorFramesAtLeast32) params['birding_location_accessibility_/bathrooms_info/door_frames'] = 'Yes';
+                if (ad.bathrooms.stallSizeMin6060) params['birding_location_accessibility_/bathrooms_info/stall_size'] = 'Yes';
+                if (ad.bathrooms.toiletSeatHeight17to19) params['birding_location_accessibility_/bathrooms_info/toilet'] = 'Yes';
+                if (ad.bathrooms.sinkHeightMax34) params['birding_location_accessibility_/bathrooms_info/sink'] = 'Yes';
+                if (ad.bathrooms.mirrorBottomMax40) params['birding_location_accessibility_/bathrooms_info/mirror'] = 'Yes';
+                if (ad.bathrooms.handDryersMax35) params['birding_location_accessibility_/bathrooms_info/hand_dryers'] = 'Yes';
                 if (ad.bathrooms.thresholdNotOnSlant) params['birding_location_accessibility_/bathrooms_info/threshold'] = 'Yes';
-                if (ad.bathrooms.allGenderBathrooms) params['birding_location_accessibility_/bathrooms_info/all_gender'] = 'Yes';
+                if (ad.bathrooms.allGender) params['birding_location_accessibility_/bathrooms_info/all_gender'] = 'Yes';
             } else if (isFalse(ad.bathrooms.hasBathrooms)) {
                 params['birding_location_accessibility_/are_there_bathrooms'] = 'No';
             }

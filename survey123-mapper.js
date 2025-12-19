@@ -169,12 +169,12 @@ function mapToSurvey123(checklistData) {
             if (isTrue(ad.ramps.hasRamps)) {
                 params['birding_location_accessibility_/are_there_ramps'] = 'Yes';
                 // Ramp details (only if yes)
-                if (ad.ramps.perfectRamp) params['birding_location_accessibility_/ramps_info/perfect_ramp'] = 'Yes';
-                if (ad.ramps.steeperRamp) params['birding_location_accessibility_/ramps_info/steeper_ramp'] = 'Yes';
-                if (ad.ramps.verySteepRamp) params['birding_location_accessibility_/ramps_info/very_steep_ramp'] = 'Yes';
-                if (ad.ramps.wideRamps) params['birding_location_accessibility_/ramps_info/wide_ramps'] = 'Yes';
-                if (ad.ramps.flatLandings) params['birding_location_accessibility_/ramps_info/flat_landings'] = 'Yes';
-                if (ad.ramps.handrails) params['birding_location_accessibility_/ramps_info/handrails'] = 'Yes';
+                if (ad.ramps.slopeNoSteeperThan1to12) params['birding_location_accessibility_/ramps_info/perfect_ramp'] = 'Yes';
+                if (ad.ramps.steeperButManageable) params['birding_location_accessibility_/ramps_info/steeper_ramp'] = 'Yes';
+                if (ad.ramps.verySteep) params['birding_location_accessibility_/ramps_info/very_steep_ramp'] = 'Yes';
+                if (ad.ramps.widthAtLeast36) params['birding_location_accessibility_/ramps_info/wide_ramps'] = 'Yes';
+                if (ad.ramps.flatLandingsMin6060) params['birding_location_accessibility_/ramps_info/flat_landings'] = 'Yes';
+                if (ad.ramps.handrailsPresent) params['birding_location_accessibility_/ramps_info/handrails'] = 'Yes';
             } else if (isFalse(ad.ramps.hasRamps)) {
                 params['birding_location_accessibility_/are_there_ramps'] = 'No';
             }

@@ -635,12 +635,12 @@ function getFormData() {
             },
             ramps: {
                 hasRamps: "",
-                perfectRamp: false,
-                steeperRamp: false,
-                verySteepRamp: false,
-                wideRamps: false,
-                flatLandings: false,
-                handrails: false,
+                handrailsPresent: false,
+                widthAtLeast36: false,
+                slopeNoSteeperThan1to12: false,
+                steeperButManageable: false,
+                verySteep: false,
+                flatLandingsMin6060: false,
                 comments: ""
             },
             railings: {

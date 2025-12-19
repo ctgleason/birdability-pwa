@@ -50,8 +50,10 @@ function mapToSurvey123(checklistData) {
         }
         
         // Car birding
-        if (gi.goodCarBirding !== undefined) {
-            params['general_information/car_birding'] = gi.goodCarBirding ? 'Yes' : 'No';
+        if (isTrue(gi.goodCarBirding)) {
+            params['general_information/car_birding'] = 'Yes';
+        } else if (isFalse(gi.goodCarBirding)) {
+            params['general_information/car_birding'] = 'No';
         }
         if (gi.goodCarBirdingDetails) {
             params['general_information/car_birding_comments'] = gi.goodCarBirdingDetails;

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'birdability-v2';
+const CACHE_NAME = 'birdability-v5';
 const urlsToCache = [
   './index.html',
   './styles.css',

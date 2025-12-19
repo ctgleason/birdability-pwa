@@ -464,7 +464,7 @@ function buildSurvey123URL(checklistData) {
     const params = mapToSurvey123(checklistData);
     const urlParams = new URLSearchParams();
     
-    // Add field: prefix with full XLS path to each parameter
+    // Add field: prefix with SHORT field name to each parameter
     for (const [key, value] of Object.entries(params)) {
         // Skip null/undefined/object values
         if (value == null || typeof value === 'object') {
@@ -472,8 +472,9 @@ function buildSurvey123URL(checklistData) {
             continue;
         }
         
-        // Use full path: field:/xls-FORMID/section/field
-        const fullPath = `${FIELD_PREFIX}${XLS_PATH_PREFIX}${key}`;
+        // Extract just the field name (last part after final /)
+        const fieldName = key.split('/').pop();
+        const fullPath = `${FIELD_PREFIX}${fieldName}`;
         urlParams.append(fullPath, String(value));
     }
     

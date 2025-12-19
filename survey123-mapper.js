@@ -100,16 +100,20 @@ function mapToSurvey123(checklistData) {
         }
         
         // Public transportation
-        if (gi.publicTransitAccess !== undefined) {
-            params['general_information/public_transportation'] = gi.publicTransitAccess ? 'Yes' : 'No';
+        if (isTrue(gi.publicTransitAccess)) {
+            params['general_information/public_transportation'] = 'Yes';
+        } else if (isFalse(gi.publicTransitAccess)) {
+            params['general_information/public_transportation'] = 'No';
         }
         if (gi.publicTransitInfo) {
             params['general_information/public_transportation_comments'] = gi.publicTransitInfo;
         }
         
         // Walking/biking
-        if (gi.walkingBikingAccess !== undefined) {
-            params['general_information/walk_bike'] = gi.walkingBikingAccess ? 'Yes' : 'No';
+        if (isTrue(gi.walkingBikingAccess)) {
+            params['general_information/walk_bike'] = 'Yes';
+        } else if (isFalse(gi.walkingBikingAccess)) {
+            params['general_information/walk_bike'] = 'No';
         }
         if (gi.walkingOrBikingInfo) {
             params['general_information/walking_biking_comments'] = gi.walkingOrBikingInfo;

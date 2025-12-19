@@ -688,6 +688,7 @@ function getFormData() {
                 waterFountainsOutside: false,
                 accessibleTram: false,
                 gatedAccessibleIfArranged: false,
+                adaptiveEquipment: false,
                 comments: ""
             },
             blindFacilities: {

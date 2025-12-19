@@ -272,11 +272,12 @@ function mapToSurvey123(checklistData) {
             if (ad.services.visitorCenter) params['birding_location_accessibility_/visitors_center'] = 'Yes';
             if (ad.services.staffOrVolunteers) params['birding_location_accessibility_/staff'] = 'Yes';
             if (ad.services.interpretivePrograms) params['birding_location_accessibility_/interpretive_programs'] = 'Yes';
-            if (ad.services.accessibleTram) params['birding_location_accessibility_/tram'] = 'Yes';
-            if (ad.services.gatedAccessibleIfArranged) params['birding_location_accessibility_/gated_areas'] = 'Yes';
+            if (ad.services.accessibleTram) params['birding_location_accessibility_/additional_services_info/tram'] = 'Yes';
+            if (ad.services.gatedAccessibleIfArranged) params['birding_location_accessibility_/additional_services_info/gated_areas'] = 'Yes';
             if (ad.services.mealsAvailable) params['birding_location_accessibility_/meals'] = 'Yes';
-            if (ad.services.waterFountainsOutside) params['birding_location_accessibility_/water_fountains'] = 'Yes';
-            if (ad.services.accessibleWaterFountains) params['birding_location_accessibility_/accessible_water_fountains'] = 'Yes';
+            if (ad.services.waterFountainsOutside) params['birding_location_accessibility_/additional_services_info/water_fountains'] = 'Yes';
+            if (ad.services.accessibleWaterFountains) params['birding_location_accessibility_/additional_services_info/accessible_water_fountains'] = 'Yes';
+            if (ad.services.adaptiveEquipment) params['birding_location_accessibility_/additional_services_info/field_80_0'] = 'Yes';
             // Services comments
             if (ad.services.comments) params['birding_location_accessibility_/additional_services_comments'] = ad.services.comments;
         }

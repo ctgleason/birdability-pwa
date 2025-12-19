@@ -330,7 +330,7 @@ function mapToSurvey123(checklistData) {
             if (ad.otherTrailUsers.inlineSkaters) params['birding_location_accessibility_/inline_skaters'] = 'Yes';
             if (ad.otherTrailUsers.horses) params['birding_location_accessibility_/horses'] = 'Yes';
             if (ad.otherTrailUsers.motorVehicles) params['birding_location_accessibility_/motor_vehicles'] = 'Yes';
-            if (ad.otherTrailUsers.comments) params['birding_location_accessibility_/other_trail_users_comments'] = ad.otherTrailUsers.comments;
+            if (ad.otherTrailUsers.comments) params['birding_location_accessibility_/other_user_comments'] = ad.otherTrailUsers.comments;
         }
         
         // Trail Use/Popularity
